@@ -10,7 +10,6 @@
 		DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A18FE2B43D27300194ADA /* AppDelegate.swift */; };
 		DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19002B43D27300194ADA /* SceneDelegate.swift */; };
 		DE2A19032B43D27300194ADA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19022B43D27300194ADA /* ViewController.swift */; };
-		DE2A19062B43D27300194ADA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19042B43D27300194ADA /* Main.storyboard */; };
 		DE2A19082B43D27400194ADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19072B43D27400194ADA /* Assets.xcassets */; };
 		DE2A190B2B43D27400194ADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */; };
 		DE2A19162B43D27400194ADA /* BlinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19152B43D27400194ADA /* BlinkTests.swift */; };
@@ -40,7 +39,6 @@
 		DE2A18FE2B43D27300194ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE2A19002B43D27300194ADA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DE2A19022B43D27300194ADA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DE2A19052B43D27300194ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE2A19072B43D27400194ADA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE2A190A2B43D27400194ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE2A190C2B43D27400194ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				DE2A18FE2B43D27300194ADA /* AppDelegate.swift */,
 				DE2A19002B43D27300194ADA /* SceneDelegate.swift */,
 				DE2A19022B43D27300194ADA /* ViewController.swift */,
-				DE2A19042B43D27300194ADA /* Main.storyboard */,
 				DE2A19072B43D27400194ADA /* Assets.xcassets */,
 				DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */,
 				DE2A190C2B43D27400194ADA /* Info.plist */,
@@ -233,7 +230,6 @@
 			files = (
 				DE2A190B2B43D27400194ADA /* LaunchScreen.storyboard in Resources */,
 				DE2A19082B43D27400194ADA /* Assets.xcassets in Resources */,
-				DE2A19062B43D27300194ADA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DE2A19042B43D27300194ADA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DE2A19052B43D27300194ADA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -447,7 +435,6 @@
 				INFOPLIST_FILE = Blink/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -457,9 +444,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chaewon.Blink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -475,7 +465,6 @@
 				INFOPLIST_FILE = Blink/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -485,9 +474,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chaewon.Blink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
