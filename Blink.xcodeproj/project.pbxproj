@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A18FE2B43D27300194ADA /* AppDelegate.swift */; };
 		DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19002B43D27300194ADA /* SceneDelegate.swift */; };
-		DE2A19032B43D27300194ADA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19022B43D27300194ADA /* ViewController.swift */; };
 		DE2A19082B43D27400194ADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19072B43D27400194ADA /* Assets.xcassets */; };
 		DE2A190B2B43D27400194ADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */; };
 		DE2A19162B43D27400194ADA /* BlinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19152B43D27400194ADA /* BlinkTests.swift */; };
 		DE2A19202B43D27400194ADA /* BlinkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A191F2B43D27400194ADA /* BlinkUITests.swift */; };
 		DE2A19222B43D27400194ADA /* BlinkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19212B43D27400194ADA /* BlinkUITestsLaunchTests.swift */; };
+		DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19372B43E8C500194ADA /* FontScale.swift */; };
+		DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A193B2B43F35800194ADA /* UILabel+Extension.swift */; };
+		DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A193E2B43F63800194ADA /* LabelBuilder.swift */; };
+		DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19402B43F70F00194ADA /* UIFont+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +41,6 @@
 		DE2A18FB2B43D27300194ADA /* Blink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2A18FE2B43D27300194ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE2A19002B43D27300194ADA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE2A19022B43D27300194ADA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DE2A19072B43D27400194ADA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE2A190A2B43D27400194ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE2A190C2B43D27400194ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +49,10 @@
 		DE2A191B2B43D27400194ADA /* BlinkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2A191F2B43D27400194ADA /* BlinkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkUITests.swift; sourceTree = "<group>"; };
 		DE2A19212B43D27400194ADA /* BlinkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DE2A19372B43E8C500194ADA /* FontScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScale.swift; sourceTree = "<group>"; };
+		DE2A193B2B43F35800194ADA /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		DE2A193E2B43F63800194ADA /* LabelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBuilder.swift; sourceTree = "<group>"; };
+		DE2A19402B43F70F00194ADA /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +105,13 @@
 			children = (
 				DE2A18FE2B43D27300194ADA /* AppDelegate.swift */,
 				DE2A19002B43D27300194ADA /* SceneDelegate.swift */,
-				DE2A19022B43D27300194ADA /* ViewController.swift */,
 				DE2A19072B43D27400194ADA /* Assets.xcassets */,
+				DE2A19362B43E20000194ADA /* Utility */,
+				DE2A19352B43E1EF00194ADA /* Extension */,
+				DE2A193D2B43F62700194ADA /* Builder */,
+				DE2A19342B43E1E700194ADA /* Model */,
+				DE2A19332B43E1AE00194ADA /* Network */,
+				DE2A19312B43E19C00194ADA /* View */,
 				DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */,
 				DE2A190C2B43D27400194ADA /* Info.plist */,
 			);
@@ -122,6 +133,52 @@
 				DE2A19212B43D27400194ADA /* BlinkUITestsLaunchTests.swift */,
 			);
 			path = BlinkUITests;
+			sourceTree = "<group>";
+		};
+		DE2A19312B43E19C00194ADA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE2A19332B43E1AE00194ADA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE2A19342B43E1E700194ADA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DE2A19352B43E1EF00194ADA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE2A193B2B43F35800194ADA /* UILabel+Extension.swift */,
+				DE2A19402B43F70F00194ADA /* UIFont+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE2A19362B43E20000194ADA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				DE2A19372B43E8C500194ADA /* FontScale.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		DE2A193D2B43F62700194ADA /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				DE2A193E2B43F63800194ADA /* LabelBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +311,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE2A19032B43D27300194ADA /* ViewController.swift in Sources */,
+				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
 				DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */,
 				DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */,
+				DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */,
+				DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */,
+				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
