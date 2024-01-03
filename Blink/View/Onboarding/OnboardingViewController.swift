@@ -6,27 +6,56 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class OnboardingViewController: BaseViewController {
     
-    private lazy var introduceLabel = {
+    private let introduceLabel = {
         let view = UILabel.labelBuilder(text: "새싹톡을 사용하면 어디서나\n팀을 모을 수 있습니다", font: .title1, textColor: .brandBlack, numberOfLines: 0, textAlignment: .center)
         view.lineBreakMode = .byWordWrapping
         return view
     }()
     
-    private lazy var onboardingImageView = {
+    private let onboardingImageView = {
         let view = UIImageView()
         view.image = .onboarding
         view.contentMode = .scaleAspectFill
         return view
     }()
     
-    private lazy var startButton = RoundedButton(title: "시작하기")
+    private let startButton = RoundedButton(title: "시작하기")
+    
+    private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         
+    }
+    
+    private func bind() {
+        startButton.rx.tap
+            .subscribe(with: self) { owner, _ in
+                let vc = AuthViewController()
+                vc.modalPresentationStyle = .pageSheet
+                let customDetentId = UISheetPresentationController.Detent.Identifier("custom")
+                let customDetent = UISheetPresentationController.Detent.custom(identifier: customDetentId) { context in
+                   return 279
+                }
+                self.sheetPresentationController?.detents = [customDetent]
+               
+                if let sheet = vc.sheetPresentationController {
+                    //지원할 크기 지정
+                    sheet.detents = [customDetent]
+                    //크기 변하는거 감지
+                    sheet.prefersGrabberVisible = true
+                }
+               
+                self.present(vc, animated: true, completion: nil)
+            }
+            .disposed(by: disposeBag)
+             
     }
     
     override func setHierarchy() {
@@ -59,6 +88,3 @@ final class OnboardingViewController: BaseViewController {
     }
 }
 
-#Preview {
-    UINavigationController(rootViewController: OnboardingViewController())
-}
