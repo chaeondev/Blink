@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class AuthViewController: BaseViewController {
     
-    private lazy var appleLoginButton = UIButton.buttonBuilder(image: .appleIDLogin)
-    private lazy var kakaoLoginButton = UIButton.buttonBuilder(image: .kakaoLogin)
-    private lazy var emailLoginButton = RoundedButton(image: .email, title: "이메일로 계속하기")
-    private lazy var signUpButton = {
+    private let appleLoginButton = UIButton.buttonBuilder(image: .appleIDLogin)
+    private let kakaoLoginButton = UIButton.buttonBuilder(image: .kakaoLogin)
+    private let emailLoginButton = RoundedButton(image: .email, title: "이메일로 계속하기")
+    private let signUpButton = {
         let view = UIButton.buttonBuilder(title: "또는 새롭게 회원가입 하기", font: UIFont.customFont(.title2), titleColor: .brandGreen)
         let attrStr = NSMutableAttributedString(string: (view.titleLabel?.text)!)
         attrStr.addAttribute(.foregroundColor, value: UIColor.brandBlack, range: ((view.titleLabel?.text)! as NSString).range(of: "또는"))
@@ -20,9 +22,23 @@ final class AuthViewController: BaseViewController {
         return view
     }()
     
+    private var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
+    }
+    
+    private func bind() {
+        signUpButton.rx.tap
+            .subscribe(with: self) { owner, _ in
+                
+                let vc = SignUpViewController()
+                let nav = UINavigationController(rootViewController: vc)
+               
+                self.present(nav, animated: true, completion: nil)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setHierarchy() {
