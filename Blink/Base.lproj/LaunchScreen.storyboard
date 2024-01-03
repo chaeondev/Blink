@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyP-Qt-EKk">
-                                <rect key="frame" x="24" y="152" width="345" height="60"/>
+                                <rect key="frame" x="24" y="93" width="345" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="NJl-ro-7gR"/>
                                     <constraint firstAttribute="width" constant="345" id="S4r-YM-OGl"/>
@@ -41,7 +41,7 @@
                         <constraints>
                             <constraint firstItem="lhT-uy-xTK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="242" id="6Y6-mN-thw"/>
                             <constraint firstItem="GyP-Qt-EKk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="6ys-QW-beX"/>
-                            <constraint firstItem="GyP-Qt-EKk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="93" id="Mq3-j0-gRo"/>
+                            <constraint firstItem="GyP-Qt-EKk" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="93" id="Mq3-j0-gRo"/>
                             <constraint firstItem="lhT-uy-xTK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="ohm-eu-A89"/>
                         </constraints>
                     </view>
