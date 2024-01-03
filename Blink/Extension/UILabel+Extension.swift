@@ -13,7 +13,8 @@ extension UILabel {
 
         let attributeString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
-        style.lineSpacing = font.lineHeight
+        style.minimumLineHeight = font.lineHeight
+        style.maximumLineHeight = font.lineHeight
         attributeString.addAttribute(.paragraphStyle,
                                      value: style,
                                      range: NSRange(location: 0, length: attributeString.length))
