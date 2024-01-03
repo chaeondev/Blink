@@ -18,6 +18,12 @@
 		DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A193B2B43F35800194ADA /* UILabel+Extension.swift */; };
 		DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A193E2B43F63800194ADA /* LabelBuilder.swift */; };
 		DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19402B43F70F00194ADA /* UIFont+Extension.swift */; };
+		DE2A19442B44125500194ADA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19432B44125500194ADA /* OnboardingViewController.swift */; };
+		DE2A19462B44229B00194ADA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19452B44229B00194ADA /* BaseViewController.swift */; };
+		DE2A19492B44237A00194ADA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DE2A19482B44237A00194ADA /* SnapKit */; };
+		DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A194B2B442B0E00194ADA /* RoundedButton.swift */; };
+		DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */; };
+		DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27482B45412A00141F5F /* AuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,11 @@
 		DE2A193B2B43F35800194ADA /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		DE2A193E2B43F63800194ADA /* LabelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBuilder.swift; sourceTree = "<group>"; };
 		DE2A19402B43F70F00194ADA /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		DE2A19432B44125500194ADA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		DE2A19452B44229B00194ADA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		DE2A194B2B442B0E00194ADA /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
+		DE8C27482B45412A00141F5F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE2A19492B44237A00194ADA /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,9 +120,10 @@
 				DE2A19072B43D27400194ADA /* Assets.xcassets */,
 				DE2A19362B43E20000194ADA /* Utility */,
 				DE2A19352B43E1EF00194ADA /* Extension */,
-				DE2A193D2B43F62700194ADA /* Builder */,
 				DE2A19342B43E1E700194ADA /* Model */,
 				DE2A19332B43E1AE00194ADA /* Network */,
+				DE2A193D2B43F62700194ADA /* Builder */,
+				DE2A194A2B4429E400194ADA /* Component */,
 				DE2A19312B43E19C00194ADA /* View */,
 				DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */,
 				DE2A190C2B43D27400194ADA /* Info.plist */,
@@ -138,6 +151,9 @@
 		DE2A19312B43E19C00194ADA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE2A19422B4411C900194ADA /* Onboarding */,
+				DE8C27472B4540DC00141F5F /* Auth */,
+				DE2A19452B44229B00194ADA /* BaseViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,8 +193,33 @@
 			isa = PBXGroup;
 			children = (
 				DE2A193E2B43F63800194ADA /* LabelBuilder.swift */,
+				DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		DE2A19422B4411C900194ADA /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DE2A19432B44125500194ADA /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DE2A194A2B4429E400194ADA /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				DE2A194B2B442B0E00194ADA /* RoundedButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		DE8C27472B4540DC00141F5F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DE8C27482B45412A00141F5F /* AuthViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +238,9 @@
 			dependencies = (
 			);
 			name = Blink;
+			packageProductDependencies = (
+				DE2A19482B44237A00194ADA /* SnapKit */,
+			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
 			productType = "com.apple.product-type.application";
@@ -269,6 +313,9 @@
 				Base,
 			);
 			mainGroup = DE2A18F22B43D27300194ADA;
+			packageReferences = (
+				DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,10 +358,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
 				DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */,
 				DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */,
 				DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */,
+				DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */,
+				DE2A19442B44125500194ADA /* OnboardingViewController.swift in Sources */,
+				DE2A19462B44229B00194ADA /* BaseViewController.swift in Sources */,
+				DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */,
 				DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */,
 				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
 			);
@@ -659,6 +711,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DE2A19482B44237A00194ADA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DE2A18F32B43D27300194ADA /* Project object */;
 }
