@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Toast
 
 class BaseViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class BaseViewController: UIViewController {
         
         setHierarchy()
         setConstraints()
+        setToastMessage()
     }
     
     func setHierarchy() {
@@ -23,5 +25,13 @@ class BaseViewController: UIViewController {
     
     func setConstraints() {
         view.backgroundColor = .backgroundPrimary
+    }
+    
+    func setToastMessage() {
+        var style = ToastStyle()
+        style.backgroundColor = .brandGreen
+        style.messageFont = .customFont(.body)
+        style.messageAlignment = .center
+        ToastManager.shared.style = style
     }
 }
