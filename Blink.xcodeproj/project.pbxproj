@@ -24,6 +24,17 @@
 		DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A194B2B442B0E00194ADA /* RoundedButton.swift */; };
 		DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */; };
 		DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27482B45412A00141F5F /* AuthViewController.swift */; };
+		DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C274B2B454E4F00141F5F /* RxCocoa */; };
+		DE8C274E2B454E4F00141F5F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C274D2B454E4F00141F5F /* RxSwift */; };
+		DE8C27522B45626800141F5F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27512B45626800141F5F /* SignUpViewController.swift */; };
+		DE8C27542B45666F00141F5F /* SignUpLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27532B45666F00141F5F /* SignUpLabel.swift */; };
+		DE8C27582B45670C00141F5F /* SignUpTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27572B45670C00141F5F /* SignUpTextfield.swift */; };
+		DE8C275A2B4670E300141F5F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27592B4670E300141F5F /* ViewModelType.swift */; };
+		DE8C275C2B46711C00141F5F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C275B2B46711C00141F5F /* SignUpViewModel.swift */; };
+		DE8C275F2B4688CC00141F5F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C275E2B4688CC00141F5F /* Toast */; };
+		DE8C27622B46A41500141F5F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C27612B46A41500141F5F /* Alamofire */; };
+		DE8C27652B46A4E500141F5F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DE8C27642B46A4E500141F5F /* .gitignore */; };
+		DE8C27672B46A59100141F5F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27662B46A59100141F5F /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +75,13 @@
 		DE2A194B2B442B0E00194ADA /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
 		DE8C27482B45412A00141F5F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		DE8C27512B45626800141F5F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DE8C27532B45666F00141F5F /* SignUpLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpLabel.swift; sourceTree = "<group>"; };
+		DE8C27572B45670C00141F5F /* SignUpTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTextfield.swift; sourceTree = "<group>"; };
+		DE8C27592B4670E300141F5F /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		DE8C275B2B46711C00141F5F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		DE8C27642B46A4E500141F5F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DE8C27662B46A59100141F5F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +89,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8C27622B46A41500141F5F /* Alamofire in Frameworks */,
+				DE8C275F2B4688CC00141F5F /* Toast in Frameworks */,
+				DE8C274E2B454E4F00141F5F /* RxSwift in Frameworks */,
+				DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */,
 				DE2A19492B44237A00194ADA /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +149,7 @@
 				DE2A19312B43E19C00194ADA /* View */,
 				DE2A19092B43D27400194ADA /* LaunchScreen.storyboard */,
 				DE2A190C2B43D27400194ADA /* Info.plist */,
+				DE8C27642B46A4E500141F5F /* .gitignore */,
 			);
 			path = Blink;
 			sourceTree = "<group>";
@@ -153,7 +176,9 @@
 			children = (
 				DE2A19422B4411C900194ADA /* Onboarding */,
 				DE8C27472B4540DC00141F5F /* Auth */,
+				DE8C274F2B45624000141F5F /* SignUp */,
 				DE2A19452B44229B00194ADA /* BaseViewController.swift */,
+				DE8C27592B4670E300141F5F /* ViewModelType.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -161,6 +186,7 @@
 		DE2A19332B43E1AE00194ADA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				DE8C27662B46A59100141F5F /* APIKey.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -210,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				DE2A194B2B442B0E00194ADA /* RoundedButton.swift */,
+				DE8C27532B45666F00141F5F /* SignUpLabel.swift */,
+				DE8C27572B45670C00141F5F /* SignUpTextfield.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -220,6 +248,15 @@
 				DE8C27482B45412A00141F5F /* AuthViewController.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		DE8C274F2B45624000141F5F /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				DE8C27512B45626800141F5F /* SignUpViewController.swift */,
+				DE8C275B2B46711C00141F5F /* SignUpViewModel.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +277,10 @@
 			name = Blink;
 			packageProductDependencies = (
 				DE2A19482B44237A00194ADA /* SnapKit */,
+				DE8C274B2B454E4F00141F5F /* RxCocoa */,
+				DE8C274D2B454E4F00141F5F /* RxSwift */,
+				DE8C275E2B4688CC00141F5F /* Toast */,
+				DE8C27612B46A41500141F5F /* Alamofire */,
 			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
@@ -315,6 +356,9 @@
 			mainGroup = DE2A18F22B43D27300194ADA;
 			packageReferences = (
 				DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DE8C274A2B454E4F00141F5F /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DE8C275D2B4688CC00141F5F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				DE8C27602B46A41500141F5F /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
@@ -333,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE2A190B2B43D27400194ADA /* LaunchScreen.storyboard in Resources */,
+				DE8C27652B46A4E500141F5F /* .gitignore in Resources */,
 				DE2A19082B43D27400194ADA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,15 +405,21 @@
 			files = (
 				DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
+				DE8C275C2B46711C00141F5F /* SignUpViewModel.swift in Sources */,
+				DE8C27542B45666F00141F5F /* SignUpLabel.swift in Sources */,
 				DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */,
 				DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */,
 				DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */,
 				DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */,
+				DE8C27522B45626800141F5F /* SignUpViewController.swift in Sources */,
+				DE8C275A2B4670E300141F5F /* ViewModelType.swift in Sources */,
 				DE2A19442B44125500194ADA /* OnboardingViewController.swift in Sources */,
+				DE8C27582B45670C00141F5F /* SignUpTextfield.swift in Sources */,
 				DE2A19462B44229B00194ADA /* BaseViewController.swift in Sources */,
 				DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */,
 				DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */,
 				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
+				DE8C27672B46A59100141F5F /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +772,30 @@
 				minimumVersion = 5.7.0;
 			};
 		};
+		DE8C274A2B454E4F00141F5F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		DE8C275D2B4688CC00141F5F /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		DE8C27602B46A41500141F5F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -728,6 +803,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		DE8C274B2B454E4F00141F5F /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8C274A2B454E4F00141F5F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		DE8C274D2B454E4F00141F5F /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8C274A2B454E4F00141F5F /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		DE8C275E2B4688CC00141F5F /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8C275D2B4688CC00141F5F /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		DE8C27612B46A41500141F5F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8C27602B46A41500141F5F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
