@@ -26,19 +26,36 @@ final class SignUpViewController: BaseViewController {
     
     private var disposeBag = DisposeBag()
     
+    private let viewModel = SignUpViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationbar()
         setUpSheet()
         bind()
+        
+        //self.view.makeToast("사용 가능한 이메일입니다.", duration: 3.0, point: CGPoint(x: 195, y: 700), title: nil, image: nil, completion: nil)
     }
     
     private func bind() {
+        
+        let input = SignUpViewModel.Input(
+            emailText: emailTextField.rx.text.orEmpty,
+            nickText: nicknameTextField.rx.text.orEmpty,
+            phoneText: phoneTextField.rx.text.orEmpty,
+            pwText: passwordTextField.rx.text.orEmpty,
+            repwText: repasswordTextField.rx.text.orEmpty,
+            checkEmailButtonTap: checkButton.rx.tap,
+            joinButtonTap: joinButton.rx.tap
+        )
+        let output = viewModel.transform(input: input)
+        
         navigationItem.leftBarButtonItem!.rx.tap
             .subscribe(with: self) { owner, _ in
-                owner.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
+        
     }
     
     private func setNavigationbar() {
@@ -147,8 +164,4 @@ final class SignUpViewController: BaseViewController {
             make.height.equalTo(44)
         }
     }
-}
-
-#Preview {
-    UINavigationController(rootViewController: SignUpViewController())
 }
