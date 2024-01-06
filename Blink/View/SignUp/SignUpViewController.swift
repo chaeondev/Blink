@@ -11,22 +11,14 @@ import RxCocoa
 
 final class SignUpViewController: BaseViewController {
     
-    private let emailLabel = SignUpLabel(title: "이메일")
-    private let emailTextField = SignUpTextfield(placeholder: "이메일을 입력하세요")
-    private let checkButton = RoundedButton(title: "중복확인")
-    private let nicknameLabel = SignUpLabel(title: "닉네임")
-    private let nicknameTextField = SignUpTextfield(placeholder: "닉네임을 입력하세요")
-    private let phoneLabel = SignUpLabel(title: "연락처")
-    private let phoneTextField = SignUpTextfield(placeholder: "전화번호를 입력하세요")
-    private let passwordLabel = SignUpLabel(title: "비밀번호")
-    private let passwordTextField = SignUpTextfield(placeholder: "비밀번호를 입력하세요")
-    private let repasswordLabel = SignUpLabel(title: "비밀번호 확인")
-    private let repasswordTextField = SignUpTextfield(placeholder: "비밀번호를 한 번 더 입력하세요")
-    private let joinButton = RoundedButton(title: "가입하기")
     
+    private let mainView = SignUpView()
+    private let viewModel = SignUpViewModel()
     private var disposeBag = DisposeBag()
     
-    private let viewModel = SignUpViewModel()
+    override func loadView() {
+        self.view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +32,13 @@ final class SignUpViewController: BaseViewController {
     private func bind() {
         
         let input = SignUpViewModel.Input(
-            emailText: emailTextField.rx.text.orEmpty,
-            nickText: nicknameTextField.rx.text.orEmpty,
-            phoneText: phoneTextField.rx.text.orEmpty,
-            pwText: passwordTextField.rx.text.orEmpty,
-            repwText: repasswordTextField.rx.text.orEmpty,
-            checkEmailButtonTap: checkButton.rx.tap,
-            joinButtonTap: joinButton.rx.tap
+            emailText: mainView.emailTextField.rx.text.orEmpty,
+            nickText: mainView.nicknameTextField.rx.text.orEmpty,
+            phoneText: mainView.phoneTextField.rx.text.orEmpty,
+            pwText: mainView.passwordTextField.rx.text.orEmpty,
+            repwText: mainView.repasswordTextField.rx.text.orEmpty,
+            checkEmailButtonTap: mainView.checkButton.rx.tap,
+            joinButtonTap: mainView.joinButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         
@@ -71,97 +63,4 @@ final class SignUpViewController: BaseViewController {
         }
     }
     
-    override func setHierarchy() {
-        [
-            emailLabel,
-            emailTextField,
-            checkButton,
-            nicknameLabel,
-            nicknameTextField,
-            phoneLabel,
-            phoneTextField,
-            passwordLabel,
-            passwordTextField,
-            repasswordLabel,
-            repasswordTextField,
-            joinButton
-        ].forEach { view.addSubview($0) }
-    }
-    
-    override func setConstraints() {
-        super.setConstraints()
-        
-        emailLabel.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(24)
-            make.height.equalTo(24)
-        }
-        
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().inset(24)
-            make.width.equalTo(233)
-            make.height.equalTo(44)
-        }
-        
-        checkButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(56)
-            make.trailing.equalToSuperview().inset(24)
-            make.width.equalTo(100)
-            make.height.equalTo(44)
-        }
-        
-        nicknameLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(24)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(24)
-        }
-        
-        nicknameTextField.snp.makeConstraints { make in
-            make.top.equalTo(nicknameLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(44)
-        }
-        
-        phoneLabel.snp.makeConstraints { make in
-            make.top.equalTo(nicknameTextField.snp.bottom).offset(24)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(24)
-        }
-        
-        phoneTextField.snp.makeConstraints { make in
-            make.top.equalTo(phoneLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(44)
-        }
-        
-        passwordLabel.snp.makeConstraints { make in
-            make.top.equalTo(phoneTextField.snp.bottom).offset(24)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(24)
-        }
-        
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(44)
-        }
-        
-        repasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(24)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(24)
-        }
-        
-        repasswordTextField.snp.makeConstraints { make in
-            make.top.equalTo(repasswordLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(44)
-        }
-        
-        joinButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
-            make.horizontalEdges.equalToSuperview().inset(24)
-            make.height.equalTo(44)
-        }
-    }
 }
