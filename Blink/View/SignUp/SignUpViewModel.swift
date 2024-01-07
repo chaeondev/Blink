@@ -44,6 +44,8 @@ final class SignUpViewModel: ViewModelType {
         let isVerifiedEmail: BehaviorSubject<Bool> = BehaviorSubject(value: false)
         let emailValidation = PublishSubject<EmailValid>()
         
+        let isValidNickname = BehaviorSubject(value: false)
+        
         // MARK: 이메일
         
         //이메일 정규식 검증
@@ -111,7 +113,13 @@ final class SignUpViewModel: ViewModelType {
                 }
             }
             .disposed(by: disposeBag)
-            // TODO: 네트워크 통신(flatMap)
+        
+        // MARK: 닉네임
+        input.nickText
+            .map { $0.count >= 1 && $0.count <= 30 }
+            .bind(to: isValidNickname)
+            .disposed(by: disposeBag)
+        
 
         return Output(emailValidation: emailValidation)
     }
