@@ -41,9 +41,6 @@ final class SignUpViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         /* 이메일 */
-        mainView.emailTextField.textContentType = .emailAddress
-        mainView.emailTextField.keyboardType = .emailAddress
-        
         input.emailText
             .map { $0.count != 0 }
             .bind(with: self) { owner, bool in
@@ -59,7 +56,7 @@ final class SignUpViewController: BaseViewController {
                     case .invalid:
                         return "이메일 형식이 올바르지 않습니다."
                     case .duplicated:
-                        return "사용 가능한 이메일입니다."
+                        return "이미 가입한 이메일입니다."
                     case .networkError:
                         return "에러가 발생했어요. 잠시 후 다시 시도해주세요."
                     case .available:
@@ -70,17 +67,65 @@ final class SignUpViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        /* 닉네임 */
-        
         /* 전화번호 */
-        mainView.phoneTextField.textContentType = .telephoneNumber
-        mainView.phoneTextField.keyboardType = .phonePad
-        
         output.phoneNum
             .bind(to: mainView.phoneTextField.rx.text)
             .disposed(by: disposeBag)
-    
-            
+        
+        /* 가입하기 버튼 */
+        
+        //버튼 활성화
+        Observable.combineLatest(
+            input.emailText.map { !$0.isEmpty },
+            input.nickText.map { !$0.isEmpty },
+            input.pwText.map { !$0.isEmpty },
+            input.repwText.map { !$0.isEmpty }
+        )
+        .map { $0.0 && $0.1 && $0.2 && $0.3 }
+        .bind(with: self) { owner, bool in
+            owner.mainView.joinButton.rx.isEnabled.onNext(bool)
+            owner.mainView.joinButton.backgroundColor = bool ? .brandGreen : .brandInactive
+        }
+        .disposed(by: disposeBag)
+        
+        //버튼 클릭 -> title 변경, 커서 이동, 토스트 메세지
+        output.validationOutput
+            .bind(with: self) { owner, list in
+                print("===validationOutput=== \(list)")
+                
+                //title 변경
+                owner.mainView.emailLabel.textColor = list.contains(.notVerifiedEmail) ? .brandError : .brandBlack
+                owner.mainView.nicknameLabel.textColor = list.contains(.invalidNickname) ? .brandError : .brandBlack
+                owner.mainView.phoneLabel.textColor = list.contains(.invalidPhoneNum) ? .brandError : .brandBlack
+                owner.mainView.passwordLabel.textColor = list.contains(.invalidPassword) ? .brandError : .brandBlack
+                owner.mainView.repasswordLabel.textColor = list.contains(.notSamePassword) ? .brandError : .brandBlack
+  
+                //커서 이동, 토스트 메세지
+                if let first = list.first {
+                    var message: String {
+                        switch first {
+                        case .notVerifiedEmail:
+                            owner.mainView.emailTextField.becomeFirstResponder()
+                            return "이메일 중복 확인을 진행해주세요"
+                        case .invalidNickname:
+                            owner.mainView.nicknameTextField.becomeFirstResponder()
+                            return "닉네임은 1글자 이상 30글자 이내로 부탁드려요"
+                        case .invalidPhoneNum:
+                            owner.mainView.phoneTextField.becomeFirstResponder()
+                            return "잘못된 전화번호 형식입니다."
+                        case .invalidPassword:
+                            owner.mainView.passwordTextField.becomeFirstResponder()
+                            return "비밀번호는 최소 8자 이상, 하나 이상의 대소문자/숫자/특수문자를 설정해주세요."
+                        case .notSamePassword:
+                            owner.mainView.repasswordTextField.becomeFirstResponder()
+                            return "작성하신 비밀번호가 일치하지 않습니다."
+                        }
+                    }
+                    owner.view.makeToast(message, duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
         
         
