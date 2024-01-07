@@ -25,8 +25,6 @@ final class SignUpViewController: BaseViewController {
         setNavigationbar()
         setUpSheet()
         bind()
-        
-        //self.view.makeToast("사용 가능한 이메일입니다.", duration: 3.0, point: CGPoint(x: 195, y: 700), title: nil, image: nil, completion: nil)
     }
     
     private func bind() {
@@ -42,6 +40,43 @@ final class SignUpViewController: BaseViewController {
         )
         let output = viewModel.transform(input: input)
         
+        /* 이메일 */
+        mainView.emailTextField.textContentType = .emailAddress
+        mainView.emailTextField.keyboardType = .emailAddress
+        
+        input.emailText
+            .map { $0.count != 0 }
+            .bind(with: self) { owner, bool in
+                owner.mainView.checkButton.rx.isEnabled.onNext(bool)
+                owner.mainView.checkButton.backgroundColor = bool ? .brandGreen : .brandInactive
+            }
+            .disposed(by: disposeBag)
+        
+        output.emailValidation
+            .bind(with: self) { owner, validation in
+                var toastMessage: String {
+                    switch validation {
+                    case .invalid:
+                        return "이메일 형식이 올바르지 않습니다."
+                    case .duplicated:
+                        return "사용 가능한 이메일입니다."
+                    case .networkError:
+                        return "에러가 발생했어요. 잠시 후 다시 시도해주세요."
+                    case .available:
+                        return "사용 가능한 이메일입니다."
+                    }
+                }
+                owner.view.makeToast(toastMessage, duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+            }
+            .disposed(by: disposeBag)
+        
+    
+            
+        
+        
+        
+        
+        //네비게이션 X 버튼
         navigationItem.leftBarButtonItem!.rx.tap
             .subscribe(with: self) { owner, _ in
                 owner.dismiss(animated: true)
