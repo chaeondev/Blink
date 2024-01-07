@@ -115,4 +115,22 @@ class SignUpView: BaseView {
             make.height.equalTo(44)
         }
     }
+    
+    override func setting() {
+        //이메일
+        emailTextField.textContentType = .emailAddress
+        emailTextField.keyboardType = .emailAddress
+        
+        //전화번호
+        phoneTextField.textContentType = .telephoneNumber
+        phoneTextField.keyboardType = .phonePad
+        
+        //비밀번호
+        passwordTextField.textContentType = .newPassword
+        passwordTextField.isSecureTextEntry = true
+        
+        //비밀번호 확인
+        repasswordTextField.textContentType = .newPassword
+        repasswordTextField.isSecureTextEntry = true
+    }
 }
