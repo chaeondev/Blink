@@ -11,6 +11,7 @@ import Alamofire
 enum UserRouter: APIRouter {
     
     case emailValidation(_ model: EmailValidationRequest)
+    case join(_ model: SignUpRequest)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -20,12 +21,14 @@ enum UserRouter: APIRouter {
         switch self {
         case .emailValidation:
             return "/v1/users/validation/email"
+        case .join:
+            return "/v1/users/join"
         }
     }
     
     var header: Alamofire.HTTPHeaders {
         switch self {
-        case .emailValidation:
+        case .emailValidation, .join:
             return ["Content-Type": "application/json",
                     "SesacKey": APIKey.sesacKey]
         }
@@ -33,7 +36,7 @@ enum UserRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .emailValidation:
+        case .emailValidation, .join:
             return .post
         }
     }
@@ -44,12 +47,20 @@ enum UserRouter: APIRouter {
             return [
                 "email": model.email
             ]
+        case .join(let model):
+            return [
+                "email": model.email,
+                "password": model.password,
+                "nickname": model.nickname,
+                "phone": model.phone,
+                "deviceToken": model.deviceToken
+            ]
         }
     }
     
     var query: [String : String] {
         switch self {
-        case .emailValidation:
+        case .emailValidation, .join:
             return ["": ""]
         }
     }
