@@ -1,5 +1,5 @@
 //
-//  APIError.swift
+//  HTTPError.swift
 //  Blink
 //
 //  Created by Chaewon on 1/4/24.
@@ -25,6 +25,12 @@ enum NetworkError: String, HTTPError {
 
 //이메일 유효성 검증
 enum EmailValidationError: String, HTTPError {
+    case serverConflict = "E12" //중복 데이터
+    case wrongRequest = "E11" //잘못된 요청
+}
+
+//회원가입
+enum SignUpError: String, HTTPError {
     case serverConflict = "E12" //중복 데이터
     case wrongRequest = "E11" //잘못된 요청
 }
