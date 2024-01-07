@@ -14,6 +14,7 @@ final class SignUpViewModel: ViewModelType {
     enum EmailValid {
         case invalid
         case duplicated
+        case networkError
         case available
     }
     
@@ -82,6 +83,34 @@ final class SignUpViewModel: ViewModelType {
             .withLatestFrom(input.emailText) { isVerified, text in
                 return text
             }
+            .map {
+                print("==email text==", $0)
+                return EmailValidationRequest(email: $0)
+            }
+            .flatMapLatest {
+                APIService.shared.requestEmptyReesponse(api: UserRouter.emailValidation($0))
+            }
+            .subscribe(with: self) { owner, response in
+                switch response {
+                case .success:
+                    isVerifiedEmail.onNext(true)
+                    emailValidation.onNext(.available)
+                    print("EmailValidation Success")
+                case .failure(let error):
+                    let isCommonError = NetworkError.allCases.map { $0.rawValue }.contains(error.errorCode)
+                    let customError: (any HTTPError)? = isCommonError ? NetworkError(rawValue: error.errorCode) : EmailValidationError(rawValue: error.errorCode)
+                
+                    if customError as? EmailValidationError == .serverConflict {
+                        emailValidation.onNext(.duplicated)
+                    } else {
+                        emailValidation.onNext(.networkError)
+                    }
+
+                    
+                    print("EmailValidation Failed \(customError)")
+                }
+            }
+            .disposed(by: disposeBag)
             // TODO: 네트워크 통신(flatMap)
 
         return Output(emailValidation: emailValidation)

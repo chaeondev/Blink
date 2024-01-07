@@ -50,6 +50,9 @@ final class SignUpViewController: BaseViewController {
         
     }
     
+}
+
+extension SignUpViewController {
     private func setNavigationbar() {
         title = "회원가입"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: .close, style: .done, target: self, action: nil)
@@ -62,5 +65,4 @@ final class SignUpViewController: BaseViewController {
             sheet.prefersGrabberVisible = true
         }
     }
-    
 }
