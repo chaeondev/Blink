@@ -18,6 +18,20 @@ final class SignUpViewModel: ViewModelType {
         case available
     }
     
+    enum JoinValidation {
+        case notVerifiedEmail
+        case invalidNickname
+        case invalidPhoneNum
+        case invalidPassword
+        case notSamePassword
+    }
+    
+    enum JoinNetworkResult<T: Decodable> {
+        case alreadyJoined
+        case networkError
+        case success(T)
+    }
+    
     private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.com"
     private let phoneRegEx = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$"
     private let pwRegEx = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,50}"
@@ -35,17 +49,17 @@ final class SignUpViewModel: ViewModelType {
     }
     
     struct Output {
-        let emailValidation: PublishSubject<EmailValid>
-        let isValidNickname: BehaviorSubject<Bool>
+        let emailValidation: BehaviorSubject<EmailValid>
         let phoneNum: BehaviorSubject<String>
-        let isValidPhone: BehaviorSubject<Bool>
+        let validationOutput: BehaviorSubject<[JoinValidation]>
+        let networkResult: PublishSubject<JoinNetworkResult<SignUpResponse>>
     }
     
     func transform(input: Input) -> Output {
         
         let isValidEmail: BehaviorSubject<Bool> = BehaviorSubject(value: false)
         let isVerifiedEmail: BehaviorSubject<Bool> = BehaviorSubject(value: false)
-        let emailValidation = PublishSubject<EmailValid>()
+        let emailValidation = BehaviorSubject<EmailValid>(value: .networkError)
         
         let isValidNickname = BehaviorSubject(value: false)
         
@@ -54,6 +68,9 @@ final class SignUpViewModel: ViewModelType {
         
         let isValidPW = BehaviorSubject(value: false)
         let isSamePW = BehaviorSubject(value: false)
+
+        let validationOutput: BehaviorSubject<[JoinValidation]> = BehaviorSubject(value: [])
+        let networkResult = PublishSubject<JoinNetworkResult<SignUpResponse>>()
         
         // MARK: 이메일
         
@@ -146,7 +163,7 @@ final class SignUpViewModel: ViewModelType {
         
         input.phoneText
             .asObservable()
-            .map { $0.range(of: self.phoneRegEx, options: .regularExpression) != nil }
+            .map { $0.range(of: self.phoneRegEx, options: .regularExpression) != nil || $0.isEmpty }
             .bind(to: isValidPhone)
             .disposed(by: disposeBag)
         
@@ -170,9 +187,86 @@ final class SignUpViewModel: ViewModelType {
         
         // MARK: 가입하기 버튼
         
+        //signUpRequest 구조체 만들기
+        let signUpRequest = Observable.combineLatest(
+            input.emailText,
+            input.pwText,
+            input.nickText,
+            input.phoneText
+        )
+            .map { (email, password, nickname, phone) in
+                return SignUpRequest(
+                    email: email,
+                    password: password,
+                    nickname: nickname,
+                    phone: phone.isEmpty ? nil : phone,
+                    deviceToken: nil // TODO: 나중에 변경
+                )
+            }
+        
+        //전체 validation 검증
+        let isCheckedEmail = emailValidation.map { $0 == .available }
+        
+        let validation = Observable.combineLatest(
+            isCheckedEmail,
+            isValidNickname,
+            isValidPhone,
+            isValidPW,
+            isSamePW
+        )
+
+        //가입하기 버튼 클릭 > 전체 validation 검증 > 네트워크 통신
+        input.joinButtonTap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(validation) { _, validation in
+                var list: [JoinValidation] = []
+                if !validation.0 {
+                    print("notVerifiedEmail")
+                    list.append(.notVerifiedEmail)
+                }
+                if !validation.1 {
+                    list.append(.invalidNickname)
+                }
+                if !validation.2 {
+                    print("invalidPhoneNum")
+                    list.append(.invalidPhoneNum)
+                }
+                if !validation.3 {
+                    list.append(.invalidPassword)
+                }
+                if !validation.4 {
+                    list.append(.notSamePassword)
+                }
+                validationOutput.onNext(list)
+                return validation.0 && validation.1 && validation.2 && validation.3 && validation.4
+            }
+            .filter { $0 }
+            .withLatestFrom(signUpRequest)
+            .flatMapLatest {
+                APIService.shared.request(type: SignUpResponse.self, api: UserRouter.join($0))
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    networkResult.onNext(.success(response))
+                case .failure(let error):
+                    let isCommonError = NetworkError.allCases.map { $0.rawValue }.contains(error.errorCode)
+                    let customError: (any HTTPError)? = isCommonError ? NetworkError(rawValue: error.errorCode) : SignUpError(rawValue: error.errorCode)
+                
+                    if customError as? SignUpError == .serverConflict {
+                        networkResult.onNext(.alreadyJoined)
+                    } else {
+                        networkResult.onNext(.networkError)
+                    }
+
+                    print("SignUp Network Failed \(customError)")
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
 
-        return Output(emailValidation: emailValidation, isValidNickname: isValidNickname, phoneNum: phoneNum, isValidPhone: isValidPhone)
+        return Output(emailValidation: emailValidation,phoneNum: phoneNum, validationOutput: validationOutput, networkResult: networkResult)
     }
 
 }
