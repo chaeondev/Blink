@@ -126,7 +126,25 @@ final class SignUpViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        //네트워크 결과
+        output.networkResult
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    KeyChainManager.shared.create(account: .userID, value: "\(response.user_id)")
+                    KeyChainManager.shared.create(account: .accessToken, value: response.token.accessToken)
+                    KeyChainManager.shared.create(account: .refreshToken, value: response.token.refreshToken)
+                    //UserDefaults -> Login True
+                    
+                    print("==Join Success== \(response)")
+                case .alreadyJoined:
+                    owner.view.makeToast("이미 가입된 회원입니다. 로그인을 진행해주세요.", duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+                case .networkError:
+                    owner.view.makeToast("에러가 발생했어요. 잠시 후 다시 시도해주세요.", duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+                
+                }
+            }
+            .disposed(by: disposeBag)
         
         
         
