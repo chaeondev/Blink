@@ -19,7 +19,7 @@ final class SignUpViewModel: ViewModelType {
     }
     
     private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.com"
-    private let phoneRegEx = "^01[0-1, 7][0-9]{7,8}$"
+    private let phoneRegEx = "^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$"
     private let pwRegEx = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,50}"
     
     private var disposeBag = DisposeBag()
@@ -36,6 +36,9 @@ final class SignUpViewModel: ViewModelType {
     
     struct Output {
         let emailValidation: PublishSubject<EmailValid>
+        let isValidNickname: BehaviorSubject<Bool>
+        let phoneNum: BehaviorSubject<String>
+        let isValidPhone: BehaviorSubject<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -45,6 +48,12 @@ final class SignUpViewModel: ViewModelType {
         let emailValidation = PublishSubject<EmailValid>()
         
         let isValidNickname = BehaviorSubject(value: false)
+        
+        let phoneNum: BehaviorSubject<String> = BehaviorSubject(value: "")
+        let isValidPhone = BehaviorSubject(value: false)
+        
+        let isValidPW = BehaviorSubject(value: false)
+        let isSamePW = BehaviorSubject(value: false)
         
         // MARK: 이메일
         
@@ -120,8 +129,50 @@ final class SignUpViewModel: ViewModelType {
             .bind(to: isValidNickname)
             .disposed(by: disposeBag)
         
+        // MARK: 전화번호
+        input.phoneText
+            .asObservable()
+            .bind(with: self) { owner, text in
+                var result = ""
+                if text.count >= 13 {
+                    result = text.formated(by: "###-####-####")
+                } else {
+                    result = text.formated(by: "###-###-####")
+                }
+                
+                phoneNum.onNext(result)
+            }
+            .disposed(by: disposeBag)
+        
+        input.phoneText
+            .asObservable()
+            .map { $0.range(of: self.phoneRegEx, options: .regularExpression) != nil }
+            .bind(to: isValidPhone)
+            .disposed(by: disposeBag)
+        
+        // MARK: 비밀번호
+        
+        //비밀번호 정규식 검증
+        input.pwText
+            .asObservable()
+            .map { $0.range(of: self.pwRegEx, options: .regularExpression) != nil }
+            .bind(to: isValidPW)
+            .disposed(by: disposeBag)
+        
+        //비밀번호 확인
+        Observable.combineLatest(input.pwText, input.repwText)
+            .filter { component in
+                !component.0.isEmpty
+            }
+            .map { $0 == $1 }
+            .bind(to: isSamePW)
+            .disposed(by: disposeBag)
+        
+        // MARK: 가입하기 버튼
+        
+        
 
-        return Output(emailValidation: emailValidation)
+        return Output(emailValidation: emailValidation, isValidNickname: isValidNickname, phoneNum: phoneNum, isValidPhone: isValidPhone)
     }
 
 }

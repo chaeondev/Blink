@@ -70,6 +70,15 @@ final class SignUpViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        /* 닉네임 */
+        
+        /* 전화번호 */
+        mainView.phoneTextField.textContentType = .telephoneNumber
+        mainView.phoneTextField.keyboardType = .phonePad
+        
+        output.phoneNum
+            .bind(to: mainView.phoneTextField.rx.text)
+            .disposed(by: disposeBag)
     
             
         
