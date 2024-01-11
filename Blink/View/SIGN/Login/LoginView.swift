@@ -58,4 +58,12 @@ class LoginView: BaseView {
             make.height.equalTo(44)
         }
     }
+    
+    override func setting() {
+        emailTextField.textContentType = .emailAddress
+        emailTextField.keyboardType = .emailAddress
+
+        pwTextField.textContentType = .newPassword
+        pwTextField.isSecureTextEntry = true
+    }
 }
