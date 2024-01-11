@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SignUpTextfield: UITextField {
+final class BTextField: UITextField {
     
     lazy var paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: self.frame.height))
     

@@ -9,17 +9,17 @@ import UIKit
 
 class SignUpView: BaseView {
     
-    let emailLabel = SignUpLabel(title: "이메일")
-    let emailTextField = SignUpTextfield(placeholder: "이메일을 입력하세요")
+    let emailLabel = BTitleLabel(title: "이메일")
+    let emailTextField = BTextField(placeholder: "이메일을 입력하세요")
     let checkButton = RoundedButton(title: "중복확인")
-    let nicknameLabel = SignUpLabel(title: "닉네임")
-    let nicknameTextField = SignUpTextfield(placeholder: "닉네임을 입력하세요")
-    let phoneLabel = SignUpLabel(title: "연락처")
-    let phoneTextField = SignUpTextfield(placeholder: "전화번호를 입력하세요")
-    let passwordLabel = SignUpLabel(title: "비밀번호")
-    let passwordTextField = SignUpTextfield(placeholder: "비밀번호를 입력하세요")
-    let repasswordLabel = SignUpLabel(title: "비밀번호 확인")
-    let repasswordTextField = SignUpTextfield(placeholder: "비밀번호를 한 번 더 입력하세요")
+    let nicknameLabel = BTitleLabel(title: "닉네임")
+    let nicknameTextField = BTextField(placeholder: "닉네임을 입력하세요")
+    let phoneLabel = BTitleLabel(title: "연락처")
+    let phoneTextField = BTextField(placeholder: "전화번호를 입력하세요")
+    let passwordLabel = BTitleLabel(title: "비밀번호")
+    let passwordTextField = BTextField(placeholder: "비밀번호를 입력하세요")
+    let repasswordLabel = BTitleLabel(title: "비밀번호 확인")
+    let repasswordTextField = BTextField(placeholder: "비밀번호를 한 번 더 입력하세요")
     let joinButton = RoundedButton(title: "가입하기")
     
     override func setHierarchy() {

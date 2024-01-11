@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SignUpLabel: UILabel {
+final class BTitleLabel: UILabel {
     
     init(title: String) {
         super.init(frame: .zero)

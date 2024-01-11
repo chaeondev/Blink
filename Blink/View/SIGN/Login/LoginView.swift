@@ -8,10 +8,10 @@
 import UIKit
 
 class LoginView: BaseView {
-    let emailLabel = SignUpLabel(title: "이메일")
-    let emailTextField = SignUpTextfield(placeholder: "이메일을 입력하세요")
-    let pwLabel = SignUpLabel(title: "비밀번호")
-    let pwTextField = SignUpTextfield(placeholder: "비밀번호를 입력하세요")
+    let emailLabel = BTitleLabel(title: "이메일")
+    let emailTextField = BTextField(placeholder: "이메일을 입력하세요")
+    let pwLabel = BTitleLabel(title: "비밀번호")
+    let pwTextField = BTextField(placeholder: "비밀번호를 입력하세요")
     let loginButton = RoundedButton(title: "로그인")
     
     override func setHierarchy() {
