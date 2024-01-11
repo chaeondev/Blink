@@ -1,21 +1,19 @@
 //
-//  SignUp.swift
+//  Login.swift
 //  Blink
 //
-//  Created by Chaewon on 1/7/24.
+//  Created by Chaewon on 1/11/24.
 //
 
 import Foundation
 
-struct SignUpRequest: Encodable {
+struct LoginRequest: Encodable {
     let email: String
     let password: String
-    let nickname: String
-    let phone: String?
-    let deviceToken: String? // 이후 푸시알림 때 사용
+    let deviceToken: String? //FCM device token
 }
 
-struct SignUpResponse: Decodable {
+struct LoginResponse: Decodable {
     let user_id: Int
     let email: String
     let nickname: String
@@ -25,8 +23,4 @@ struct SignUpResponse: Decodable {
     let createdAt: String //$date-time 계정 생성일
     let token: Token
 }
-
-struct Token: Decodable {
-    let accessToken: String
-    let refreshToken: String
-}
+// 이메일 SignUpResponse와 동일

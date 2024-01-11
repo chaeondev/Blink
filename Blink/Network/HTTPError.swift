@@ -34,3 +34,8 @@ enum SignUpError: String, HTTPError {
     case serverConflict = "E12" //중복 데이터
     case wrongRequest = "E11" //잘못된 요청
 }
+
+//로그인
+enum LoginError: String, HTTPError {
+    case loginFailed = "E03" //로그인 실패
+}
