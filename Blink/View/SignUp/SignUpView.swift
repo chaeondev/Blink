@@ -110,7 +110,7 @@ class SignUpView: BaseView {
         }
         
         joinButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide).inset(24)
+            make.bottom.equalTo(self.keyboardLayoutGuide.snp.top).offset(-24)
             make.horizontalEdges.equalToSuperview().inset(24)
             make.height.equalTo(44)
         }
