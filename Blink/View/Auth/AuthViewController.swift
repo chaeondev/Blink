@@ -30,6 +30,17 @@ final class AuthViewController: BaseViewController {
     }
     
     private func bind() {
+        
+        emailLoginButton.rx.tap
+            .subscribe(with: self) { owner, _ in
+                
+                let vc = LoginViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                self.present(nav, animated: true)
+                
+            }
+            .disposed(by: disposeBag)
+        
         signUpButton.rx.tap
             .subscribe(with: self) { owner, _ in
                 
