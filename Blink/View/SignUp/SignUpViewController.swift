@@ -25,6 +25,7 @@ final class SignUpViewController: BaseViewController {
         setNavigationbar()
         setUpSheet()
         bind()
+
     }
     
     private func bind() {
@@ -63,7 +64,8 @@ final class SignUpViewController: BaseViewController {
                         return "사용 가능한 이메일입니다."
                     }
                 }
-                owner.view.makeToast(toastMessage, duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+                let toastPosition = owner.mainView.joinButton.frame.origin.y - 30
+                owner.toast(message: toastMessage, pointY: toastPosition)
             }
             .disposed(by: disposeBag)
         
@@ -121,7 +123,8 @@ final class SignUpViewController: BaseViewController {
                             return "작성하신 비밀번호가 일치하지 않습니다."
                         }
                     }
-                    owner.view.makeToast(message, duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+                    let toastPosition = owner.mainView.joinButton.frame.origin.y - 30
+                    owner.toast(message: message, pointY: toastPosition)
                 }
             }
             .disposed(by: disposeBag)
@@ -129,6 +132,9 @@ final class SignUpViewController: BaseViewController {
         //네트워크 결과
         output.networkResult
             .bind(with: self) { owner, result in
+                
+                let toastPosition = owner.mainView.joinButton.frame.origin.y - 30
+                
                 switch result {
                 case .success(let response):
                     KeyChainManager.shared.create(account: .userID, value: "\(response.user_id)")
@@ -138,10 +144,9 @@ final class SignUpViewController: BaseViewController {
                     
                     print("==Join Success== \(response)")
                 case .alreadyJoined:
-                    owner.view.makeToast("이미 가입된 회원입니다. 로그인을 진행해주세요.", duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
+                    owner.toast(message: "이미 가입된 회원입니다. 로그인을 진행해주세요.", pointY: toastPosition)
                 case .networkError:
-                    owner.view.makeToast("에러가 발생했어요. 잠시 후 다시 시도해주세요.", duration: 2.0, point: CGPoint(x: 195, y: 650), title: nil, image: nil, completion: nil)
-                
+                    owner.toast(message: "에러가 발생했어요. 잠시 후 다시 시도해주세요.", pointY: toastPosition)
                 }
             }
             .disposed(by: disposeBag)
