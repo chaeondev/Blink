@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class InitialViewController: BaseViewController {
     
     private let mainView = InitialView()
-    
+    private var disposeBag = DisposeBag()
     
     override func loadView() {
         self.view = mainView
@@ -19,6 +21,18 @@ final class InitialViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationbar()
+        bind()
+    }
+    
+    private func bind() {
+        mainView.createButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = WSAddViewController()
+                let nav = UINavigationController(rootViewController: vc)
+               
+                self.present(nav, animated: true, completion: nil)
+            }
+            .disposed(by: disposeBag)
         
     }
 }
