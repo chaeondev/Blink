@@ -34,4 +34,8 @@ class BaseViewController: UIViewController {
         style.messageAlignment = .center
         ToastManager.shared.style = style
     }
+    
+    func toast(message: String, pointY: CGFloat) {
+        self.view.makeToast(message, duration: 2.0, point: CGPoint(x: view.frame.width / 2, y: pointY), title: nil, image: nil, completion: nil)
+    }
 }
