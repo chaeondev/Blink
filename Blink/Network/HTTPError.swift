@@ -39,3 +39,11 @@ enum SignUpError: String, HTTPError {
 enum LoginError: String, HTTPError {
     case loginFailed = "E03" //로그인 실패
 }
+
+//토큰 리프레시
+enum RefreshTokenError: String, HTTPError {
+    case serverConflict = "E04" //유효한 토큰
+    case unknownUser = "E03" //알수없는 계정
+    case refreshTokenExpired = "E06" //리프레시 토큰 만료
+    case authFailed = "E02" //인증실패
+}

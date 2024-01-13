@@ -10,9 +10,13 @@ import Alamofire
 
 enum UserRouter: APIRouter {
     
+    //회원가입, 로그인
     case emailValidation(_ model: EmailValidationRequest)
     case join(_ model: SignUpRequest)
     case login(_ model: LoginRequest)
+    
+    //토큰 refresh
+    case refreshToken
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -21,11 +25,14 @@ enum UserRouter: APIRouter {
     var path: String {
         switch self {
         case .emailValidation:
-            return "/v1/users/validation/email"
+            "/v1/users/validation/email"
         case .join:
-            return "/v1/users/join"
+            "/v1/users/join"
         case .login:
-            return "/v2/users/login"
+            "/v2/users/login"
+            
+        case .refreshToken:
+            "/v1/auth/refresh"
         }
     }
     
@@ -34,6 +41,8 @@ enum UserRouter: APIRouter {
         case .emailValidation, .join, .login:
             return ["Content-Type": "application/json",
                     "SesacKey": APIKey.sesacKey]
+        case .refreshToken:
+            return ["SesacKey": APIKey.sesacKey]
         }
     }
     
@@ -41,6 +50,8 @@ enum UserRouter: APIRouter {
         switch self {
         case .emailValidation, .join, .login:
             return .post
+        case .refreshToken:
+            return .get
         }
     }
     
@@ -64,12 +75,13 @@ enum UserRouter: APIRouter {
                 "password": model.password,
                 "deviceToken": model.deviceToken
             ]
+        case .refreshToken: return nil
         }
     }
     
     var query: [String : String] {
         switch self {
-        case .emailValidation, .join, .login:
+        case .emailValidation, .join, .login, .refreshToken:
             return ["": ""]
         }
     }
