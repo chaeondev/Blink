@@ -26,7 +26,7 @@ class BaseView: UIView {
     }
     
     func setConstraints() {
-        
+        self.backgroundColor = .backgroundPrimary
     }
     
     func setting() {
