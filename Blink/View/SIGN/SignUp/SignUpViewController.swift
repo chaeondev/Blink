@@ -140,9 +140,13 @@ final class SignUpViewController: BaseViewController {
                     KeyChainManager.shared.create(account: .userID, value: "\(response.user_id)")
                     KeyChainManager.shared.create(account: .accessToken, value: response.token.accessToken)
                     KeyChainManager.shared.create(account: .refreshToken, value: response.token.refreshToken)
-                    //UserDefaults -> Login True
-                    
+                    // TODO: UserDefaults -> Login True
                     print("==Join Success== \(response)")
+
+                    let nav = UINavigationController(rootViewController: InitialViewController())
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(nav)
+                    // ???: 여기서 아예 root를 바꿔주는 게 맞나 아니면 여기서는 present로 하고 워크스페이스 생성할때 갈아주는 게 맞나??
+                    
                 case .alreadyJoined:
                     owner.toast(message: "이미 가입된 회원입니다. 로그인을 진행해주세요.", pointY: toastPosition)
                 case .networkError:
@@ -161,6 +165,8 @@ final class SignUpViewController: BaseViewController {
             .disposed(by: disposeBag)
         
     }
+    
+    
     
 }
 
