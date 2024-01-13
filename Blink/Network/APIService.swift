@@ -24,7 +24,7 @@ final class APIService {
         
         return Single<NetworkResult<T>>.create { single in
             
-            AF.request(api).validate().responseDecodable(of: T.self) { response in
+            AF.request(api, interceptor: AuthInterceptor()).validate().responseDecodable(of: T.self) { response in
                 
                 switch response.result {
                 case .success(let data):
