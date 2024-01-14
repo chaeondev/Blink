@@ -12,7 +12,7 @@ final class HomeCellTitleLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
+        setting()
     }
     
     required init?(coder: NSCoder) {
