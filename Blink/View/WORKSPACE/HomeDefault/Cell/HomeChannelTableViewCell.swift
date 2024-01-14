@@ -11,12 +11,12 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
     
     let hashtagImageView = HashtagImageView(frame: .zero)
     let titleLabel = HomeCellTitleLabel()
-    let messageCountLabel = MessageCountLabel()
+    let messageCountButton = MessageCountButton()
     
     override func setHierarchy() {
         contentView.addSubview(hashtagImageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(messageCountLabel)
+        contentView.addSubview(messageCountButton)
     }
     
     override func setConstraints() {
@@ -31,8 +31,8 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
             make.centerY.equalToSuperview()
         }
         
-        messageCountLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16).priority(1000)
+        messageCountButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
             make.height.equalTo(18)
         }
@@ -40,16 +40,16 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
     
     func configureCell(text: String, count: Int) {
         titleLabel.text = text
-        messageCountLabel.setText(count: count)
+        messageCountButton.setText(count: count)
         
         if count > 0 {
             hashtagImageView.update(true)
             titleLabel.update(true)
-            messageCountLabel.isHidden = false
+            messageCountButton.isHidden = false
         } else {
             hashtagImageView.update(false)
             titleLabel.update(false)
-            messageCountLabel.isHidden = true
+            messageCountButton.isHidden = true
         }
     }
 }

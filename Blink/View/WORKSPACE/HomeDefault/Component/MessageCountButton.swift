@@ -1,5 +1,5 @@
 //
-//  MessageCountLabel.swift
+//  MessageCountButton.swift
 //  Blink
 //
 //  Created by Chaewon on 1/14/24.
@@ -7,8 +7,7 @@
 
 import UIKit
 
-final class MessageCountLabel: UILabel {
-    
+final class MessageCountButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,15 +20,13 @@ final class MessageCountLabel: UILabel {
     
     func setting() {
         backgroundColor = .brandGreen
-        textColor = .brandWhite
-        font = .customFont(.caption)
-        textAlignment = .center
+        setTitleColor(.brandWhite, for: .normal)
+        titleLabel?.font = .customFont(.caption)
         layer.cornerRadius = 8
         clipsToBounds = true
     }
     
     func setText(count: Int) {
-        self.text = "\(count)"
-        self.font = .customFont(.caption)
+        self.setTitle("\(count)", for: .normal)
     }
 }

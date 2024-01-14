@@ -18,12 +18,12 @@ final class HomeDMTableViewCell: BaseTableViewCell {
     }()
     
     let titleLabel = HomeCellTitleLabel()
-    let messageCountLabel = MessageCountLabel()
+    let messageCountButton = MessageCountButton()
     
     override func setHierarchy() {
         contentView.addSubview(profileImageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(messageCountLabel)
+        contentView.addSubview(messageCountButton)
     }
     
     override func setConstraints() {
@@ -38,24 +38,25 @@ final class HomeDMTableViewCell: BaseTableViewCell {
             make.centerY.equalToSuperview()
         }
         
-        messageCountLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16).priority(1000)
+        messageCountButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
             make.height.equalTo(18)
+            make.width.lessThanOrEqualTo(24)
         }
     }
     
     func configureCell(image: String?, text: String, count: Int) {
         
         titleLabel.text = text
-        messageCountLabel.setText(count: count)
+        messageCountButton.setText(count: count)
         
         if count > 0 {
             titleLabel.update(true)
-            messageCountLabel.isHidden = false
+            messageCountButton.isHidden = false
         } else {
             titleLabel.update(false)
-            messageCountLabel.isHidden = true
+            messageCountButton.isHidden = true
         }
     }
 }
