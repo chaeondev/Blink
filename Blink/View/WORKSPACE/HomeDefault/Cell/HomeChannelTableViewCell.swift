@@ -1,0 +1,55 @@
+//
+//  HomeChannelTableViewCell.swift
+//  Blink
+//
+//  Created by Chaewon on 1/14/24.
+//
+
+import UIKit
+
+final class HomeChannelTableViewCell: BaseTableViewCell {
+    
+    let hashtagImageView = HashtagImageView(frame: .zero)
+    let titleLabel = HomeCellTitleLabel()
+    let messageCountLabel = MessageCountLabel()
+    
+    override func setHierarchy() {
+        contentView.addSubview(hashtagImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(messageCountLabel)
+    }
+    
+    override func setConstraints() {
+        hashtagImageView.snp.makeConstraints { make in
+            make.size.equalTo(18)
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(hashtagImageView.snp.trailing).offset(16)
+            make.centerY.equalToSuperview()
+        }
+        
+        messageCountLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16).priority(1000)
+            make.centerY.equalToSuperview()
+            make.height.equalTo(18)
+        }
+    }
+    
+    func configureCell(text: String, count: Int) {
+        titleLabel.text = text
+        messageCountLabel.setText(count: count)
+        
+        if count > 0 {
+            hashtagImageView.update(true)
+            titleLabel.update(true)
+            messageCountLabel.isHidden = false
+        } else {
+            hashtagImageView.update(false)
+            titleLabel.update(false)
+            messageCountLabel.isHidden = true
+        }
+    }
+}
