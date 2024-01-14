@@ -98,10 +98,15 @@ final class LoginViewModel: ViewModelType {
             .flatMapLatest {
                 APIService.shared.request(type: LoginResponse.self, api: UserRouter.login($0))
             }
-            .subscribe(with: self) { owner, result in
-                switch result {
+            .filter {
+                switch $0 {
                 case .success(let response):
+                    KeyChainManager.shared.create(account: .userID, value: "\(response.user_id)")
+                    KeyChainManager.shared.create(account: .accessToken, value: response.token.accessToken)
+                    KeyChainManager.shared.create(account: .refreshToken, value: response.token.refreshToken)
+                    // TODO: UserDefaults -> Login True
                     networkResult.onNext(.success(response))
+                    return true
                 case .failure(let error):
                     let isCommonError = NetworkError.allCases.map { $0.rawValue }.contains(error.errorCode)
                     let customError: (any HTTPError)? = isCommonError ? NetworkError(rawValue: error.errorCode) : SignUpError(rawValue: error.errorCode)
@@ -113,13 +118,24 @@ final class LoginViewModel: ViewModelType {
                     }
                     
                     print("==Login Network Failed \(customError)==")
+                    return false
+                }
+            }
+            .flatMapLatest { _ in
+                APIService.shared.request(type: [WorkspaceInfoResponse].self, api: WorkspaceRouter.getMyWorkspaces)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    print("===GETMYWORKSPACE SUCCESS=== \(response)")
+                    // TODO: 워크스페이스 홈화면 전환
+                case .failure(let error):
+                    let customError = NetworkError(rawValue: error.errorCode)
+                    print("===워크스페이스 불러오기 네트워크 실패=== \(customError)")
                 }
             }
             .disposed(by: disposeBag)
-        
-        // TODO: 네트워크 filter로 false true 하고 그다음 워크스페이스 네트워크 콜 한번 더 쏘기
-        
-        
+
         return Output(validationOutput: validationOutput, networkResult: networkResult)
     }
 }

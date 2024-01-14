@@ -83,12 +83,7 @@ final class LoginViewController: BaseViewController {
                 let toastPosition = owner.mainView.loginButton.frame.origin.y - 30
                 
                 switch result {
-                case .success(let response):
-                    KeyChainManager.shared.create(account: .userID, value: "\(response.user_id)")
-                    KeyChainManager.shared.create(account: .accessToken, value: response.token.accessToken)
-                    KeyChainManager.shared.create(account: .refreshToken, value: response.token.refreshToken)
-                    // TODO: UserDefaults -> Login True
-                    
+                case .success(let response): 
                     print("==Login Success== \(response)")
                 case .loginFailed:
                     owner.toast(message: "이메일 또는 비밀번호가 올바르지 않습니다.", pointY: toastPosition)
