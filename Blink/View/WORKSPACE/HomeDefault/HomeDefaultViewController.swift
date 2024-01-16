@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SideMenu
 
 struct cellData {
     var title: String
@@ -38,8 +39,7 @@ final class HomeDefaultViewController: BaseViewController {
         button.setTitleColor(.brandBlack, for: .normal)
         button.titleLabel?.font = UIFont.customFont(.title1)
         button.contentHorizontalAlignment = .left
-        button.addTarget(self, action: #selector(presentSideMenu), for: .touchUpInside)
-        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(showWorkspaceListVC), for: .touchUpInside)
         return button
     }()
     
@@ -53,10 +53,6 @@ final class HomeDefaultViewController: BaseViewController {
         return button
     }()
     
-    //SideMenu
-    private let workspaceListVC = WorkspaceListViewController()
-    private var dimmingView: UIView?
-    
     override func loadView() {
         self.view = mainView
     }
@@ -66,8 +62,10 @@ final class HomeDefaultViewController: BaseViewController {
         
         
         setTableView()
-        setNavigationBar()
+        setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton)
         bind()
+        
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
         
         //DEMO
         tableViewData = [
@@ -75,9 +73,7 @@ final class HomeDefaultViewController: BaseViewController {
             cellData(title: "다이렉트 메시지", opened: false, sectionData: ["캠퍼스지킴이", "Hue", "Jack"]),
             cellData(title: "팀원 추가", opened: false, sectionData: ["cell"])
         ]
-        
-        //SideMenu
-        addDimmingView()
+
 
     }
     
@@ -91,106 +87,19 @@ final class HomeDefaultViewController: BaseViewController {
     }
 }
 
-// MARK: SideMenu 직접 구현
+// MARK: Side Menu
 extension HomeDefaultViewController {
-    private func addDimmingView() {
-        dimmingView = UIView()
-        dimmingView?.backgroundColor = .alpha
-        dimmingView?.isHidden = true
-        //print("====dimmingView \(dimmingView)")
-        view.addSubview(dimmingView!)
-        
-        dimmingView!.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDimmingViewTap))
-        dimmingView?.addGestureRecognizer(tapGesture)
-    }
     
-    @objc private func handleDimmingViewTap() {
-        let sideMenuVC = self.workspaceListVC
-        
-        UIView.animate(withDuration: 0.3) {
-            //사이드메뉴를 원래 위치로 되돌림
-            sideMenuVC.view.frame = CGRect(x: -self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-            //어두운 배경 뷰를 숨김
-            self.dimmingView?.alpha = 0
-        } completion: { (finished) in
-            //애니메이션이 완료된 후 사이드 메뉴를 뷰 계층구조에서 제거
-            sideMenuVC.view.removeFromSuperview()
-            sideMenuVC.removeFromParent()
-            self.dimmingView?.isHidden = true
-        }
+    @objc private func showWorkspaceListVC() {
+        let menu = SideMenuNavigationController(rootViewController: WorkspaceListViewController())
+        menu.leftSide = true
+        menu.presentationStyle = .menuSlideIn
+        menu.menuWidth = UIScreen.main.bounds.width * 0.8
+        menu.enableSwipeToDismissGesture = true
+        SideMenuManager.default.leftMenuNavigationController = menu
+        present(menu, animated: true)
     }
-    
-    @objc private func presentSideMenu() {
-        let sideMenuVC = self.workspaceListVC
-        
-        //사이드 메뉴 뷰 컨을 자식으로 추가하고 뷰계층구조에 추가
-        self.addChild(sideMenuVC)
-        self.view.addSubview(sideMenuVC.view)
-        
-        let menuWidth = self.view.frame.width * 0.8
-        let menuHeight = self.view.frame.height
-        
-        sideMenuVC.view.frame = CGRect(x: -menuWidth, y: 0, width: menuWidth, height: menuHeight)
-        
-        self.dimmingView?.isHidden = false
-        self.dimmingView?.alpha = 0
-        
-        UIView.animate(withDuration: 0.3) {
-            sideMenuVC.view.frame = CGRect(x: 0, y: 0, width: menuWidth, height: menuHeight)
-            self.dimmingView?.alpha = 1
-        }
-    }
-}
 
-extension HomeDefaultViewController {
-    func setNavigationBar() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        
-        let height = navigationBar.frame.size.height
-        let width = navigationBar.frame.size.width
-        
-        [leftButton, naviTitleButton, rightButton].forEach { customView.addSubview($0) }
-        
-        
-        customView.snp.makeConstraints { make in
-            make.width.equalTo(width)
-            make.height.equalTo(height)
-        }
-        
-        leftButton.snp.makeConstraints { make in
-            make.size.equalTo(32)
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        
-        rightButton.snp.makeConstraints { make in
-            make.size.equalTo(32)
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview()
-        }
-        
-        naviTitleButton.snp.makeConstraints { make in
-            make.leading.equalTo(leftButton.snp.trailing).offset(8)
-            make.trailing.equalTo(rightButton.snp.leading).offset(-8)
-            make.centerY.equalTo(leftButton)
-        }
-        
-        navigationItem.titleView = customView
-
-        
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .brandWhite
-        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
-    }
 }
 
 extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
@@ -298,4 +207,4 @@ enum HomeCellType {
     case plusCell
 }
 
-// TODO: - 메세지 버튼 커스텀(label, backView) / footer에 선 그리기 / 데이터 연결
+// TODO: - 메세지(count)버튼 커스텀(label, backView) / footer에 선 그리기 / 데이터 연결
