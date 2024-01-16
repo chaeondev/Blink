@@ -14,15 +14,21 @@ extension UIViewController {
         customView: UIView,
         left: UIButton,
         title: UIButton,
-        right: UIButton
+        right: UIButton,
+        blurView: UIView? = nil
     ) {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        
+        guard let navigationBar = navigationController?.navigationBar else {
+                    return
+                }
+
         let height = navigationBar.frame.size.height
         let width = navigationBar.frame.size.width
         
         [left, title, right].forEach { customView.addSubview($0) }
-        
+    
+        if let blurView {
+            right.addSubview(blurView)
+        }
         
         customView.snp.makeConstraints { make in
             make.width.equalTo(width)
@@ -31,29 +37,38 @@ extension UIViewController {
         
         left.snp.makeConstraints { make in
             make.size.equalTo(32)
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.leading.equalToSuperview()
         }
         
         right.snp.makeConstraints { make in
             make.size.equalTo(32)
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.trailing.equalToSuperview()
         }
         
         title.snp.makeConstraints { make in
             make.leading.equalTo(left.snp.trailing).offset(8)
             make.trailing.equalTo(right.snp.leading).offset(-8)
-            make.centerY.equalTo(left)
+            make.centerY.equalToSuperview()
         }
         
-        navigationItem.titleView = customView
+        if let blurView {
+            blurView.layer.cornerRadius = 16
+            blurView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            blurView.isHidden = true
+        }
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customView)
 
         
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .brandWhite
+        appearance.backgroundColor = .clear
+        
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
