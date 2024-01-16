@@ -45,7 +45,7 @@ final class AuthInterceptor: RequestInterceptor {
         let task = Observable.just(())
         
         task
-            .flatMap { APIService.shared.request(type: RefreshResponse.self, api: UserRouter.refreshToken) }
+            .flatMap { APIService.shared.requestNoInterceptor(type: RefreshResponse.self, api: UserRouter.refreshToken) }
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let response):
