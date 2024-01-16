@@ -30,6 +30,7 @@ final class WSAddViewController: BaseViewController {
     
     private func bind() {
         let input = WSAddViewModel.Input(
+            imageData: profileImage.asObservable().map { $0.jpegData(compressionQuality: 0.2) },
             nameText: mainView.titleTextField.rx.text.orEmpty,
             descriptText: mainView.infoTextField.rx.text.orEmpty,
             doneButtonTap: mainView.doneButton.rx.tap
