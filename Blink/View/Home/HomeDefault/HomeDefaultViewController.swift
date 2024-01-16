@@ -53,17 +53,24 @@ final class HomeDefaultViewController: BaseViewController {
         return button
     }()
     
+    private let navigationBlurView = {
+        let view = UIView()
+        view.backgroundColor = .alpha
+        return view
+    }()
+    
     override func loadView() {
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
+        view.backgroundColor = .brandWhite
         setTableView()
-        setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton)
+        setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton, blurView: navigationBlurView)
         bind()
+        
         
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
         
@@ -85,6 +92,7 @@ final class HomeDefaultViewController: BaseViewController {
     private func bind() {
         
     }
+
 }
 
 // MARK: Side Menu
@@ -101,7 +109,20 @@ extension HomeDefaultViewController {
     }
 
 }
+extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
+    
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        mainView.blurView.isHidden = false
+        navigationBlurView.isHidden = false
 
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        mainView.blurView.isHidden = true
+        navigationBlurView.isHidden = true
+
+    }
+}
 extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -89,6 +89,24 @@ final class WorkspaceListView: BaseView {
             make.height.equalTo(41)
             make.bottom.equalTo(helpButton.snp.top)
         }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleBackView.snp.bottom).offset(183)
+            make.horizontalEdges.equalToSuperview().inset(24)
+            make.height.equalTo(60)
+        }
+        infoLabel
+        infoLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(19)
+            make.horizontalEdges.equalToSuperview().inset(24)
+            make.height.equalTo(55)
+        }
+        
+        workspaceCreateButton.snp.makeConstraints { make in
+            make.top.equalTo(infoLabel.snp.bottom).offset(24)
+            make.horizontalEdges.equalToSuperview().inset(24)
+            make.height.equalTo(44)
+        }
     }
     
     override func setting() {

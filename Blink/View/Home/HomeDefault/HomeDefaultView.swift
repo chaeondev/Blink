@@ -21,14 +21,26 @@ final class HomeDefaultView: BaseView {
         return view
     }()
     
+    let blurView = {
+        let view = UIView()
+        view.backgroundColor = .alpha
+        return view
+    }()
+    
     override func setHierarchy() {
         self.addSubview(tableView)
+        self.addSubview(blurView)
     }
     
     override func setConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self.safeAreaLayoutGuide)
         }
+        
+        blurView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        blurView.isHidden = true
     }
     
 }
