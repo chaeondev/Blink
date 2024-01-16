@@ -47,54 +47,8 @@ final class HomeEmptyViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setNavigationBar()
+
+        setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton)
     }
 }
 
-extension HomeEmptyViewController {
-    func setNavigationBar() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        
-        let height = navigationBar.frame.size.height
-        let width = navigationBar.frame.size.width
-        
-        [leftButton, naviTitleButton, rightButton].forEach { customView.addSubview($0) }
-        
-        
-        customView.snp.makeConstraints { make in
-            make.width.equalTo(width)
-            make.height.equalTo(height)
-        }
-        
-        leftButton.snp.makeConstraints { make in
-            make.size.equalTo(32)
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-        }
-        
-        rightButton.snp.makeConstraints { make in
-            make.size.equalTo(32)
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview()
-        }
-        
-        naviTitleButton.snp.makeConstraints { make in
-            make.leading.equalTo(leftButton.snp.trailing).offset(8)
-            make.trailing.equalTo(rightButton.snp.leading).offset(-8)
-            make.centerY.equalTo(leftButton)
-        }
-        
-        navigationItem.titleView = customView
-
-        
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .brandWhite
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
-    }
-}
