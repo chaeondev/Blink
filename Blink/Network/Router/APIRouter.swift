@@ -14,6 +14,7 @@ protocol APIRouter: URLRequestConvertible {
     var header: HTTPHeaders { get }
     var method: HTTPMethod { get }
     var query: [String: String] { get }
+    var multipart: MultipartFormData { get }
     func asURLRequest() throws -> URLRequest
 }
 

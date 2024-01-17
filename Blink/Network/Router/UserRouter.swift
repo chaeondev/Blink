@@ -86,6 +86,10 @@ enum UserRouter: APIRouter {
         }
     }
     
+    var multipart: MultipartFormData {
+        return MultipartFormData()
+    }
+    
     func asURLRequest() throws -> URLRequest {
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)

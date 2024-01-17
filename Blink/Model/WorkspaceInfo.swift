@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct WorkspaceInfoRequest: Encodable {
+    let name: String
+    let description: String
+    let image: Data
+}
+
 struct WorkspaceInfoResponse: Decodable {
     let workspace_id: Int //워크스페이스 아이디
     let name: String //워크스페이스 이름
