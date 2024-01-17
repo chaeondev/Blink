@@ -16,16 +16,28 @@ final class WorkspaceListView: BaseView {
     
     var type: WorkspaceListViewType = .empty
     
-    convenience init(type: WorkspaceListViewType) {
+    convenience init(_ type: WorkspaceListViewType) {
         self.init()
         
         self.type = type
+        setUp()
     }
     
     //Empty일때 Component
     let titleLabel = UILabel.labelBuilder(text: "워크스페이스를\n찾을 수 없어요.", font: .title1, textColor: .brandBlack, numberOfLines: 2, textAlignment: .center)
     let infoLabel = UILabel.labelBuilder(text: "관리자에게 초대를 요청하거나,\n다른 이메일로 시도하거나\n새로운 워크스페이스를 생성해주세요.", font: .body, textColor: .brandBlack, numberOfLines: 3, textAlignment: .center)
     let workspaceCreateButton = RoundedButton(title: "워크스페이스 생성")
+    
+    //notEmpty일때 Component
+    let tableView = {
+        let view = UITableView(frame: .zero)
+        view.register(WorkspaceListTableViewCell.self, forCellReuseIdentifier: WorkspaceListTableViewCell.description())
+        view.rowHeight = 72
+        view.separatorStyle = .none
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
     
     //공통
     let titleBackView = {
@@ -69,6 +81,9 @@ final class WorkspaceListView: BaseView {
         
         //empty
         [titleLabel, infoLabel, workspaceCreateButton].forEach { self.addSubview($0) }
+        
+        //notEmpty
+        self.addSubview(tableView)
     }
     
     override func setConstraints() {
@@ -95,7 +110,7 @@ final class WorkspaceListView: BaseView {
             make.horizontalEdges.equalToSuperview().inset(24)
             make.height.equalTo(60)
         }
-        infoLabel
+
         infoLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(19)
             make.horizontalEdges.equalToSuperview().inset(24)
@@ -106,6 +121,28 @@ final class WorkspaceListView: BaseView {
             make.top.equalTo(infoLabel.snp.bottom).offset(24)
             make.horizontalEdges.equalToSuperview().inset(24)
             make.height.equalTo(44)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(titleBackView.snp.bottom)
+            make.leading.equalToSuperview().inset(7)
+            make.trailing.equalToSuperview().inset(5)
+            make.bottom.equalTo(helpButton.snp.top)
+        }
+    }
+    
+    func viewSetting() {
+        switch type {
+        case .empty:
+            titleLabel.isHidden = false
+            infoLabel.isHidden = false
+            workspaceCreateButton.isHidden = false
+            tableView.isHidden = true
+        case .notEmpty:
+            titleLabel.isHidden = true
+            infoLabel.isHidden = true
+            workspaceCreateButton.isHidden = true
+            tableView.isHidden = false
         }
     }
     

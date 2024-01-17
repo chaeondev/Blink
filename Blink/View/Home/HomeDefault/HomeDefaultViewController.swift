@@ -99,7 +99,12 @@ final class HomeDefaultViewController: BaseViewController {
 extension HomeDefaultViewController {
     
     @objc private func showWorkspaceListVC() {
-        let menu = SideMenuNavigationController(rootViewController: WorkspaceListViewController())
+        let vc = WorkspaceListViewController()
+        
+        // TODO: 여기서 분기처리
+        vc.viewType = .empty
+        
+        let menu = SideMenuNavigationController(rootViewController: vc)
         menu.leftSide = true
         menu.presentationStyle = .menuSlideIn
         menu.menuWidth = UIScreen.main.bounds.width * 0.8

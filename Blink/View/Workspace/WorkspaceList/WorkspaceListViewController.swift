@@ -11,8 +11,9 @@ import UIKit
 
 final class WorkspaceListViewController: BaseViewController {
     
+    var viewType: WorkspaceListViewType!
     
-    let mainView = WorkspaceListView()
+    lazy var mainView = WorkspaceListView(viewType)
     
     override func loadView() {
         self.view = mainView
