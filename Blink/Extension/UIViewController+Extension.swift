@@ -10,6 +10,16 @@ import SnapKit
 
 extension UIViewController {
     
+    // MARK: Transition
+    func changeRootViewController(viewController: UIViewController, isNav: Bool = false) {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        let sceneDelegate = windowScene.delegate as? SceneDelegate
+        let vc = isNav ? UINavigationController(rootViewController: viewController) : viewController
+        sceneDelegate?.window?.rootViewController = vc
+        sceneDelegate?.window?.makeKey()
+    }
+    
+    // MARK: Custom Navigation
     func setCustomNavigationbar(
         customView: UIView,
         left: UIButton,
