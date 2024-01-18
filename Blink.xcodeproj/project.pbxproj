@@ -33,6 +33,10 @@
 		DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CD23D2B497EAB0083DD09 /* SignUpView.swift */; };
 		DE1CD2402B497EBA0083DD09 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CD23F2B497EBA0083DD09 /* BaseView.swift */; };
 		DE1CD2422B49ACC30083DD09 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CD2412B49ACC30083DD09 /* EmailValidation.swift */; };
+		DE247D8C2B592AB1007DE6E2 /* WorkspaceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE247D8B2B592AB1007DE6E2 /* WorkspaceListViewModel.swift */; };
+		DE247D8F2B594395007DE6E2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE247D8E2B594395007DE6E2 /* Kingfisher */; };
+		DE247D912B59446E007DE6E2 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE247D902B59446E007DE6E2 /* UIImageView+Extension.swift */; };
+		DE247D932B594667007DE6E2 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE247D922B594667007DE6E2 /* Date+Extension.swift */; };
 		DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A18FE2B43D27300194ADA /* AppDelegate.swift */; };
 		DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19002B43D27300194ADA /* SceneDelegate.swift */; };
 		DE2A19082B43D27400194ADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19072B43D27400194ADA /* Assets.xcassets */; };
@@ -129,6 +133,9 @@
 		DE1CD23D2B497EAB0083DD09 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		DE1CD23F2B497EBA0083DD09 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DE1CD2412B49ACC30083DD09 /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
+		DE247D8B2B592AB1007DE6E2 /* WorkspaceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewModel.swift; sourceTree = "<group>"; };
+		DE247D902B59446E007DE6E2 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		DE247D922B594667007DE6E2 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		DE2A18FB2B43D27300194ADA /* Blink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2A18FE2B43D27300194ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE2A19002B43D27300194ADA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +198,7 @@
 				DE8C275F2B4688CC00141F5F /* Toast in Frameworks */,
 				DE8C274E2B454E4F00141F5F /* RxSwift in Frameworks */,
 				DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */,
+				DE247D8F2B594395007DE6E2 /* Kingfisher in Frameworks */,
 				DE1315A42B5401D40023D73D /* SideMenu in Frameworks */,
 				DE2A19492B44237A00194ADA /* SnapKit in Frameworks */,
 				DE1315772B5336040023D73D /* IQKeyboardManagerSwift in Frameworks */,
@@ -255,6 +263,7 @@
 				DE9D8C842B5676C400FBABC3 /* Cell */,
 				DE13159E2B53EC1B0023D73D /* WorkspaceListView.swift */,
 				DE1315A02B53EC260023D73D /* WorkspaceListViewController.swift */,
+				DE247D8B2B592AB1007DE6E2 /* WorkspaceListViewModel.swift */,
 			);
 			path = WorkspaceList;
 			sourceTree = "<group>";
@@ -366,6 +375,8 @@
 				DE2A19402B43F70F00194ADA /* UIFont+Extension.swift */,
 				DE5A67822B4A6841004FE7AC /* String+Extension.swift */,
 				DE9D8C762B55542D00FBABC3 /* UIViewController+Extension.swift */,
+				DE247D902B59446E007DE6E2 /* UIImageView+Extension.swift */,
+				DE247D922B594667007DE6E2 /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -567,6 +578,7 @@
 				DE8C27612B46A41500141F5F /* Alamofire */,
 				DE1315762B5336040023D73D /* IQKeyboardManagerSwift */,
 				DE1315A32B5401D40023D73D /* SideMenu */,
+				DE247D8E2B594395007DE6E2 /* Kingfisher */,
 			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
@@ -647,6 +659,7 @@
 				DE8C27602B46A41500141F5F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DE1315752B5336040023D73D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DE1315A22B5401D40023D73D /* XCRemoteSwiftPackageReference "SideMenu" */,
+				DE247D8D2B594395007DE6E2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
@@ -700,6 +713,7 @@
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
 				DE13159F2B53EC1B0023D73D /* WorkspaceListView.swift in Sources */,
 				DE8C275C2B46711C00141F5F /* SignUpViewModel.swift in Sources */,
+				DE247D932B594667007DE6E2 /* Date+Extension.swift in Sources */,
 				DE1315982B53B5730023D73D /* HomeDefaultViewController.swift in Sources */,
 				DE13156E2B52DB760023D73D /* Refresh.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
@@ -721,6 +735,7 @@
 				DE13159A2B53B5810023D73D /* HomeDefaultViewModel.swift in Sources */,
 				DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */,
 				DE8C27522B45626800141F5F /* SignUpViewController.swift in Sources */,
+				DE247D8C2B592AB1007DE6E2 /* WorkspaceListViewModel.swift in Sources */,
 				DE5AEEE62B4FD94700743DA5 /* WSAddViewController.swift in Sources */,
 				DE8C275A2B4670E300141F5F /* ViewModelType.swift in Sources */,
 				DE13156C2B52CE730023D73D /* AuthInterceptor.swift in Sources */,
@@ -755,6 +770,7 @@
 				DE9971C82B4A75AB008D92B1 /* SignUp.swift in Sources */,
 				DE8C27692B46C62600141F5F /* HTTPError.swift in Sources */,
 				DE1315842B53A4520023D73D /* HomeCellTitleLabel.swift in Sources */,
+				DE247D912B59446E007DE6E2 /* UIImageView+Extension.swift in Sources */,
 				DE5AEED82B4FB42B00743DA5 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1116,6 +1132,14 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		DE247D8D2B594395007DE6E2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
 		DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1160,6 +1184,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE1315A22B5401D40023D73D /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
+		};
+		DE247D8E2B594395007DE6E2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE247D8D2B594395007DE6E2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		DE2A19482B44237A00194ADA /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
