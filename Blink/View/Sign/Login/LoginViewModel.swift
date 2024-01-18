@@ -22,6 +22,11 @@ final class LoginViewModel: ViewModelType {
         case success(T)
     }
     
+    enum WorkspaceType {
+        case empty
+        case notEmpty(wsID: Int)
+    }
+    
     private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.com"
     private let pwRegEx = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,50}"
     
@@ -35,7 +40,8 @@ final class LoginViewModel: ViewModelType {
     
     struct Output {
         let validationOutput: BehaviorSubject<[LoginValidation]>
-        let networkResult: PublishSubject<LoginNetworkResult<LoginResponse>>
+        let loginResult: PublishSubject<LoginNetworkResult<LoginResponse>>
+        let workspaceInfo: PublishSubject<WorkspaceType>
     }
     
     func transform(input: Input) -> Output {
@@ -43,7 +49,9 @@ final class LoginViewModel: ViewModelType {
         let isValidPassword = BehaviorSubject(value: false)
         
         let validationOutput: BehaviorSubject<[LoginValidation]> = BehaviorSubject(value: [])
-        let networkResult = PublishSubject<LoginNetworkResult<LoginResponse>>()
+        let loginResult = PublishSubject<LoginNetworkResult<LoginResponse>>()
+
+        let workspaceInfo = PublishSubject<WorkspaceType>()
         
         // MARK: 이메일 유효성 검증
         input.emailText
@@ -105,22 +113,25 @@ final class LoginViewModel: ViewModelType {
                     KeyChainManager.shared.create(account: .accessToken, value: response.token.accessToken)
                     KeyChainManager.shared.create(account: .refreshToken, value: response.token.refreshToken)
                     // TODO: UserDefaults -> Login True
-                    networkResult.onNext(.success(response))
+                    loginResult.onNext(.success(response))
                     return true
                 case .failure(let error):
                     let isCommonError = NetworkError.allCases.map { $0.rawValue }.contains(error.errorCode)
                     let customError: (any HTTPError)? = isCommonError ? NetworkError(rawValue: error.errorCode) : SignUpError(rawValue: error.errorCode)
                     
                     if customError as? LoginError == .loginFailed {
-                        networkResult.onNext(.loginFailed)
+                        loginResult.onNext(.loginFailed)
                     } else {
-                        networkResult.onNext(.networkError)
+                        loginResult.onNext(.networkError)
                     }
                     
-                    print("==Login Network Failed \(customError)==")
+                    print("==Login Network Failed \(String(describing: customError))==")
                     return false
                 }
             }
+        
+            // MARK: 로그인 후에 워크스페이스 empty인지 아닌지 체크 필요함
+        
             .flatMapLatest { _ in
                 APIService.shared.request(type: [WorkspaceInfoResponse].self, api: WorkspaceRouter.getMyWorkspaces)
             }
@@ -128,14 +139,20 @@ final class LoginViewModel: ViewModelType {
                 switch result {
                 case .success(let response):
                     print("===GETMYWORKSPACE SUCCESS=== \(response)")
-                    // TODO: 워크스페이스 홈화면 전환
+
+                    if response.isEmpty {
+                        workspaceInfo.onNext(.empty)
+                    } else {
+                        workspaceInfo.onNext(.notEmpty(wsID: response[0].workspace_id))
+                    }
                 case .failure(let error):
                     let customError = NetworkError(rawValue: error.errorCode)
-                    print("===워크스페이스 불러오기 네트워크 실패=== \(customError)")
+                    print("===워크스페이스 불러오기 네트워크 실패=== \(String(describing: customError))")
                 }
             }
             .disposed(by: disposeBag)
 
-        return Output(validationOutput: validationOutput, networkResult: networkResult)
+        return Output(validationOutput: validationOutput, loginResult: loginResult, workspaceInfo: workspaceInfo)
     }
 }
+

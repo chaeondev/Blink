@@ -77,7 +77,7 @@ final class LoginViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         //네트워크 결과
-        output.networkResult
+        output.loginResult
             .bind(with: self) { owner, result in
                 
                 let toastPosition = owner.mainView.loginButton.frame.origin.y - 30
@@ -89,6 +89,20 @@ final class LoginViewController: BaseViewController {
                     owner.toast(message: "이메일 또는 비밀번호가 올바르지 않습니다.", pointY: toastPosition)
                 case .networkError:
                     owner.toast(message: "에러가 발생했어요. 잠시 후 다시 시도해주세요.", pointY: toastPosition)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        // MARK: 로그인 성공 후 화면전환
+        output.workspaceInfo
+            .bind(with: self) { owner, type in
+                switch type {
+                case .empty:
+                    owner.changeRootViewController(viewController: HomeEmptyViewController())
+                case .notEmpty(let wsID):
+                    let vc = HomeTabViewController()
+                    vc.workspaceID = wsID
+                    owner.changeRootViewController(viewController: vc)
                 }
             }
             .disposed(by: disposeBag)
