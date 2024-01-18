@@ -41,6 +41,8 @@ final class HomeEmptyViewController: BaseViewController {
         return button
     }()
     
+    private var disposeBag = DisposeBag()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -49,6 +51,18 @@ final class HomeEmptyViewController: BaseViewController {
         super.viewDidLoad()
 
         setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton)
+        bind()
+    }
+    
+    func bind() {
+        mainView.createButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = WSAddViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
