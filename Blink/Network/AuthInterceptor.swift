@@ -58,7 +58,7 @@ final class AuthInterceptor: RequestInterceptor {
                     let isCommonError = NetworkError.allCases.map { $0.rawValue }.contains(error.errorCode)
                     let customError: (any HTTPError)? = isCommonError ? NetworkError(rawValue: error.errorCode) : RefreshTokenError(rawValue: error.errorCode)
                     
-                    print("==Refresh 실패== \(customError)")
+                    print("==Refresh 실패== \(String(describing: customError))")
                     if customError as? RefreshTokenError == .refreshTokenExpired || customError as? RefreshTokenError == .authFailed {
                         owner.reLogin()
                     }
