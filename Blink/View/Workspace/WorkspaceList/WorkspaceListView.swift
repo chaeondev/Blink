@@ -20,7 +20,7 @@ final class WorkspaceListView: BaseView {
         self.init()
         
         self.type = type
-        setUp()
+        setView()
     }
     
     //Empty일때 Component
@@ -127,11 +127,11 @@ final class WorkspaceListView: BaseView {
             make.top.equalTo(titleBackView.snp.bottom)
             make.leading.equalToSuperview().inset(7)
             make.trailing.equalToSuperview().inset(5)
-            make.bottom.equalTo(helpButton.snp.top)
+            make.bottom.equalTo(workspaceAddButton.snp.top)
         }
     }
     
-    func viewSetting() {
+    func setView() {
         switch type {
         case .empty:
             titleLabel.isHidden = false

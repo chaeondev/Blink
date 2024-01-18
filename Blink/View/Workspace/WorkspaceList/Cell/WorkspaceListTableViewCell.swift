@@ -57,7 +57,7 @@ final class WorkspaceListTableViewCell: BaseTableViewCell {
         }
         
         optionButton.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(20)
+            make.verticalEdges.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().offset(-12)
             make.size.equalTo(20)
         }
