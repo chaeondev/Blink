@@ -20,6 +20,8 @@ struct cellData {
 final class HomeDefaultViewController: BaseViewController {
     
     private let mainView = HomeDefaultView()
+    //전달값
+    var workspaceID: Int = 0
     
     //DEMO
     var tableViewData: [cellData] = []
@@ -102,7 +104,7 @@ extension HomeDefaultViewController {
         let vc = WorkspaceListViewController()
         
         // TODO: 여기서 분기처리
-        vc.viewType = .empty
+        vc.viewType = .notEmpty
         
         let menu = SideMenuNavigationController(rootViewController: vc)
         menu.leftSide = true
