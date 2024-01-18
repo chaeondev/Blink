@@ -30,7 +30,7 @@ final class InitialViewController: BaseViewController {
                 let vc = WSAddViewController()
                 let nav = UINavigationController(rootViewController: vc)
                
-                self.present(nav, animated: true, completion: nil)
+                owner.present(nav, animated: true, completion: nil)
             }
             .disposed(by: disposeBag)
         
