@@ -143,9 +143,12 @@ final class SignUpViewController: BaseViewController {
                     // TODO: UserDefaults -> Login True
                     print("==Join Success== \(response)")
 
+                    //화면전환
                     let nav = UINavigationController(rootViewController: InitialViewController())
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(nav)
+                    nav.modalPresentationStyle = .fullScreen
+                    owner.present(nav, animated: true)
                     // ???: 여기서 아예 root를 바꿔주는 게 맞나 아니면 여기서는 present로 하고 워크스페이스 생성할때 갈아주는 게 맞나??
+                    // -> present로 변경
                     
                 case .alreadyJoined:
                     owner.toast(message: "이미 가입된 회원입니다. 로그인을 진행해주세요.", pointY: toastPosition)
