@@ -62,4 +62,31 @@ final class WorkspaceListTableViewCell: BaseTableViewCell {
             make.size.equalTo(20)
         }
     }
+    
+    func configureCell(data: WorkspaceInfoResponse, isSelected: Bool) {
+        
+        if isSelected {
+            contentView.backgroundColor = .brandGray
+            optionButton.isHidden = false
+        } else {
+            contentView.backgroundColor = .brandWhite
+            optionButton.isHidden = true
+        }
+        
+        //이미지
+        profileImageView.setKFImage(imageUrl: data.thumbnail)
+        
+        //타이틀
+        titleLabel.text = data.name
+        
+        //날짜
+        let isoDateFormatter = ISO8601DateFormatter()
+        isoDateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let date = isoDateFormatter.date(from: data.createdAt) {
+            let formattedString = date.toString(dateType: .dotDate)
+            dateLabel.text = formattedString
+        }
+        
+    }
+    
 }
