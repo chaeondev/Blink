@@ -7,7 +7,19 @@
 
 import Foundation
 
+
+
 extension String {
+    
+    // MARK: String -> Date
+    func toDate(dateType: DateFormatType) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en")
+        dateFormatter.dateFormat = dateType.rawValue
+        return dateFormatter.date(from: self)
+    }
+    
+    // MARK: 전화번호 형식
     var decimalFilteredString: String {
         return String(unicodeScalars.filter(CharacterSet.decimalDigits.contains))
     }
