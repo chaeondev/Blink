@@ -98,13 +98,14 @@ final class HomeDefaultViewController: BaseViewController {
 }
 
 // MARK: Side Menu
-extension HomeDefaultViewController {
+extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
     
     @objc private func showWorkspaceListVC() {
         let vc = WorkspaceListViewController()
         
-        // TODO: 여기서 분기처리
+        //HomeDefault에서는 NotEmpty -> workspaceID 넘겨주기
         vc.viewType = .notEmpty
+        vc.viewModel.selectedWorkspaceID = self.workspaceID
         
         let menu = SideMenuNavigationController(rootViewController: vc)
         menu.leftSide = true
@@ -114,9 +115,6 @@ extension HomeDefaultViewController {
         SideMenuManager.default.leftMenuNavigationController = menu
         present(menu, animated: true)
     }
-
-}
-extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
     
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
         mainView.blurView.isHidden = false
