@@ -21,8 +21,7 @@ final class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationbar()
-        setUpSheet()
+        setNavigation(title: "이메일 로그인")
         bind()
         
     }
@@ -116,17 +115,3 @@ final class LoginViewController: BaseViewController {
     }
 }
 
-extension LoginViewController {
-    private func setNavigationbar() {
-        title = "이메일 로그인"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .close, style: .done, target: self, action: nil)
-        navigationController?.navigationBar.tintColor = .brandBlack
-    }
-    
-    private func setUpSheet() {
-        if let sheet = sheetPresentationController {
-            sheet.detents = [.large()]
-            sheet.prefersGrabberVisible = true
-        }
-    }
-}

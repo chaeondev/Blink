@@ -20,6 +20,29 @@ extension UIViewController {
     }
     
     // MARK: Custom Navigation
+    func setNavigation(title: String, isLeftButton: Bool = true) {
+        navigationItem.title = title
+        
+        if let sheet = sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .brandWhite
+        
+        if isLeftButton {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: .close, style: .done, target: self, action: nil)
+            navigationController?.navigationBar.tintColor = .brandBlack
+        }
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
+    }
+    
     func setCustomNavigationbar(
         customView: UIView,
         left: UIButton,

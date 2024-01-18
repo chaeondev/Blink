@@ -22,8 +22,7 @@ final class SignUpViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationbar()
-        setUpSheet()
+        setNavigation(title: "회원가입")
         bind()
 
     }
@@ -171,19 +170,4 @@ final class SignUpViewController: BaseViewController {
     
     
     
-}
-
-extension SignUpViewController {
-    private func setNavigationbar() {
-        title = "회원가입"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .close, style: .done, target: self, action: nil)
-        navigationController?.navigationBar.tintColor = .brandBlack
-    }
-    
-    private func setUpSheet() {
-        if let sheet = sheetPresentationController {
-            sheet.detents = [.large()]
-            sheet.prefersGrabberVisible = true
-        }
-    }
 }

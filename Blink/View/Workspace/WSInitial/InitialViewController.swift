@@ -20,7 +20,7 @@ final class InitialViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationbar()
+        setNavigation(title: "시작하기")
         bind()
     }
     
@@ -34,13 +34,7 @@ final class InitialViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // TODO: X 버튼 -> home empty/ default 분기처리
+        
     }
-}
-
-extension InitialViewController {
-    private func setNavigationbar() {
-        title = "시작하기"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .close, style: .done, target: self, action: nil)
-        navigationController?.navigationBar.tintColor = .brandBlack
-    } // TODO: 네비게이션 bar background color 변경 (white), border 처리
 }

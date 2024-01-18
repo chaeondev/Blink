@@ -21,8 +21,7 @@ final class WSAddViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationbar()
-        setUpSheet()
+        setNavigation(title: "워크스페이스 생성")
         bind()
     }
     
@@ -90,6 +89,8 @@ final class WSAddViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        // MARK: X 버튼 - 목록 / 예외 회원가입 직후로부터 진입시 home empty -> 어떻게해..?
     }
     
     // TODO: 나중에 extension으로 빼기
@@ -154,21 +155,4 @@ extension WSAddViewController: UIImagePickerControllerDelegate, UINavigationCont
     }
     
 }
-
-
-extension WSAddViewController {
-    private func setNavigationbar() {
-        title = "워크스페이스 생성"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .close, style: .done, target: self, action: nil)
-        navigationController?.navigationBar.tintColor = .brandBlack
-    } // TODO: 네비게이션 bar background color 변경 (white), border 처리
-    
-    private func setUpSheet() {
-        if let sheet = sheetPresentationController {
-            sheet.detents = [.large()]
-            sheet.prefersGrabberVisible = true
-        }
-    }
-}
-
 
