@@ -42,7 +42,9 @@ enum UserRouter: APIRouter {
             return ["Content-Type": "application/json",
                     "SesacKey": APIKey.sesacKey]
         case .refreshToken:
-            return ["SesacKey": APIKey.sesacKey]
+            return ["SesacKey": APIKey.sesacKey,
+                    "Authorization": KeyChainManager.shared.accessToken ?? "",
+                    "RefreshToken": KeyChainManager.shared.refreshToken ?? ""]
         }
     }
     
@@ -75,7 +77,7 @@ enum UserRouter: APIRouter {
                 "password": model.password,
                 "deviceToken": model.deviceToken
             ]
-        case .refreshToken: return nil
+        case .refreshToken: return ["":""]
         }
     }
     
@@ -100,6 +102,10 @@ enum UserRouter: APIRouter {
             let jsonData = try? JSONSerialization.data(withJSONObject: parameter)
             request.httpBody = jsonData
             return request
+        }
+        
+        if method == .get {
+            request = try URLEncodedFormParameterEncoder(destination: .methodDependent).encode(query, into: request)
         }
         
         return request

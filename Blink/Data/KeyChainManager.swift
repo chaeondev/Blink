@@ -11,13 +11,12 @@ import Security
 final class KeyChainManager {
     
     enum accountItem: String {
-        case userID
-        case accessToken
-        case refreshToken
+        case userID = "userID"
+        case accessToken = "accessToken"
+        case refreshToken = "refreshToken"
     }
     
     static let shared = KeyChainManager()
-    static let bundleID = Bundle.main.bundleIdentifier ?? "service"
     
     var accessToken: String? {
         get {
@@ -39,12 +38,11 @@ final class KeyChainManager {
     
     private init() { }
     
-    func create(service: String = bundleID, account: accountItem, value: String) {
+    func create(account: accountItem, value: String) {
         
         //query
         let keyChainQuery: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
-            kSecAttrService : service,
             kSecAttrAccount : account.rawValue,
             kSecValueData : value.data(using: .utf8, allowLossyConversion: false)! //인코딩 과정 손실 허용 여부
         ]
@@ -57,12 +55,11 @@ final class KeyChainManager {
         assert(status == noErr, "failed to saving Token")
     }
     
-    func read(service: String = bundleID, account: accountItem) -> String? {
+    func read(account: accountItem) -> String? {
         let keyChainQuery: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
-            kSecAttrService : service,
             kSecAttrAccount : account.rawValue,
-            kSecReturnData : kCFBooleanTrue, //CFData타입으로 불러옴
+            kSecReturnData : kCFBooleanTrue as Any, //CFData타입으로 불러옴
             kSecMatchLimit : kSecMatchLimitOne
         ]
         //CFData 타입 -> AnyObject로 받고, Data로 타입변환해서 사용
@@ -73,19 +70,19 @@ final class KeyChainManager {
         
         //분기처리 (성공, 실패)
         if (status == errSecSuccess) {
-            let retrievedData = dataTypeRef as! Data
-            let value = String(data: retrievedData, encoding: String.Encoding.utf8)
-            return value
+            if let retrievedData = dataTypeRef as? Data {
+                let value = String(data: retrievedData, encoding: String.Encoding.utf8)
+                return value
+            } else { return nil }
         } else {
             print("failed to loading, status code = \(status)")
             return nil
         }
     }
     
-    func delete(service: String = bundleID, account: accountItem) {
+    func delete(account: accountItem) {
         let keyChainQuery: NSDictionary = [
             kSecClass : kSecClassGenericPassword,
-            kSecAttrService : service,
             kSecAttrAccount : account.rawValue
         ]
         

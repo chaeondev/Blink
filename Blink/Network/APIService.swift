@@ -57,7 +57,7 @@ final class APIService {
         return Single<NetworkResult<T>>.create { single in
             
             AF.request(api).validate().responseDecodable(of: T.self) { response in
-                
+            
                 switch response.result {
                 case .success(let data):
                     print("===Network 통신 성공===")
@@ -75,12 +75,36 @@ final class APIService {
                     return single(.success(.failure(errorResponse)))
                 }
             }
+
+            
             return Disposables.create()
             
         }
         
     }
 
+    // MARK: Completion + interceptorX
+    func requestCompletionNoInterceptor<T: Decodable, U: APIRouter>(type: T.Type, api: U, completion: @escaping (NetworkResult<T>) -> Void) {
+        AF.request(api).validate().responseDecodable(of: T.self) { response in
+        
+            switch response.result {
+            case .success(let data):
+                print("===Network 통신 성공===")
+                return completion(.success(data))
+            case .failure(_):
+                print("===Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                
+                var errorResponse = ErrorResponse(errorCode: "server error")
+                
+                guard let data = response.data else { return completion(.failure(errorResponse)) }
+                
+                errorResponse = self.decodingError(from: data)
+                
+                print("===error code===", errorResponse)
+                return completion(.failure(errorResponse))
+            }
+        }
+    }
     
     // MARK: Single+Empty Data -> Status code로 구분
     func requestEmptyReesponse<U: APIRouter>(api: U) -> Single<NetworkResult<String>> {
