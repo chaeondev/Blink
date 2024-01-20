@@ -17,6 +17,11 @@ class BaseViewController: UIViewController {
         setHierarchy()
         setConstraints()
         setToastMessage()
+        setting()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func setHierarchy() {
@@ -27,6 +32,10 @@ class BaseViewController: UIViewController {
         view.backgroundColor = .backgroundPrimary
     }
     
+    func setting() {
+        
+    }
+    
     func setToastMessage() {
         var style = ToastStyle()
         style.backgroundColor = .brandGreen
@@ -35,7 +44,4 @@ class BaseViewController: UIViewController {
         ToastManager.shared.style = style
     }
     
-    func toast(message: String, pointY: CGFloat) {
-        self.view.makeToast(message, duration: 2.0, point: CGPoint(x: view.frame.width / 2, y: pointY), title: nil, image: nil, completion: nil)
-    }
 }
