@@ -127,6 +127,10 @@ extension UIViewController {
         self.view.makeToast(message, duration: 2.0, point: CGPoint(x: view.frame.width / 2, y: pointY), title: nil, image: nil, completion: nil)
     }
     
+    func toast(message: String) {
+        self.view.makeToast(message, duration: 2.0, position: .bottom)
+    }
+    
     // MARK: ActionSheet
     func showOneActionSheet(title: String, completion: @escaping () -> Void) {
         
