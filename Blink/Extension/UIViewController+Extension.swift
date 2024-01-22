@@ -121,4 +121,102 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleView)
     }
     
+    // MARK: Toast
+    
+    func toast(message: String, pointY: CGFloat) {
+        self.view.makeToast(message, duration: 2.0, point: CGPoint(x: view.frame.width / 2, y: pointY), title: nil, image: nil, completion: nil)
+    }
+    
+    // MARK: ActionSheet
+    func showOneActionSheet(title: String, completion: @escaping () -> Void) {
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let firstAction = UIAlertAction(title: title, style: .default) { _ in
+            completion()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        actionSheet.addAction(firstAction)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
+    }
+    
+    func showTwoActionSheet(
+        firstTitle: String,
+        firstCompletion: @escaping () -> Void,
+        secondTitle: String,
+        secondCompletion: @escaping () -> Void
+    ) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let firstAction = UIAlertAction(title: firstTitle, style: .default) { _ in
+            firstCompletion()
+        }
+        let secondAction = UIAlertAction(title: secondTitle, style: .default) { _ in
+            secondCompletion()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        actionSheet.addAction(firstAction)
+        actionSheet.addAction(secondAction)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
+    }
+    
+    func showFourActionSheet(
+        firstTitle: String,
+        firstCompletion: @escaping () -> Void,
+        secondTitle: String,
+        secondCompletion: @escaping () -> Void,
+        thirdTitle: String,
+        thirdCompletion: @escaping () -> Void,
+        fourthTitle: String,
+        fourthCompletion: @escaping () -> Void
+    ) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let firstAction = UIAlertAction(title: firstTitle, style: .default) { _ in firstCompletion() }
+        let secondAction = UIAlertAction(title: secondTitle, style: .default) { _ in secondCompletion() }
+        let thirdAction = UIAlertAction(title: thirdTitle, style: .default) { _ in thirdCompletion() }
+        let fourthAction = UIAlertAction(title: fourthTitle, style: .destructive) { _ in fourthCompletion() }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        actionSheet.addAction(firstAction)
+        actionSheet.addAction(secondAction)
+        actionSheet.addAction(thirdAction)
+        actionSheet.addAction(fourthAction)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
+    }
+    
+    // MARK: Alert
+    func showOneActionViewController(title: String, message: String, completion: @escaping () -> Void) {
+        let vc = OneAlertViewController()
+        vc.setUp(title: title, message: message, completion: completion)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
+    }
+    
+    func showTwoActionViewController(
+        title: String,
+        message: String,
+        doCompletion: @escaping () -> Void,
+        cancelCompletion: @escaping () -> Void
+    ) {
+        let vc = TwoAlertViewController()
+        vc.setUp(title: title, message: message, doCompletion: doCompletion, cancelCompletion: cancelCompletion)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
+    }
+    
+    
+    
+    
 }
