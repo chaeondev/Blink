@@ -56,6 +56,8 @@
 		DE2A19492B44237A00194ADA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DE2A19482B44237A00194ADA /* SnapKit */; };
 		DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A194B2B442B0E00194ADA /* RoundedButton.swift */; };
 		DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */; };
+		DE51E1B02B5A82DF0038024C /* OneAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51E1AF2B5A82DF0038024C /* OneAlertViewController.swift */; };
+		DE51E1B22B5A82F20038024C /* TwoAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51E1B12B5A82F20038024C /* TwoAlertViewController.swift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -161,6 +163,8 @@
 		DE2A19452B44229B00194ADA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DE2A194B2B442B0E00194ADA /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
+		DE51E1AF2B5A82DF0038024C /* OneAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneAlertViewController.swift; sourceTree = "<group>"; };
+		DE51E1B12B5A82F20038024C /* TwoAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoAlertViewController.swift; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 		DE2A19312B43E19C00194ADA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE51E1AD2B5A82840038024C /* Common */,
 				DE5AEED92B4FC9DF00743DA5 /* Sign */,
 				DE5AEEDA2B4FCA0500743DA5 /* Workspace */,
 				DE9D8C782B5663AE00FBABC3 /* Home */,
@@ -430,6 +435,23 @@
 				DE8C27572B45670C00141F5F /* BTextField.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		DE51E1AD2B5A82840038024C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DE51E1AE2B5A82BB0038024C /* CustomAlert */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DE51E1AE2B5A82BB0038024C /* CustomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				DE51E1AF2B5A82DF0038024C /* OneAlertViewController.swift */,
+				DE51E1B12B5A82F20038024C /* TwoAlertViewController.swift */,
+			);
+			path = CustomAlert;
 			sourceTree = "<group>";
 		};
 		DE5AEED02B4FAB7C00743DA5 /* Login */ = {
@@ -737,6 +759,7 @@
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
 				DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */,
 				DE5AEEDF2B4FCA5800743DA5 /* InitialViewController.swift in Sources */,
+				DE51E1B22B5A82F20038024C /* TwoAlertViewController.swift in Sources */,
 				DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */,
 				DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */,
 				DE247D962B5992C5007DE6E2 /* SplashView.swift in Sources */,
@@ -785,6 +808,7 @@
 				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
 				DE1315902B53AAF50023D73D /* HomeChannelTableViewCell.swift in Sources */,
 				DE8C276D2B46C87500141F5F /* ErrorResponse.swift in Sources */,
+				DE51E1B02B5A82DF0038024C /* OneAlertViewController.swift in Sources */,
 				DE9D8C812B5664BB00FBABC3 /* SearchViewController.swift in Sources */,
 				DE8C27672B46A59100141F5F /* APIKey.swift in Sources */,
 				DE9971C82B4A75AB008D92B1 /* SignUp.swift in Sources */,

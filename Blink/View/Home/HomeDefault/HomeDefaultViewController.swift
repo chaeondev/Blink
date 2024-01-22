@@ -105,6 +105,7 @@ extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
         
         //HomeDefault에서는 NotEmpty -> workspaceID 넘겨주기
         vc.viewType = .notEmpty
+        vc.delegate = self
         vc.viewModel.selectedWorkspaceID = self.workspaceID
         
         let menu = SideMenuNavigationController(rootViewController: vc)
@@ -127,6 +128,16 @@ extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
         navigationBlurView.isHidden = true
 
     }
+}
+
+extension HomeDefaultViewController: WorkspaceListDelegate {
+    
+    // TODO: reload data
+    func updateWorkspaceIDToHome(id: Int) {
+        self.workspaceID = id
+        //reload data
+    }
+    
 }
 extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
     

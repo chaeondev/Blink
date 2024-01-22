@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class WorkspaceListTableViewCell: BaseTableViewCell {
     
@@ -26,11 +27,21 @@ final class WorkspaceListTableViewCell: BaseTableViewCell {
         return view
     }()
     
+    var disposeBag = DisposeBag()
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 1))
         contentView.layer.cornerRadius = 8
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+        
+        profileImageView.image = nil
     }
     
     override func setHierarchy() {
@@ -64,6 +75,7 @@ final class WorkspaceListTableViewCell: BaseTableViewCell {
     }
     
     func configureCell(data: WorkspaceInfoResponse, isSelected: Bool) {
+        self.selectionStyle = .none
         
         if isSelected {
             contentView.backgroundColor = .brandGray
