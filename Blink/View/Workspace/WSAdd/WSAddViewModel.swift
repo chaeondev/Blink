@@ -94,7 +94,6 @@ final class WSAddViewModel: ViewModelType {
                 } else {
                     return true
                 }
-                print("====걸리면 안됨===")
             }
             .withLatestFrom(createRequestModel)
             .flatMapLatest {
