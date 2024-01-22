@@ -18,6 +18,9 @@ enum UserRouter: APIRouter {
     //토큰 refresh
     case refreshToken
     
+    //프로필 조회
+    case checkMyProfile
+    
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
     }
@@ -33,18 +36,21 @@ enum UserRouter: APIRouter {
             
         case .refreshToken:
             "/v1/auth/refresh"
+            
+        case .checkMyProfile:
+            "/v1/users/my"
         }
     }
     
     var header: Alamofire.HTTPHeaders {
         switch self {
-        case .emailValidation, .join, .login:
-            return ["Content-Type": "application/json",
-                    "SesacKey": APIKey.sesacKey]
         case .refreshToken:
             return ["SesacKey": APIKey.sesacKey,
                     "Authorization": KeyChainManager.shared.accessToken ?? "",
                     "RefreshToken": KeyChainManager.shared.refreshToken ?? ""]
+        default:
+            return ["Content-Type": "application/json",
+                    "SesacKey": APIKey.sesacKey]
         }
     }
     
@@ -52,7 +58,7 @@ enum UserRouter: APIRouter {
         switch self {
         case .emailValidation, .join, .login:
             return .post
-        case .refreshToken:
+        case .refreshToken, .checkMyProfile:
             return .get
         }
     }
@@ -77,13 +83,14 @@ enum UserRouter: APIRouter {
                 "password": model.password,
                 "deviceToken": model.deviceToken
             ]
-        case .refreshToken: return ["":""]
+        default:
+            return ["":""]
         }
     }
     
     var query: [String : String] {
         switch self {
-        case .emailValidation, .join, .login, .refreshToken:
+        default:
             return ["": ""]
         }
     }

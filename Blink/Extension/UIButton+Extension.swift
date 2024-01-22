@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 extension UIButton {
-    func setKFImage(imageUrl: String) {
+    func setKFImage(imageUrl: String, placeholderImage: UIImage) {
         let modifier = AnyModifier { request in
             var requestBody = request
             requestBody.setValue(KeyChainManager.shared.accessToken, forHTTPHeaderField: "Authorization")
@@ -27,7 +27,7 @@ extension UIButton {
                 self.setImage(value.image, for: .normal)
             case .failure(let error):
                 print("===UIButton Kingfisher Image Download 실패===", error)
-                self.setImage(.dummy, for: .normal)
+                self.setImage(placeholderImage, for: .normal)
             }
         }
     }

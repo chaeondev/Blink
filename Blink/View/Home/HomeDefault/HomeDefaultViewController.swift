@@ -105,10 +105,18 @@ final class HomeDefaultViewController: BaseViewController {
         )
         let output = viewModel.transform(input: input)
         
+        // MARK: 네비게이션 leftButton, title 업데이트
         output.workspaceResource
             .bind(with: self) { owner, model in
                 owner.naviTitleButton.setTitle(model.name, for: .normal)
-                owner.leftButton.setKFImage(imageUrl: model.thumbnail)
+                owner.leftButton.setKFImage(imageUrl: model.thumbnail, placeholderImage: .dummy)
+            }
+            .disposed(by: disposeBag)
+        
+        // MARK: 프로필 조회 -> 네비게이션 rightButton 업데이트
+        output.profileResource
+            .bind(with: self) { owner, model in
+                owner.rightButton.setKFImage(imageUrl: model.profileImage ?? "", placeholderImage: .noPhotoB)
             }
             .disposed(by: disposeBag)
         
