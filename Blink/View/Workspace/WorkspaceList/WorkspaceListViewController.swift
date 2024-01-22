@@ -85,7 +85,10 @@ final class WorkspaceListViewController: BaseViewController {
                                 },
                                 thirdTitle: "워크스페이스 관리자 변경",
                                 thirdCompletion: {
-                                    
+                                    let vc = ChangeAdminViewController()
+                                    vc.viewModel.workspaceID = element.workspace_id
+                                    let nav = UINavigationController(rootViewController: vc)
+                                    owner.present(nav, animated: true)
                                 },
                                 fourthTitle: "워크스페이스 삭제") {
                                     
