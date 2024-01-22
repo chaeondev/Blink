@@ -12,6 +12,7 @@ enum WorkspaceRouter: APIRouter {
     
     case getMyWorkspaces
     case createWorkspace(_ model: WorkspaceInfoRequest)
+    case leaveWorkspace(_ id: Int)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -23,6 +24,8 @@ enum WorkspaceRouter: APIRouter {
             "/v1/workspaces"
         case .createWorkspace:
             "/v1/workspaces"
+        case .leaveWorkspace(let id):
+            "/v1/workspaces/\(id)/leave"
         }
     }
     
@@ -39,7 +42,7 @@ enum WorkspaceRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .getMyWorkspaces:
+        case .getMyWorkspaces, .leaveWorkspace:
             return .get
         case .createWorkspace:
             return .post

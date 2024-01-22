@@ -98,7 +98,7 @@ enum UserRouter: APIRouter {
         request.headers = header
         request.method = method
         
-        if method == .post || method == .put {
+        if (method == .post || method == .put) && self.header["Content-Type"] != "multipart/form-data" {
             let jsonData = try? JSONSerialization.data(withJSONObject: parameter)
             request.httpBody = jsonData
             return request

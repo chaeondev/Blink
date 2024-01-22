@@ -58,3 +58,9 @@ enum CreateWorkspaceError: String, HTTPError {
     case serverConflict = "E12" //중복 데이터 -> 워크스페이스 명은 고유한 데이터
     case insufficientCoin = "E21" //새싹코인 부족
 }
+
+//워크스페이스 퇴장
+enum LeaveWorkspaceError: String, HTTPError {
+    case noData = "E13" //존재하지 않는 데이터
+    case rejectRequest = "E15" //요청 거절 -> 워크스페이스 또는 채널의 관리자 권한이 있는경우 퇴장 불가능
+}
