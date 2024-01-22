@@ -20,6 +20,10 @@ struct cellData {
 final class HomeDefaultViewController: BaseViewController {
     
     private let mainView = HomeDefaultView()
+    let viewModel = HomeDefaultViewModel()
+    
+    private var disposeBag = DisposeBag()
+    
     //전달값
     var workspaceID: Int = 0
     
@@ -69,9 +73,12 @@ final class HomeDefaultViewController: BaseViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .brandWhite
+        
+        bind()
+        
         setTableView()
         setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton, blurView: navigationBlurView)
-        bind()
+        
         
         
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
@@ -91,7 +98,19 @@ final class HomeDefaultViewController: BaseViewController {
         mainView.tableView.dataSource = self
     }
     
+    //네트워크 통신만 해보자..! -> 시점 잡을 수 있도록 하기
     private func bind() {
+        let input = HomeDefaultViewModel.Input(
+            wsID: self.workspaceID
+        )
+        let output = viewModel.transform(input: input)
+        
+        output.workspaceResource
+            .bind(with: self) { owner, model in
+                owner.naviTitleButton.setTitle(model.name, for: .normal)
+                owner.leftButton.setKFImage(imageUrl: model.thumbnail)
+            }
+            .disposed(by: disposeBag)
         
     }
 
