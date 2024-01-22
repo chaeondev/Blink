@@ -96,7 +96,7 @@ final class WorkspaceListViewController: BaseViewController {
                             print("내가 워크스페이스 관리자 아님")
                             owner.showOneActionSheet(title: "워크스페이스 나가기") {
                                 owner.showTwoActionViewController(title: "워크스페이스 나가기", message: "정말 이 워크스페이스를 떠나시겠습니끼?") {
-                                    
+                                    owner.viewModel.leaveWorkspace(element.workspace_id)
                                 } cancelCompletion: {
                                     owner.dismiss(animated: true)
                                 }
@@ -130,6 +130,27 @@ final class WorkspaceListViewController: BaseViewController {
             .subscribe(with: self) { owner, data in
                 owner.delegate?.updateWorkspaceIDToHome(id: data.workspace_id)
                 owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        //워크스페이스 퇴장 네트워크 결과
+        viewModel.leaveNetworkResult
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let isEmpty, let homeWSID):
+                    if isEmpty {
+                        owner.changeRootViewController(viewController: HomeEmptyViewController())
+                    } else {
+                        owner.delegate?.updateWorkspaceIDToHome(id: homeWSID!)
+                        owner.dismiss(animated: true)
+                    }
+                case .noData:
+                    print("===NODATA===")
+                case .reject:
+                    owner.toast(message: "채널 관리자이신 것 같아요. 채널 관리자는 채널에 대한 권한을 양도해야 워크스페이스를 퇴장할 수 있어요.")
+                case .networkError:
+                    print("===NETWORKERROR===")
+                }
             }
             .disposed(by: disposeBag)
         
