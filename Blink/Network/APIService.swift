@@ -30,10 +30,10 @@ final class APIService {
                 
                 switch response.result {
                 case .success(let data):
-                    print("===Network 통신 성공===")
+                    print("===Single+Interceptor Network 통신 성공===")
                     return single(.success(.success(data)))
                 case .failure(_):
-                    print("===Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                    print("===Single+Interceptor Network 통신 실패=== \(String(describing: response.response?.statusCode))")
                     
                     var errorResponse = ErrorResponse(errorCode: "server error")
                     
@@ -51,7 +51,7 @@ final class APIService {
         
     }
     
-    // MARK: interceptor 포함 X 버전
+    // MARK: Single + interceptor 포함 X 버전
     func requestNoInterceptor<T: Decodable, U: APIRouter>(type: T.Type, api: U) -> Single<NetworkResult<T>> {
         
         return Single<NetworkResult<T>>.create { single in
@@ -60,10 +60,10 @@ final class APIService {
             
                 switch response.result {
                 case .success(let data):
-                    print("===Network 통신 성공===")
+                    print("===Single+NoInterceptor Network 통신 성공===")
                     return single(.success(.success(data)))
                 case .failure(_):
-                    print("===Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                    print("===Single+NoInterceptor Network 통신 실패=== \(String(describing: response.response?.statusCode))")
                     
                     var errorResponse = ErrorResponse(errorCode: "server error")
                     
@@ -81,29 +81,6 @@ final class APIService {
             
         }
         
-    }
-
-    // MARK: Completion + interceptorX
-    func requestCompletionNoInterceptor<T: Decodable, U: APIRouter>(type: T.Type, api: U, completion: @escaping (NetworkResult<T>) -> Void) {
-        AF.request(api).validate().responseDecodable(of: T.self) { response in
-        
-            switch response.result {
-            case .success(let data):
-                print("===Network 통신 성공===")
-                return completion(.success(data))
-            case .failure(_):
-                print("===Network 통신 실패=== \(String(describing: response.response?.statusCode))")
-                
-                var errorResponse = ErrorResponse(errorCode: "server error")
-                
-                guard let data = response.data else { return completion(.failure(errorResponse)) }
-                
-                errorResponse = self.decodingError(from: data)
-                
-                print("===error code===", errorResponse)
-                return completion(.failure(errorResponse))
-            }
-        }
     }
     
     // MARK: Single+Empty Data -> Status code로 구분
@@ -118,11 +95,11 @@ final class APIService {
                 let statusCode = response.response?.statusCode
                 
                 if statusCode == 200 {
-                    print("===Network 통신 성공===")
+                    print("===Single+EmptyData Network 통신 성공===")
                     return single(.success(.success("Success")))
                     
                 } else {
-                    print("===Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                    print("===Single+EmptyData Network 통신 실패=== \(String(describing: response.response?.statusCode))")
                     
                     var errorResponse = ErrorResponse(errorCode: "server error")
                     
@@ -149,10 +126,10 @@ final class APIService {
                 
                 switch response.result {
                 case .success(let data):
-                    print("===Multipart - Network 통신 성공===")
+                    print("===Single+Multipart - Network 통신 성공===")
                     return single(.success(.success(data)))
                 case .failure(_):
-                    print("===Multipart - Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                    print("===Single+Multipart - Network 통신 실패=== \(String(describing: response.response?.statusCode))")
                     
                     var errorResponse = ErrorResponse(errorCode: "server error")
                     
@@ -166,6 +143,56 @@ final class APIService {
             }
             return Disposables.create()
             
+        }
+        
+    }
+    
+    // MARK: Completion+Interceptor
+    func requestCompletion<T: Decodable, U: APIRouter>(type: T.Type, api: U, completion: @escaping (NetworkResult<T>) -> Void) {
+        AF.request(api, interceptor: AuthInterceptor()).validate().responseDecodable(of: T.self) { response in
+        
+            switch response.result {
+            case .success(let data):
+                print("===Completion+Interceptor Network 통신 성공===")
+                completion(.success(data))
+            case .failure(_):
+                print("===Completion+Interceptor Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                
+                var errorResponse = ErrorResponse(errorCode: "server error")
+                
+                guard let data = response.data else { return }
+                
+                errorResponse = self.decodingError(from: data)
+                
+                print("===error code===", errorResponse)
+                completion(.failure(errorResponse))
+            }
+        }
+    }
+    
+    // MARK: Completion + Multipart
+    func requestMultipartCompletion<T: Decodable, U: APIRouter>(type: T.Type, api: U, completion: @escaping (NetworkResult<T>) -> Void) {
+        
+        AF.upload(multipartFormData: api.multipart, with: api, interceptor: AuthInterceptor())
+            .validate()
+            .responseDecodable(of: T.self) { response in
+            
+            switch response.result {
+            case .success(let data):
+                print("===Completion+Multipart - Network 통신 성공===")
+                completion(.success(data))
+            case .failure(_):
+                print("===Completion+Multipart - Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+                
+                var errorResponse = ErrorResponse(errorCode: "server error")
+                
+                guard let data = response.data else { return }
+                
+                errorResponse = self.decodingError(from: data)
+                
+                print("===error code===", errorResponse)
+                completion(.failure(errorResponse))
+            }
         }
         
     }
