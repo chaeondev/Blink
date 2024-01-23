@@ -25,8 +25,8 @@ extension UIButton {
             switch result {
             case .success(let value):
                 self.setImage(value.image, for: .normal)
-            case .failure(let error):
-                print("===UIButton Kingfisher Image Download 실패===", error)
+            case .failure:
+                print("===UIButton Kingfisher Image Download 실패===")
                 self.setImage(placeholderImage, for: .normal)
             }
         }
