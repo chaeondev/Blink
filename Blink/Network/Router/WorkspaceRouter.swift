@@ -15,6 +15,7 @@ enum WorkspaceRouter: APIRouter {
     case checkOneWorkspaceInfo(_ id: Int)
     case leaveWorkspace(_ id: Int)
     case checkWorkspaceMembers(_ id: Int)
+    case inviteWorkspace(_ id: Int, _ model: InviteWorkspaceRequest)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -31,6 +32,8 @@ enum WorkspaceRouter: APIRouter {
         case .leaveWorkspace(let id):
             "/v1/workspaces/\(id)/leave"
         case .checkWorkspaceMembers(let id):
+            "/v1/workspaces/\(id)/members"
+        case .inviteWorkspace(let id, _):
             "/v1/workspaces/\(id)/members"
         
         }
@@ -51,7 +54,7 @@ enum WorkspaceRouter: APIRouter {
         switch self {
         case .getMyWorkspaces, .leaveWorkspace, .checkWorkspaceMembers, .checkOneWorkspaceInfo:
             return .get
-        case .createWorkspace:
+        case .createWorkspace, .inviteWorkspace:
             return .post
         }
     }
@@ -63,6 +66,10 @@ enum WorkspaceRouter: APIRouter {
                 "name": model.name,
                 "description": model.description,
                 "image": model.image
+            ]
+        case .inviteWorkspace(_, let model):
+            return [
+                "email": model.email
             ]
         default:
             return nil

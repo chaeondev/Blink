@@ -64,3 +64,12 @@ enum LeaveWorkspaceError: String, HTTPError {
     case noData = "E13" //존재하지 않는 데이터
     case rejectRequest = "E15" //요청 거절 -> 워크스페이스 또는 채널의 관리자 권한이 있는경우 퇴장 불가능
 }
+
+//워크스페이스 초대
+enum InviteWorkspaceError: String, HTTPError {
+    case noData = "E13" //존재하지 않는 데이터
+    case unknownUser = "E03" //알수없는 계정
+    case permissionDenied = "E14" //권한없음 -> 워크스페이스 관리자만 멤버 초대가능
+    case wrongRequest = "E11" //잘못된 요청
+    case serverConflict = "E12" //중복 데이터
+}
