@@ -130,8 +130,7 @@ final class HomeDefaultViewController: BaseViewController {
     @objc func logoutButtonClicked() {
         self.showTwoActionViewController(title: "로그아웃", message: "로그아웃 하시겠습니까?", doButtonTitle: "확인") {
             self.viewModel.logout {
-                let loginVC = UINavigationController(rootViewController: LoginViewController())
-                self.changeRootViewController(viewController: loginVC)
+                self.changeRootViewController(viewController: OnboardingViewController())
             }
         } cancelCompletion: {
             self.dismiss(animated: true)
