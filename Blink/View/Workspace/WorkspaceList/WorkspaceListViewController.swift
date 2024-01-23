@@ -73,7 +73,7 @@ final class WorkspaceListViewController: BaseViewController {
                                 },
                                 secondTitle: "워크스페이스 나가기",
                                 secondCompletion: {
-                                    owner.showTwoActionViewController(title: "워크스페이스 나가기", message: "정말 이 워크스페이스를 떠나시겠습니끼?") {
+                                    owner.showTwoActionViewController(title: "워크스페이스 나가기", message: "정말 이 워크스페이스를 떠나시겠습니끼?", doButtonTitle: "나가기") {
                                         owner.dismiss(animated: true)
                                         owner.showOneActionViewController(title: "워크스페이스 나가기", message: "회원님은 워크스페이스 관리자입니다. 워크스페이스 관리자를 다른 멤버로 변경한 후 나갈 수 있습니다.") {
                                             owner.dismiss(animated: true)
@@ -86,6 +86,7 @@ final class WorkspaceListViewController: BaseViewController {
                                 thirdTitle: "워크스페이스 관리자 변경",
                                 thirdCompletion: {
                                     let vc = ChangeAdminViewController()
+                                    vc.delegate = self
                                     vc.viewModel.workspaceID = element.workspace_id
                                     let nav = UINavigationController(rootViewController: vc)
                                     owner.present(nav, animated: true)
@@ -98,7 +99,7 @@ final class WorkspaceListViewController: BaseViewController {
                         } else {
                             print("내가 워크스페이스 관리자 아님")
                             owner.showOneActionSheet(title: "워크스페이스 나가기") {
-                                owner.showTwoActionViewController(title: "워크스페이스 나가기", message: "정말 이 워크스페이스를 떠나시겠습니끼?") {
+                                owner.showTwoActionViewController(title: "워크스페이스 나가기", message: "정말 이 워크스페이스를 떠나시겠습니끼?", doButtonTitle: "나가기") {
                                     owner.viewModel.leaveWorkspace(element.workspace_id)
                                 } cancelCompletion: {
                                     owner.dismiss(animated: true)
@@ -131,6 +132,8 @@ final class WorkspaceListViewController: BaseViewController {
         //model Selected
         mainView.tableView.rx.modelSelected(WorkspaceInfoResponse.self)
             .subscribe(with: self) { owner, data in
+                owner.viewModel.selectedWorkspaceID = data.workspace_id
+                owner.mainView.tableView.reloadData()
                 owner.delegate?.updateWorkspaceIDToHome(id: data.workspace_id)
                 owner.dismiss(animated: true)
             }
@@ -172,3 +175,12 @@ final class WorkspaceListViewController: BaseViewController {
     
 }
 
+extension WorkspaceListViewController: ChangeAdminDelegate {
+    func reloadWorkspaceList() {
+        loadData.onNext(())
+    }
+    
+    func sendToastMessage(_ message: String) {
+        self.toast(message: message)
+    }
+}

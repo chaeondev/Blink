@@ -86,10 +86,11 @@ extension ChangeAdminViewController: UITableViewDelegate, UITableViewDataSource 
                     """,
             doButtonTitle: "확인") {
                 self.viewModel.changeAdmin(indexPath) { [weak self] msg in
+                    self?.delegate?.reloadWorkspaceList()
+                    
                     self?.dismiss(animated: false)
                     self?.dismiss(animated: true) {
                         self?.delegate?.sendToastMessage(msg)
-                        self?.delegate?.reloadWorkspaceList()
                     }
                 }
             } cancelCompletion: {
