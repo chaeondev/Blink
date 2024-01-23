@@ -211,11 +211,12 @@ extension UIViewController {
     func showTwoActionViewController(
         title: String,
         message: String,
+        doButtonTitle: String,
         doCompletion: @escaping () -> Void,
         cancelCompletion: @escaping () -> Void
     ) {
         let vc = TwoAlertViewController()
-        vc.setUp(title: title, message: message, doCompletion: doCompletion, cancelCompletion: cancelCompletion)
+        vc.setUp(title: title, message: message, doButtonTitle: doButtonTitle, doCompletion: doCompletion, cancelCompletion: cancelCompletion)
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
     }

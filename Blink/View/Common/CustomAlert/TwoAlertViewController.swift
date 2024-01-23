@@ -42,11 +42,13 @@ final class TwoAlertViewController: BaseViewController {
     func setUp(
         title: String,
         message: String,
+        doButtonTitle: String,
         doCompletion: @escaping () -> Void,
         cancelCompletion: @escaping () -> Void
     ) {
         titleLabel.text = title
         messageLabel.text = message
+        doButton.setTitle(doButtonTitle, for: .normal)
         self.cancelCompletion = cancelCompletion
         self.doCompletion = doCompletion
     }

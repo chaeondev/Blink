@@ -16,6 +16,7 @@ enum WorkspaceRouter: APIRouter {
     case leaveWorkspace(_ id: Int)
     case checkWorkspaceMembers(_ id: Int)
     case inviteWorkspace(_ id: Int, _ model: InviteWorkspaceRequest)
+    case changeAdmin(_ wsID: Int, _ userID: Int)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -35,7 +36,8 @@ enum WorkspaceRouter: APIRouter {
             "/v1/workspaces/\(id)/members"
         case .inviteWorkspace(let id, _):
             "/v1/workspaces/\(id)/members"
-        
+        case .changeAdmin(let id, let userID):
+            "/v1/workspaces/\(id)/change/admin/\(userID)"
         }
     }
     
@@ -56,10 +58,12 @@ enum WorkspaceRouter: APIRouter {
             return .get
         case .createWorkspace, .inviteWorkspace:
             return .post
+        case .changeAdmin:
+            return .put
         }
     }
     
-    var parameter: Parameters? {
+    var parameter: Parameters {
         switch self {
         case .createWorkspace(let model):
             return [
@@ -72,7 +76,7 @@ enum WorkspaceRouter: APIRouter {
                 "email": model.email
             ]
         default:
-            return nil
+            return [:]
         }
     }
     
@@ -109,8 +113,6 @@ enum WorkspaceRouter: APIRouter {
     }
     
     private func makeMultipartFormData() -> MultipartFormData {
-        
-        guard let parameter = self.parameter else { return MultipartFormData() }
         
         let multiData = MultipartFormData()
         
