@@ -249,6 +249,13 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
         viewModel.toggleSection(indexPath: indexPath) {
             tableView.reloadSections([indexPath.section], with: .none)
         }
+        
+        //팀원추가(section2) cell 클릭한 경우 -> 화면전환
+        if indexPath.section == 2 {
+            let vc = InviteMemberViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav, animated: true)
+        }
     }
     
     
