@@ -92,7 +92,24 @@ final class WorkspaceListViewController: BaseViewController {
                                     owner.present(nav, animated: true)
                                 },
                                 fourthTitle: "워크스페이스 삭제") {
-                                    
+                                    owner.showTwoActionViewController(title: "워크스페이스 삭제", message: "정말 이 워크스페이스를 삭제하시겠습니까? 삭제 시 채널/멤버/채팅 등 워크스페이스 내의 모든 정보가 삭제되며 복구할 수 없습니다.", doButtonTitle: "삭제") {
+                                        owner.viewModel.deleteWorkspace(element.workspace_id) {
+                                            // MARK: 워크스페이스 정보조회해서 Home으로 보내기
+                                            owner.viewModel.getMyWorkspaces { id in
+                                                if let id {
+                                                    let vc = HomeTabViewController()
+                                                    vc.workspaceID = id
+                                                    owner.changeRootViewController(viewController: vc)
+                                                } else {
+                                                    let vc = HomeEmptyViewController()
+                                                    owner.changeRootViewController(viewController: vc)
+                                                }
+                                            }
+                                        }
+                                    } cancelCompletion: {
+                                        owner.dismiss(animated: true)
+                                    }
+
                                 }
                             
                         //2. 워크스페이스 오너가 아닐때

@@ -17,6 +17,7 @@ enum WorkspaceRouter: APIRouter {
     case checkWorkspaceMembers(_ id: Int)
     case inviteWorkspace(_ id: Int, _ model: InviteWorkspaceRequest)
     case changeAdmin(_ wsID: Int, _ userID: Int)
+    case deleteWorkspace(_ id: Int)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -38,6 +39,8 @@ enum WorkspaceRouter: APIRouter {
             "/v1/workspaces/\(id)/members"
         case .changeAdmin(let id, let userID):
             "/v1/workspaces/\(id)/change/admin/\(userID)"
+        case .deleteWorkspace(let id):
+            "/v1/workspaces/\(id)"
         }
     }
     
@@ -60,6 +63,8 @@ enum WorkspaceRouter: APIRouter {
             return .post
         case .changeAdmin:
             return .put
+        case .deleteWorkspace:
+            return .delete
         }
     }
     

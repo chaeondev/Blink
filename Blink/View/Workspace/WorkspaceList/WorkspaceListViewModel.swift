@@ -114,4 +114,38 @@ extension WorkspaceListViewModel {
             }
         }
     }
+    
+    //워크스페이스 삭제 로직
+    func deleteWorkspace(_ id: Int, completion: @escaping () -> Void) {
+        
+        APIService.shared.requestCompletionEmptyReesponse(api: WorkspaceRouter.deleteWorkspace(id)) { result in
+            switch result {
+            case .success:
+                print("워크스페이스 삭제 성공")
+                completion()
+            case .failure(let error):
+                print("워크스페이스 삭제 실패")
+                print(error)
+            }
+        }
+    }
+    
+    func getMyWorkspaces(completion: @escaping (Int?) -> Void) {
+        
+        APIService.shared.requestCompletion(type: [WorkspaceInfoResponse].self, api: WorkspaceRouter.getMyWorkspaces) { result in
+            switch result {
+            case .success(let response):
+                print("===워크스페이스 리스트 네트워크 성공===")
+                if let id = response.first?.workspace_id {
+                    completion(id)
+                } else {
+                    completion(nil)
+                }
+                
+            case .failure(let error):
+                let customError = NetworkError(rawValue: error.errorCode)
+                print("===워크스페이스 리스트 네트워크 실패=== \(String(describing: customError))")
+            }
+        }
+    }
 }
