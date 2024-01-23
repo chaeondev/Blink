@@ -25,10 +25,9 @@ final class HomeDefaultViewController: BaseViewController {
     private var disposeBag = DisposeBag()
     
     //전달값
-    var workspaceID: Int = 0
+    //var workspaceID: Int = 0
+    //viewModel로 옮김
     
-    //DEMO
-    var tableViewData: [cellData] = []
     
     //Custom Navigation
     let customView = UIView()
@@ -74,23 +73,16 @@ final class HomeDefaultViewController: BaseViewController {
 
         view.backgroundColor = .brandWhite
         
-        bind()
         
-        setTableView()
+        fetchTableData()
+        
+        bind()
+
         setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton, blurView: navigationBlurView)
         
+        setTableView()
         
-        
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
-        
-        //DEMO
-        tableViewData = [
-            cellData(title: "채널", opened: false, sectionData: ["일반", "스유 뽀개기", "앱스토어 홍보", "오픈라운지"]),
-            cellData(title: "다이렉트 메시지", opened: false, sectionData: ["캠퍼스지킴이", "Hue", "Jack"]),
-            cellData(title: "팀원 추가", opened: false, sectionData: ["cell"])
-        ]
-
-
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view, forMenu: .left)
     }
     
     func setTableView() {
@@ -100,9 +92,7 @@ final class HomeDefaultViewController: BaseViewController {
     
     //네트워크 통신만 해보자..! -> 시점 잡을 수 있도록 하기
     private func bind() {
-        let input = HomeDefaultViewModel.Input(
-            wsID: self.workspaceID
-        )
+        let input = HomeDefaultViewModel.Input()
         let output = viewModel.transform(input: input)
         
         // MARK: 네비게이션 leftButton, title 업데이트
@@ -121,6 +111,16 @@ final class HomeDefaultViewController: BaseViewController {
             .disposed(by: disposeBag)
         
     }
+    
+    func fetchTableData() {
+        viewModel.fetchChannelInfo {
+            self.mainView.tableView.reloadData()
+        }
+        
+        viewModel.fetchDMInfo {
+            self.mainView.tableView.reloadData()
+        }
+    }
 
 }
 
@@ -133,7 +133,7 @@ extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
         //HomeDefault에서는 NotEmpty -> workspaceID 넘겨주기
         vc.viewType = .notEmpty
         vc.delegate = self
-        vc.viewModel.selectedWorkspaceID = self.workspaceID
+        vc.viewModel.selectedWorkspaceID = self.viewModel.workspaceID
         
         let menu = SideMenuNavigationController(rootViewController: vc)
         menu.leftSide = true
@@ -157,15 +157,23 @@ extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
     }
 }
 
+// MARK: Delegate
 extension HomeDefaultViewController: WorkspaceListDelegate {
     
     // TODO: reload data
     func updateWorkspaceIDToHome(id: Int) {
-        self.workspaceID = id
+        self.viewModel.workspaceID = id
         //reload data
+        
+        //네비게이션바 업데이트
+        bind()
+        //Table 업데이트
+        fetchTableData()
     }
     
 }
+
+
 extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -174,36 +182,33 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return (tableViewData[section].opened) ? tableViewData[section].sectionData.count + 2 : 1
-//        switch section {
-//        case 0:
-//        case 1:
-//        case 2:
-//        }
+        return viewModel.numberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellType = checkCellType(indexPath: indexPath)
+        let cellType = viewModel.checkCellType(indexPath: indexPath)
         switch cellType {
         case .chevronCell:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSectionTableViewCell.description(), for: indexPath) as? HomeSectionTableViewCell else { return UITableViewCell() }
-            let title = tableViewData[indexPath.section].title
-            let opened = tableViewData[indexPath.section].opened
-            cell.configureCell(text: title, expanded: opened)
+            
+            let data = viewModel.chevronData(indexPath: indexPath)
+            cell.configureCell(text: data.title, expanded: data.opened)
+            
             return cell
             
         case .channelCell:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeChannelTableViewCell.description(), for: indexPath) as? HomeChannelTableViewCell else { return UITableViewCell() }
-            let title = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
-            let count = 15
-            cell.configureCell(text: title, count: count)
+            
+            let data = viewModel.channelData(indexPath: indexPath)
+            cell.configureCell(text: data.title, count: data.count)
+            
             return cell
             
         case .dmCell:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDMTableViewCell.description(), for: indexPath) as? HomeDMTableViewCell else { return UITableViewCell() }
-            let title = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
-            let count = 8
-            cell.configureCell(image: nil, text: title, count: count)
+            
+            let data = viewModel.dmData(indexPath: indexPath)
+            cell.configureCell(image: data.image, text: data.title, count: data.count)
             return cell
             
         case .plusCell:
@@ -224,7 +229,7 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellType = checkCellType(indexPath: indexPath)
+        let cellType = viewModel.checkCellType(indexPath: indexPath)
         switch cellType {
         case .chevronCell:
             return 56
@@ -240,35 +245,15 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
         //셀 선택 시 회색에서 다시 변하게 해줌
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.row == 0 {
-            tableViewData[indexPath.section].opened.toggle()
+        //cell 접었다 폈다 -> section reload 필요
+        viewModel.toggleSection(indexPath: indexPath) {
             tableView.reloadSections([indexPath.section], with: .none)
-        } else {
-            print("section data 선택")
         }
     }
     
-    func checkCellType(indexPath: IndexPath) -> HomeCellType {
-        switch (indexPath.section, indexPath.row) {
-        case (0,0), (1,0): 
-            return .chevronCell
-        case (0, tableViewData[0].sectionData.count + 1), (1, tableViewData[1].sectionData.count + 1):
-            return .plusCell
-        case (0, _):
-            return .channelCell
-        case (1, _):
-            return .dmCell
-        default:
-            return .plusCell
-        }
-    }
+    
 }
 
-enum HomeCellType {
-    case chevronCell
-    case channelCell
-    case dmCell
-    case plusCell
-}
+
 
 // TODO: - 메세지(count)버튼 커스텀(label, backView) / footer에 선 그리기 / 데이터 연결

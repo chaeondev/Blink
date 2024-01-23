@@ -183,5 +183,107 @@ final class HomeDefaultViewModel: ViewModelType {
     
     
 }
+
+enum HomeCellType {
+    case chevronCell
+    case channelCell
+    case dmCell
+    case plusCell
+}
+
+// MARK: TableView 관련 메서드
+extension HomeDefaultViewModel {
     
+    func numberOfRowsInSection(section: Int) -> Int {
+        
+        guard let channelData, let dmData else { return 0 }
+        
+        switch section {
+        case 0:
+            return (channelData.opened) ? channelData.sectionData.count + 2 : 1
+        case 1:
+            return (dmData.opened) ? dmData.sectionData.count + 2 : 1
+        case 2:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    func checkCellType(indexPath: IndexPath) -> HomeCellType {
+        guard let channelData, let dmData else { return .plusCell }
+        
+        switch (indexPath.section, indexPath.row) {
+        case (0,0), (1,0):
+            return .chevronCell
+        case (0, channelData.sectionData.count + 1), (1, dmData.sectionData.count + 1):
+            return .plusCell
+        case (0, _):
+            return .channelCell
+        case (1, _):
+            return .dmCell
+        default:
+            return .plusCell
+        }
+    }
+    
+    func chevronData(indexPath: IndexPath) -> ChevronData {
+        guard let channelData, let dmData else { return ChevronData(title: "", opened: false) }
+        if indexPath.section == 0 {
+            
+            let data = ChevronData(title: channelData.title, opened: channelData.opened)
+            
+            return data
+        } else {
+            
+            let data = ChevronData(title: dmData.title, opened: dmData.opened)
+            
+            return data
+        }
+    }
+    
+    func channelData(indexPath: IndexPath) -> ChannelData {
+        guard let channelData else { return ChannelData(title: "", count: 0) }
+        
+        let data = channelData.sectionData[indexPath.row - 1]
+        
+        return ChannelData(title: data.channelInfo.name, count: data.unreadChatCnt)
+    }
+    
+    func dmData(indexPath: IndexPath) -> DMdata {
+        guard let dmData else { return DMdata(image: nil, title: "", count: 0) }
+        
+        let data = dmData.sectionData[indexPath.row - 1]
+        
+        return DMdata(image: data.dmInfo.user.profileImage, title: data.dmInfo.user.nickname, count: data.unreadDMCnt)
+    }
+    
+    func toggleSection(indexPath: IndexPath, completion: @escaping () -> Void) {
+        if indexPath.row == 0 {
+            if indexPath.section == 0 {
+                channelData?.opened.toggle()
+                completion()
+            } else if indexPath.section == 1 {
+                dmData?.opened.toggle()
+                completion()
+            }
+        }
+    }
+}
+
+struct ChevronData {
+    let title: String
+    let opened: Bool
+}
+
+struct ChannelData {
+    let title: String
+    let count: Int
+}
+    
+struct DMdata {
+    let image: String?
+    let title: String
+    let count: Int
+}
     
