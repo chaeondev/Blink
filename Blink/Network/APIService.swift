@@ -88,7 +88,7 @@ final class APIService {
     
         return Single<NetworkResult<String>>.create { single in
             
-            AF.request(api).validate().response { response in
+            AF.request(api, interceptor: AuthInterceptor()).validate().response { response in
                 
                 print("==debug==", response.debugDescription)
                 
@@ -170,19 +170,21 @@ final class APIService {
         }
     }
     
-    // MARK: Completion + Multipart
-    func requestMultipartCompletion<T: Decodable, U: APIRouter>(type: T.Type, api: U, completion: @escaping (NetworkResult<T>) -> Void) {
+    // MARK: Completion + EmptyData
+    func requestCompletionEmptyReesponse<U: APIRouter>(api: U, completion: @escaping (NetworkResult<String>) -> Void) {
         
-        AF.upload(multipartFormData: api.multipart, with: api, interceptor: AuthInterceptor())
-            .validate()
-            .responseDecodable(of: T.self) { response in
+        AF.request(api, interceptor: AuthInterceptor()).validate().response { response in
             
-            switch response.result {
-            case .success(let data):
-                print("===Completion+Multipart - Network 통신 성공===")
-                completion(.success(data))
-            case .failure(_):
-                print("===Completion+Multipart - Network 통신 실패=== \(String(describing: response.response?.statusCode))")
+            print("==debug==", response.debugDescription)
+            
+            let statusCode = response.response?.statusCode
+            
+            if statusCode == 200 {
+                print("===Single+EmptyData Network 통신 성공===")
+                completion(.success("Success"))
+                
+            } else {
+                print("===Single+EmptyData Network 통신 실패=== \(String(describing: response.response?.statusCode))")
                 
                 var errorResponse = ErrorResponse(errorCode: "server error")
                 
@@ -194,7 +196,7 @@ final class APIService {
                 completion(.failure(errorResponse))
             }
         }
-        
+            
     }
     
     private func decodingError(from jsonData: Data) -> ErrorResponse {

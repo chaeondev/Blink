@@ -55,6 +55,10 @@ final class HomeDefaultViewController: BaseViewController {
         button.layer.cornerRadius = 16
         button.layer.borderColor = UIColor.border.cgColor
         button.layer.borderWidth = 2
+        
+        // MARK: 임시로 로그아웃 버튼 만들어둠 -> 나중에 수정하기!!
+        button.addTarget(self, action: #selector(logoutButtonClicked), for: .touchUpInside)
+    
         return button
     }()
     
@@ -120,6 +124,19 @@ final class HomeDefaultViewController: BaseViewController {
         viewModel.fetchDMInfo {
             self.mainView.tableView.reloadData()
         }
+    }
+    
+    // MARK: 임시로 만든 로그아웃
+    @objc func logoutButtonClicked() {
+        self.showTwoActionViewController(title: "로그아웃", message: "로그아웃 하시겠습니까?", doButtonTitle: "확인") {
+            self.viewModel.logout {
+                let loginVC = UINavigationController(rootViewController: LoginViewController())
+                self.changeRootViewController(viewController: loginVC)
+            }
+        } cancelCompletion: {
+            self.dismiss(animated: true)
+        }
+
     }
 
 }

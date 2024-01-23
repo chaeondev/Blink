@@ -286,4 +286,25 @@ struct DMdata {
     let title: String
     let count: Int
 }
+
+
+// MARK: 임시로 만든거
+extension HomeDefaultViewModel {
     
+    func logout(completion: @escaping () -> Void) {
+        
+        APIService.shared.requestCompletionEmptyReesponse(api: UserRouter.logout) { result in
+            switch result {
+            case .success:
+                print("===로그아웃 성공===")
+                KeyChainManager.shared.delete(account: .accessToken)
+                KeyChainManager.shared.delete(account: .refreshToken)
+                KeyChainManager.shared.delete(account: .userID)
+                completion()
+            case .failure(let error):
+                print("===로그아웃 실패===")
+                print(error)
+            }
+        }
+    }
+}

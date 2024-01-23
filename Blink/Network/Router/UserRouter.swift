@@ -21,6 +21,9 @@ enum UserRouter: APIRouter {
     //프로필 조회
     case checkMyProfile
     
+    //로그아웃
+    case logout
+    
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
     }
@@ -39,6 +42,9 @@ enum UserRouter: APIRouter {
             
         case .checkMyProfile:
             "/v1/users/my"
+            
+        case .logout:
+            "/v1/users/logout"
         }
     }
     
@@ -58,7 +64,7 @@ enum UserRouter: APIRouter {
         switch self {
         case .emailValidation, .join, .login:
             return .post
-        case .refreshToken, .checkMyProfile:
+        case .refreshToken, .checkMyProfile, .logout:
             return .get
         }
     }
@@ -84,14 +90,14 @@ enum UserRouter: APIRouter {
                 "deviceToken": model.deviceToken
             ]
         default:
-            return ["":""]
+            return [:]
         }
     }
     
     var query: [String : String] {
         switch self {
         default:
-            return ["": ""]
+            return [:]
         }
     }
     
