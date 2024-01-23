@@ -145,7 +145,9 @@ final class WorkspaceListViewController: BaseViewController {
                         owner.changeRootViewController(viewController: HomeEmptyViewController())
                     } else {
                         owner.delegate?.updateWorkspaceIDToHome(id: homeWSID!)
+                        owner.mainView.tableView.reloadData()
                         owner.dismiss(animated: true)
+                        owner.dismiss(animated: false)
                     }
                 case .noData:
                     print("===NODATA===")

@@ -94,6 +94,25 @@
 		DE9D8C832B5664D200FBABC3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */; };
 		DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */; };
 		DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */; };
+		DEF48A082B5EF86900FDC7CC /* ChangeAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */; };
+		DEF48A0A2B5EF87300FDC7CC /* ChangeAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A092B5EF87300FDC7CC /* ChangeAdminViewController.swift */; };
+		DEF48A0C2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A0B2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift */; };
+		DEF48A0F2B5EF89500FDC7CC /* AdminTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A0E2B5EF89500FDC7CC /* AdminTableViewCell.swift */; };
+		DEF48A112B5F00F900FDC7CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A102B5F00F900FDC7CC /* User.swift */; };
+		DEF48A132B5F0B9100FDC7CC /* WorkspaceRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A122B5F0B9100FDC7CC /* WorkspaceRes.swift */; };
+		DEF48A152B5F0BFC00FDC7CC /* ChannelRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A142B5F0BFC00FDC7CC /* ChannelRes.swift */; };
+		DEF48A172B5F0FDF00FDC7CC /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A162B5F0FDF00FDC7CC /* UIButton+Extension.swift */; };
+		DEF48A192B5F146200FDC7CC /* ProfileRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A182B5F146200FDC7CC /* ProfileRes.swift */; };
+		DEF48A222B5F265E00FDC7CC /* DMsRoomRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A212B5F265E00FDC7CC /* DMsRoomRes.swift */; };
+		DEF48A242B5F289400FDC7CC /* ChannelRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A232B5F289400FDC7CC /* ChannelRouter.swift */; };
+		DEF48A262B5F30CE00FDC7CC /* ChannelUnreadCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A252B5F30CE00FDC7CC /* ChannelUnreadCount.swift */; };
+		DEF48A282B5F4A2100FDC7CC /* DMSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A272B5F4A2100FDC7CC /* DMSRouter.swift */; };
+		DEF48A2A2B5F4C0200FDC7CC /* DMsUnreadCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A292B5F4C0200FDC7CC /* DMsUnreadCount.swift */; };
+		DEF48A2E2B5F87F500FDC7CC /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A2D2B5F87F500FDC7CC /* CircleButton.swift */; };
+		DEF48A312B5F918200FDC7CC /* InviteMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A302B5F918200FDC7CC /* InviteMemberView.swift */; };
+		DEF48A332B5F918D00FDC7CC /* InviteMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A322B5F918D00FDC7CC /* InviteMemberViewController.swift */; };
+		DEF48A352B5F919800FDC7CC /* InviteMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A342B5F919800FDC7CC /* InviteMemberViewModel.swift */; };
+		DEF48A372B5F9A5200FDC7CC /* InviteWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A362B5F9A5200FDC7CC /* InviteWorkspace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +216,25 @@
 		DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListTableViewCell.swift; sourceTree = "<group>"; };
 		DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
+		DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminView.swift; sourceTree = "<group>"; };
+		DEF48A092B5EF87300FDC7CC /* ChangeAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewController.swift; sourceTree = "<group>"; };
+		DEF48A0B2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewModel.swift; sourceTree = "<group>"; };
+		DEF48A0E2B5EF89500FDC7CC /* AdminTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTableViewCell.swift; sourceTree = "<group>"; };
+		DEF48A102B5F00F900FDC7CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DEF48A122B5F0B9100FDC7CC /* WorkspaceRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRes.swift; sourceTree = "<group>"; };
+		DEF48A142B5F0BFC00FDC7CC /* ChannelRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRes.swift; sourceTree = "<group>"; };
+		DEF48A162B5F0FDF00FDC7CC /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		DEF48A182B5F146200FDC7CC /* ProfileRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRes.swift; sourceTree = "<group>"; };
+		DEF48A212B5F265E00FDC7CC /* DMsRoomRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsRoomRes.swift; sourceTree = "<group>"; };
+		DEF48A232B5F289400FDC7CC /* ChannelRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRouter.swift; sourceTree = "<group>"; };
+		DEF48A252B5F30CE00FDC7CC /* ChannelUnreadCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUnreadCount.swift; sourceTree = "<group>"; };
+		DEF48A272B5F4A2100FDC7CC /* DMSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSRouter.swift; sourceTree = "<group>"; };
+		DEF48A292B5F4C0200FDC7CC /* DMsUnreadCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsUnreadCount.swift; sourceTree = "<group>"; };
+		DEF48A2D2B5F87F500FDC7CC /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		DEF48A302B5F918200FDC7CC /* InviteMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberView.swift; sourceTree = "<group>"; };
+		DEF48A322B5F918D00FDC7CC /* InviteMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewController.swift; sourceTree = "<group>"; };
+		DEF48A342B5F919800FDC7CC /* InviteMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewModel.swift; sourceTree = "<group>"; };
+		DEF48A362B5F9A5200FDC7CC /* InviteWorkspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteWorkspace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,12 +417,13 @@
 		DE2A19342B43E1E700194ADA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DE8C276C2B46C87500141F5F /* ErrorResponse.swift */,
-				DE1CD2412B49ACC30083DD09 /* EmailValidation.swift */,
-				DE9971C72B4A75AB008D92B1 /* SignUp.swift */,
-				DE5AEED72B4FB42B00743DA5 /* Login.swift */,
-				DE13156D2B52DB760023D73D /* Refresh.swift */,
-				DE1315732B52E81A0023D73D /* WorkspaceInfo.swift */,
+				DEF48A1A2B5F25D700FDC7CC /* Error */,
+				DEF48A1B2B5F25DF00FDC7CC /* Sign */,
+				DEF48A1C2B5F25E600FDC7CC /* Auth */,
+				DEF48A1F2B5F262C00FDC7CC /* User */,
+				DEF48A1D2B5F260400FDC7CC /* Workspace */,
+				DEF48A1E2B5F261900FDC7CC /* Channel */,
+				DEF48A202B5F264200FDC7CC /* DM */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +437,7 @@
 				DE9D8C762B55542D00FBABC3 /* UIViewController+Extension.swift */,
 				DE247D902B59446E007DE6E2 /* UIImageView+Extension.swift */,
 				DE247D922B594667007DE6E2 /* Date+Extension.swift */,
+				DEF48A162B5F0FDF00FDC7CC /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -433,6 +473,7 @@
 				DE2A194B2B442B0E00194ADA /* RoundedButton.swift */,
 				DE8C27532B45666F00141F5F /* BTitleLabel.swift */,
 				DE8C27572B45670C00141F5F /* BTextField.swift */,
+				DEF48A2D2B5F87F500FDC7CC /* CircleButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -482,6 +523,7 @@
 				DE5AEEDB2B4FCA3E00743DA5 /* WSInitial */,
 				DE5AEEE22B4FD81A00743DA5 /* WSAdd */,
 				DE13159D2B53EC020023D73D /* WorkspaceList */,
+				DEF48A062B5EF82200FDC7CC /* ChangeAdmin */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -539,6 +581,8 @@
 				DE8C276E2B46D07000141F5F /* APIRouter.swift */,
 				DE8C27712B46D4A500141F5F /* UserRouter.swift */,
 				DE13156F2B52E7190023D73D /* WorkspaceRouter.swift */,
+				DEF48A232B5F289400FDC7CC /* ChannelRouter.swift */,
+				DEF48A272B5F4A2100FDC7CC /* DMSRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -556,6 +600,7 @@
 			children = (
 				DE5AEEE92B4FFE9600743DA5 /* HomeEmpty */,
 				DE13157C2B53A1420023D73D /* HomeDefault */,
+				DEF48A2F2B5F914200FDC7CC /* InviteMember */,
 				DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */,
 			);
 			path = Home;
@@ -591,6 +636,98 @@
 				DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DEF48A062B5EF82200FDC7CC /* ChangeAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A0D2B5EF88300FDC7CC /* Cell */,
+				DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */,
+				DEF48A092B5EF87300FDC7CC /* ChangeAdminViewController.swift */,
+				DEF48A0B2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift */,
+			);
+			path = ChangeAdmin;
+			sourceTree = "<group>";
+		};
+		DEF48A0D2B5EF88300FDC7CC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A0E2B5EF89500FDC7CC /* AdminTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DEF48A1A2B5F25D700FDC7CC /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DE8C276C2B46C87500141F5F /* ErrorResponse.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		DEF48A1B2B5F25DF00FDC7CC /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				DE1CD2412B49ACC30083DD09 /* EmailValidation.swift */,
+				DE9971C72B4A75AB008D92B1 /* SignUp.swift */,
+				DE5AEED72B4FB42B00743DA5 /* Login.swift */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
+		DEF48A1C2B5F25E600FDC7CC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				DE13156D2B52DB760023D73D /* Refresh.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DEF48A1D2B5F260400FDC7CC /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				DE1315732B52E81A0023D73D /* WorkspaceInfo.swift */,
+				DEF48A122B5F0B9100FDC7CC /* WorkspaceRes.swift */,
+				DEF48A362B5F9A5200FDC7CC /* InviteWorkspace.swift */,
+			);
+			path = Workspace;
+			sourceTree = "<group>";
+		};
+		DEF48A1E2B5F261900FDC7CC /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A142B5F0BFC00FDC7CC /* ChannelRes.swift */,
+				DEF48A252B5F30CE00FDC7CC /* ChannelUnreadCount.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		DEF48A1F2B5F262C00FDC7CC /* User */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A102B5F00F900FDC7CC /* User.swift */,
+				DEF48A182B5F146200FDC7CC /* ProfileRes.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		DEF48A202B5F264200FDC7CC /* DM */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A212B5F265E00FDC7CC /* DMsRoomRes.swift */,
+				DEF48A292B5F4C0200FDC7CC /* DMsUnreadCount.swift */,
+			);
+			path = DM;
+			sourceTree = "<group>";
+		};
+		DEF48A2F2B5F914200FDC7CC /* InviteMember */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A302B5F918200FDC7CC /* InviteMemberView.swift */,
+				DEF48A322B5F918D00FDC7CC /* InviteMemberViewController.swift */,
+				DEF48A342B5F919800FDC7CC /* InviteMemberViewModel.swift */,
+			);
+			path = InviteMember;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -743,10 +880,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF48A2A2B5F4C0200FDC7CC /* DMsUnreadCount.swift in Sources */,
 				DE5AEEDD2B4FCA4D00743DA5 /* InitialView.swift in Sources */,
 				DE5AEEE12B4FCA5F00743DA5 /* InitialViewModel.swift in Sources */,
 				DE1315A12B53EC260023D73D /* WorkspaceListViewController.swift in Sources */,
 				DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */,
+				DEF48A0F2B5EF89500FDC7CC /* AdminTableViewCell.swift in Sources */,
 				DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */,
 				DE8C276F2B46D07000141F5F /* APIRouter.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
@@ -756,9 +895,12 @@
 				DE247D932B594667007DE6E2 /* Date+Extension.swift in Sources */,
 				DE1315982B53B5730023D73D /* HomeDefaultViewController.swift in Sources */,
 				DE13156E2B52DB760023D73D /* Refresh.swift in Sources */,
+				DEF48A172B5F0FDF00FDC7CC /* UIButton+Extension.swift in Sources */,
+				DEF48A262B5F30CE00FDC7CC /* ChannelUnreadCount.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
 				DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */,
 				DE5AEEDF2B4FCA5800743DA5 /* InitialViewController.swift in Sources */,
+				DEF48A0C2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift in Sources */,
 				DE51E1B22B5A82F20038024C /* TwoAlertViewController.swift in Sources */,
 				DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */,
 				DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */,
@@ -767,8 +909,10 @@
 				DE247D982B5992D0007DE6E2 /* SplashViewController.swift in Sources */,
 				DE8C27722B46D4A500141F5F /* UserRouter.swift in Sources */,
 				DE8C27542B45666F00141F5F /* BTitleLabel.swift in Sources */,
+				DEF48A112B5F00F900FDC7CC /* User.swift in Sources */,
 				DE9D8C832B5664D200FBABC3 /* SettingViewController.swift in Sources */,
 				DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */,
+				DEF48A222B5F265E00FDC7CC /* DMsRoomRes.swift in Sources */,
 				DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */,
 				DE1315882B53A64B0023D73D /* MessageCountLabel.swift in Sources */,
 				DE1CD2422B49ACC30083DD09 /* EmailValidation.swift in Sources */,
@@ -780,6 +924,7 @@
 				DE8C27522B45626800141F5F /* SignUpViewController.swift in Sources */,
 				DE247D8C2B592AB1007DE6E2 /* WorkspaceListViewModel.swift in Sources */,
 				DE5AEEE62B4FD94700743DA5 /* WSAddViewController.swift in Sources */,
+				DEF48A0A2B5EF87300FDC7CC /* ChangeAdminViewController.swift in Sources */,
 				DE8C275A2B4670E300141F5F /* ViewModelType.swift in Sources */,
 				DE13156C2B52CE730023D73D /* AuthInterceptor.swift in Sources */,
 				DE1315792B533CC50023D73D /* HomeEmptyView.swift in Sources */,
@@ -787,6 +932,7 @@
 				DE1315862B53A5B40023D73D /* HashtagImageView.swift in Sources */,
 				DE1315962B53B5620023D73D /* HomeDefaultView.swift in Sources */,
 				DE1315922B53AF680023D73D /* HomeDMTableViewCell.swift in Sources */,
+				DEF48A332B5F918D00FDC7CC /* InviteMemberViewController.swift in Sources */,
 				DE13158C2B53A7FD0023D73D /* BaseTableViewCell.swift in Sources */,
 				DE5AEED62B4FAB9C00743DA5 /* LoginViewModel.swift in Sources */,
 				DE13157B2B533CE90023D73D /* HomeEmptyViewController.swift in Sources */,
@@ -799,14 +945,20 @@
 				DE9D8C7F2B56649000FBABC3 /* DMViewController.swift in Sources */,
 				DE8C27582B45670C00141F5F /* BTextField.swift in Sources */,
 				DE9971CB2B4AC839008D92B1 /* KeyChainManager.swift in Sources */,
+				DEF48A282B5F4A2100FDC7CC /* DMSRouter.swift in Sources */,
 				DE2A19462B44229B00194ADA /* BaseViewController.swift in Sources */,
 				DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */,
+				DEF48A132B5F0B9100FDC7CC /* WorkspaceRes.swift in Sources */,
+				DEF48A082B5EF86900FDC7CC /* ChangeAdminView.swift in Sources */,
 				DE9D8C772B55542D00FBABC3 /* UIViewController+Extension.swift in Sources */,
+				DEF48A312B5F918200FDC7CC /* InviteMemberView.swift in Sources */,
 				DE13159C2B53CE3F0023D73D /* MessageCountButton.swift in Sources */,
 				DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */,
 				DE1315942B53B1B60023D73D /* HomePlusTableViewCell.swift in Sources */,
+				DEF48A352B5F919800FDC7CC /* InviteMemberViewModel.swift in Sources */,
 				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
 				DE1315902B53AAF50023D73D /* HomeChannelTableViewCell.swift in Sources */,
+				DEF48A372B5F9A5200FDC7CC /* InviteWorkspace.swift in Sources */,
 				DE8C276D2B46C87500141F5F /* ErrorResponse.swift in Sources */,
 				DE51E1B02B5A82DF0038024C /* OneAlertViewController.swift in Sources */,
 				DE9D8C812B5664BB00FBABC3 /* SearchViewController.swift in Sources */,
@@ -815,6 +967,10 @@
 				DE8C27692B46C62600141F5F /* HTTPError.swift in Sources */,
 				DE1315842B53A4520023D73D /* HomeCellTitleLabel.swift in Sources */,
 				DE247D912B59446E007DE6E2 /* UIImageView+Extension.swift in Sources */,
+				DEF48A2E2B5F87F500FDC7CC /* CircleButton.swift in Sources */,
+				DEF48A242B5F289400FDC7CC /* ChannelRouter.swift in Sources */,
+				DEF48A152B5F0BFC00FDC7CC /* ChannelRes.swift in Sources */,
+				DEF48A192B5F146200FDC7CC /* ProfileRes.swift in Sources */,
 				DE5AEED82B4FB42B00743DA5 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

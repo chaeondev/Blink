@@ -173,6 +173,13 @@ extension HomeDefaultViewController: WorkspaceListDelegate {
     
 }
 
+extension HomeDefaultViewController: InvitationDelegate {
+    func sendInvitationResultMessage(message: String) {
+        self.toast(message: message)
+    }
+    
+}
+
 
 extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -253,6 +260,8 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
         //팀원추가(section2) cell 클릭한 경우 -> 화면전환
         if indexPath.section == 2 {
             let vc = InviteMemberViewController()
+            vc.delegate = self
+            vc.viewModel.workspaceId = self.viewModel.workspaceID
             let nav = UINavigationController(rootViewController: vc)
             present(nav, animated: true)
         }
