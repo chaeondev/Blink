@@ -19,11 +19,13 @@ final class SplashViewModel: ViewModelType {
     
     struct Output {
         let autoLoginValidation: PublishSubject<Bool>
+        let workspaceListResult: PublishSubject<WorkspaceListResult>
     }
     
     func transform(input: Input) -> Output {
         
         let autoLoginValidation = PublishSubject<Bool>()
+        let workspaceListResult = PublishSubject<WorkspaceListResult>()
         
         if let _ = KeyChainManager.shared.accessToken,
            let _ = KeyChainManager.shared.refreshToken {
@@ -56,7 +58,33 @@ final class SplashViewModel: ViewModelType {
             autoLoginValidation.onNext(false)
         }
         
-        return Output(autoLoginValidation: autoLoginValidation)
+        autoLoginValidation
+            .filter { $0 }
+            .flatMapLatest { _ in
+                APIService.shared.request(type: [WorkspaceInfoResponse].self, api: WorkspaceRouter.getMyWorkspaces)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    print("내 워크스페이스 조회 성공")
+                    if let wsID = response.first?.workspace_id {
+                        workspaceListResult.onNext(.notEmpty(id: wsID))
+                    } else {
+                        workspaceListResult.onNext(.empty)
+                    }
+                case .failure(let error):
+                    print("내 워크스페이스 조회 실패")
+                    print("===에러 \(error)===")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(autoLoginValidation: autoLoginValidation, workspaceListResult: workspaceListResult)
     }
+}
+
+enum WorkspaceListResult {
+    case empty
+    case notEmpty(id: Int)
 }
 
