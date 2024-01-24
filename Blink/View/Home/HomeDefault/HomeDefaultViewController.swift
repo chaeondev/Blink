@@ -173,30 +173,6 @@ extension HomeDefaultViewController: SideMenuNavigationControllerDelegate {
     }
 }
 
-// MARK: Delegate
-extension HomeDefaultViewController: WorkspaceListDelegate {
-    
-    // TODO: reload data
-    func updateWorkspaceIDToHome(id: Int) {
-        self.viewModel.workspaceID = id
-        //reload data
-        
-        //네비게이션바 업데이트
-        bind()
-        //Table 업데이트
-        fetchTableData()
-    }
-    
-}
-
-extension HomeDefaultViewController: InvitationDelegate {
-    func sendInvitationResultMessage(message: String) {
-        self.toast(message: message)
-    }
-    
-}
-
-
 extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -223,7 +199,7 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeChannelTableViewCell.description(), for: indexPath) as? HomeChannelTableViewCell else { return UITableViewCell() }
             
             let data = viewModel.channelData(indexPath: indexPath)
-            cell.configureCell(text: data.title, count: data.count)
+            cell.configureHomeCell(text: data.title, count: data.count)
             
             return cell
             
@@ -301,7 +277,12 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
             self.showTwoActionSheet(
                 firstTitle: "채널 생성",
                 firstCompletion: {
-                    // MARK: ChannelAdd로 이동
+                    let vc = ChannelAddViewController()
+                    vc.viewModel.workspaceID = self.viewModel.workspaceID
+                    vc.delegate = self
+                    
+                    let nav = UINavigationController(rootViewController: vc)
+                    self.present(nav, animated: true)
                 },
                 secondTitle: "채널 탐색") {
                     // MARK: ChannelSearch로 이동
@@ -318,6 +299,35 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 
+// MARK: Delegate
+extension HomeDefaultViewController: WorkspaceListDelegate {
+    
+    // TODO: reload data
+    func updateWorkspaceIDToHome(id: Int) {
+        self.viewModel.workspaceID = id
+        //reload data
+        
+        //네비게이션바 업데이트
+        bind()
+        //Table 업데이트
+        fetchTableData()
+    }
+    
+}
 
+extension HomeDefaultViewController: InvitationDelegate {
+    func sendInvitationResultMessage(message: String) {
+        self.toast(message: message)
+    }
+    
+}
 
-// TODO: - 메세지(count)버튼 커스텀(label, backView) / footer에 선 그리기 / 데이터 연결
+extension HomeDefaultViewController: CreateChannelDelegate {
+    func sendToastMessageAndReload(_ message: String) {
+        self.toast(message: message)
+        viewModel.fetchChannelInfo {
+            self.mainView.tableView.reloadSections([0], with: .none)
+        }
+        
+    }
+}
