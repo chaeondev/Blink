@@ -10,7 +10,8 @@ import Alamofire
 
 enum ChannelRouter: APIRouter {
     
-    case checkMyChannels(_ wsID: Int) //workspaceID
+    case checkAllChannels(_ id: Int)
+    case checkMyChannels(_ id: Int) //workspaceID
     case channelChatUnreadCount(_ model: ChannelUnreadCountRequest)
     case createChannel(_ id: Int, _ model: CreateChannelRequest)
     
@@ -20,6 +21,8 @@ enum ChannelRouter: APIRouter {
     
     var path: String {
         switch self {
+        case .checkAllChannels(let id):
+            return "/v1/workspaces/\(id)/channels/"
         case .checkMyChannels(let id):
             return "/v1/workspaces/\(id)/channels/my"
         case .channelChatUnreadCount(let model):
@@ -39,7 +42,7 @@ enum ChannelRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .checkMyChannels, .channelChatUnreadCount:
+        case .checkAllChannels, .checkMyChannels, .channelChatUnreadCount:
             return .get
         case .createChannel:
             return .post
