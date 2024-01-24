@@ -66,7 +66,7 @@ final class SplashViewModel: ViewModelType {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let response):
-                    print("내 워크스페이스 조회 성공")
+                    print("===내 워크스페이스 조회 성공 \(response)===")
                     if let wsID = response.first?.workspace_id {
                         workspaceListResult.onNext(.notEmpty(id: wsID))
                     } else {
