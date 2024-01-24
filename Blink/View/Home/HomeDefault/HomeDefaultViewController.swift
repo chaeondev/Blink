@@ -263,6 +263,20 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section != 2 {
+            let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1))
+            footer.backgroundColor = .seperator
+            
+            return footer
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //셀 선택 시 회색에서 다시 변하게 해줌
@@ -273,14 +287,32 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
             tableView.reloadSections([indexPath.section], with: .none)
         }
         
-        //팀원추가(section2) cell 클릭한 경우 -> 화면전환
-        if indexPath.section == 2 {
+        guard let channelData = viewModel.channelData,
+              let dmData = viewModel.dmData else { return }
+        
+        switch (indexPath.section, indexPath.row) {
+        case (2,0): //팀원추가(section2) cell 클릭한 경우 -> 화면전환
             let vc = InviteMemberViewController()
             vc.delegate = self
             vc.viewModel.workspaceId = self.viewModel.workspaceID
             let nav = UINavigationController(rootViewController: vc)
             present(nav, animated: true)
+        case (0, channelData.sectionData.count + 1): //채널추가 -> actionSheet
+            self.showTwoActionSheet(
+                firstTitle: "채널 생성",
+                firstCompletion: {
+                    // MARK: ChannelAdd로 이동
+                },
+                secondTitle: "채널 탐색") {
+                    // MARK: ChannelSearch로 이동
+                }
+        case (0, _): //채널명
+            print("채널명")
+            // MARK: 채널 채팅 화면으로 전환
+        default:
+            return
         }
+       
     }
     
     

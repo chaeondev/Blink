@@ -391,6 +391,7 @@
 				DE5AEED92B4FC9DF00743DA5 /* Sign */,
 				DE5AEEDA2B4FCA0500743DA5 /* Workspace */,
 				DE9D8C782B5663AE00FBABC3 /* Home */,
+				DEF48A382B5FF8E600FDC7CC /* Channel */,
 				DE9D8C7B2B56644B00FBABC3 /* DM */,
 				DE9D8C7C2B56646900FBABC3 /* Search */,
 				DE9D8C7D2B56648000FBABC3 /* Setting */,
@@ -728,6 +729,29 @@
 				DEF48A342B5F919800FDC7CC /* InviteMemberViewModel.swift */,
 			);
 			path = InviteMember;
+			sourceTree = "<group>";
+		};
+		DEF48A382B5FF8E600FDC7CC /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				DEF48A392B5FF90F00FDC7CC /* ChannelAdd */,
+				DEF48A3A2B5FF91600FDC7CC /* ChannelSearch */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		DEF48A392B5FF90F00FDC7CC /* ChannelAdd */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChannelAdd;
+			sourceTree = "<group>";
+		};
+		DEF48A3A2B5FF91600FDC7CC /* ChannelSearch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChannelSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

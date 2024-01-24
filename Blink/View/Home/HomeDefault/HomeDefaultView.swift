@@ -55,4 +55,9 @@ final class HomeDefaultView: BaseView {
         blurView.isHidden = true
     }
     
+    override func setting() {
+        super.setting()
+ 
+    }
+    
 }
