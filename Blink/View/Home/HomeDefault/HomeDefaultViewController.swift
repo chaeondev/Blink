@@ -285,7 +285,13 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
                     self.present(nav, animated: true)
                 },
                 secondTitle: "채널 탐색") {
-                    // MARK: ChannelSearch로 이동
+                    let vc = ChannelSearchViewController()
+                    vc.viewModel.workspaceID = self.viewModel.workspaceID
+                    
+                    let nav = UINavigationController(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    
+                    self.present(nav, animated: true)
                 }
         case (0, _): //채널명
             print("채널명")
