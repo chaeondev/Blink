@@ -15,6 +15,9 @@ enum ChannelRouter: APIRouter {
     case channelChatUnreadCount(_ model: ChannelUnreadCountRequest)
     case createChannel(_ id: Int, _ model: CreateChannelRequest)
     
+    //채팅
+    case fetchChatting(_ model: ChattingRequest)
+    
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
     }
@@ -29,6 +32,10 @@ enum ChannelRouter: APIRouter {
             return "/v1/workspaces/\(model.workspaceID)/channels/\(model.channelName)/unreads"
         case .createChannel(let id, _):
             return "/v1/workspaces/\(id)/channels"
+            
+        //채팅
+        case .fetchChatting(let model):
+            return "/v1/workspaces/\(model.workspaceID)/channels/\(model.channelName)/chats"
         }
     }
     
@@ -42,7 +49,7 @@ enum ChannelRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .checkAllChannels, .checkMyChannels, .channelChatUnreadCount:
+        case .checkAllChannels, .checkMyChannels, .channelChatUnreadCount, .fetchChatting:
             return .get
         case .createChannel:
             return .post
@@ -65,6 +72,8 @@ enum ChannelRouter: APIRouter {
         switch self {
         case .channelChatUnreadCount(let model):
             return ["after": model.after]
+        case .fetchChatting(let model):
+            return ["cursor_date": model.cursor_date ?? ""]
         default:
             return [:]
         }
