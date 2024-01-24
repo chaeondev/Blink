@@ -63,7 +63,7 @@ final class ChannelSearchViewController: BaseViewController {
                     // 채널 채팅 화면으로 전환
                     print("====\(channelInfo.name)은 이미 가입한 채널임====")
                     
-                    owner.transitionToChat(self.viewModel.workspaceID)
+                    owner.transitionToChat(self.viewModel.workspaceID, channelInfo)
                     
                     
                 } else {
@@ -74,7 +74,7 @@ final class ChannelSearchViewController: BaseViewController {
                         doButtonTitle: "확인") {
                             
                             // 채널 채팅 화면으로 전환
-                            owner.transitionToChat(self.viewModel.workspaceID)
+                            owner.transitionToChat(self.viewModel.workspaceID, channelInfo)
                             
                         } cancelCompletion: {
                             owner.dismiss(animated: true)
@@ -91,11 +91,17 @@ final class ChannelSearchViewController: BaseViewController {
 extension ChannelSearchViewController {
     
     //채팅화면으로 전환하는 메서드
-    func transitionToChat(_ workspaceID: Int){
+    func transitionToChat(_ workspaceID: Int, _ channelInfo: ChannelRes){
         let nav = UINavigationController()
+        
         let homeVC = HomeDefaultViewController()
         homeVC.viewModel.workspaceID = workspaceID
+        homeVC.navigationItem.backButtonDisplayMode = .minimal //이전화면에 설정해야지 효과 있음
+        
         let chatVC = ChattingViewController()
+        chatVC.viewModel.channelInfo = channelInfo
+        chatVC.viewModel.workspaceID = workspaceID
+        
         nav.setViewControllers([homeVC, chatVC], animated: false)
         self.changeRootViewController(viewController: nav)
     }
