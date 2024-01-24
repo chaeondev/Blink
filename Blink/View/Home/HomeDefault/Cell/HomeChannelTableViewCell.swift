@@ -38,7 +38,7 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
         }
     }
     
-    func configureCell(text: String, count: Int) {
+    func configureHomeCell(text: String, count: Int) {
         titleLabel.text = text
         messageCountButton.setText(count: count)
         
@@ -51,5 +51,12 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
             titleLabel.update(false)
             messageCountButton.isHidden = true
         }
+    }
+    
+    func configureSearchCell(text: String) {
+        titleLabel.text = text
+        hashtagImageView.update(true)
+        titleLabel.update(true)
+        messageCountButton.isHidden = true
     }
 }

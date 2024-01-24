@@ -58,6 +58,10 @@
 		DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */; };
 		DE51E1B02B5A82DF0038024C /* OneAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51E1AF2B5A82DF0038024C /* OneAlertViewController.swift */; };
 		DE51E1B22B5A82F20038024C /* TwoAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51E1B12B5A82F20038024C /* TwoAlertViewController.swift */; };
+		DE5464272B60CDBE00A29B79 /* ChannelAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464262B60CDBE00A29B79 /* ChannelAddView.swift */; };
+		DE54642D2B60D02000A29B79 /* ChannelAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54642C2B60D02000A29B79 /* ChannelAddViewController.swift */; };
+		DE54642F2B60D02700A29B79 /* ChannelAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54642E2B60D02700A29B79 /* ChannelAddViewModel.swift */; };
+		DE5464312B60D45800A29B79 /* CreateChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464302B60D45800A29B79 /* CreateChannel.swift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -184,6 +188,10 @@
 		DE42794C2B4537F2005DC4A7 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
 		DE51E1AF2B5A82DF0038024C /* OneAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneAlertViewController.swift; sourceTree = "<group>"; };
 		DE51E1B12B5A82F20038024C /* TwoAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoAlertViewController.swift; sourceTree = "<group>"; };
+		DE5464262B60CDBE00A29B79 /* ChannelAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAddView.swift; sourceTree = "<group>"; };
+		DE54642C2B60D02000A29B79 /* ChannelAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAddViewController.swift; sourceTree = "<group>"; };
+		DE54642E2B60D02700A29B79 /* ChannelAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelAddViewModel.swift; sourceTree = "<group>"; };
+		DE5464302B60D45800A29B79 /* CreateChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannel.swift; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -699,6 +707,7 @@
 			children = (
 				DEF48A142B5F0BFC00FDC7CC /* ChannelRes.swift */,
 				DEF48A252B5F30CE00FDC7CC /* ChannelUnreadCount.swift */,
+				DE5464302B60D45800A29B79 /* CreateChannel.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -743,6 +752,9 @@
 		DEF48A392B5FF90F00FDC7CC /* ChannelAdd */ = {
 			isa = PBXGroup;
 			children = (
+				DE5464262B60CDBE00A29B79 /* ChannelAddView.swift */,
+				DE54642C2B60D02000A29B79 /* ChannelAddViewController.swift */,
+				DE54642E2B60D02700A29B79 /* ChannelAddViewModel.swift */,
 			);
 			path = ChannelAdd;
 			sourceTree = "<group>";
@@ -909,7 +921,9 @@
 				DE5AEEE12B4FCA5F00743DA5 /* InitialViewModel.swift in Sources */,
 				DE1315A12B53EC260023D73D /* WorkspaceListViewController.swift in Sources */,
 				DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */,
+				DE54642F2B60D02700A29B79 /* ChannelAddViewModel.swift in Sources */,
 				DEF48A0F2B5EF89500FDC7CC /* AdminTableViewCell.swift in Sources */,
+				DE54642D2B60D02000A29B79 /* ChannelAddViewController.swift in Sources */,
 				DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */,
 				DE8C276F2B46D07000141F5F /* APIRouter.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
@@ -929,6 +943,7 @@
 				DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */,
 				DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */,
 				DE247D962B5992C5007DE6E2 /* SplashView.swift in Sources */,
+				DE5464312B60D45800A29B79 /* CreateChannel.swift in Sources */,
 				DE13158E2B53A8A20023D73D /* HomeSectionTableViewCell.swift in Sources */,
 				DE247D982B5992D0007DE6E2 /* SplashViewController.swift in Sources */,
 				DE8C27722B46D4A500141F5F /* UserRouter.swift in Sources */,
@@ -956,6 +971,7 @@
 				DE1315862B53A5B40023D73D /* HashtagImageView.swift in Sources */,
 				DE1315962B53B5620023D73D /* HomeDefaultView.swift in Sources */,
 				DE1315922B53AF680023D73D /* HomeDMTableViewCell.swift in Sources */,
+				DE5464272B60CDBE00A29B79 /* ChannelAddView.swift in Sources */,
 				DEF48A332B5F918D00FDC7CC /* InviteMemberViewController.swift in Sources */,
 				DE13158C2B53A7FD0023D73D /* BaseTableViewCell.swift in Sources */,
 				DE5AEED62B4FAB9C00743DA5 /* LoginViewModel.swift in Sources */,
