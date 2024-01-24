@@ -51,6 +51,8 @@ final class HomeChannelTableViewCell: BaseTableViewCell {
             titleLabel.update(false)
             messageCountButton.isHidden = true
         }
+        
+        self.selectionStyle = .none
     }
     
     func configureSearchCell(text: String) {
