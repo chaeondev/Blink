@@ -12,6 +12,7 @@ enum ChannelRouter: APIRouter {
     
     case checkMyChannels(_ wsID: Int) //workspaceID
     case channelChatUnreadCount(_ model: ChannelUnreadCountRequest)
+    case createChannel(_ id: Int, _ model: CreateChannelRequest)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -23,6 +24,8 @@ enum ChannelRouter: APIRouter {
             return "/v1/workspaces/\(id)/channels/my"
         case .channelChatUnreadCount(let model):
             return "/v1/workspaces/\(model.workspaceID)/channels/\(model.channelName)/unreads"
+        case .createChannel(let id, _):
+            return "/v1/workspaces/\(id)/channels"
         }
     }
     
@@ -38,11 +41,18 @@ enum ChannelRouter: APIRouter {
         switch self {
         case .checkMyChannels, .channelChatUnreadCount:
             return .get
+        case .createChannel:
+            return .post
         }
     }
     
     var parameter: Parameters? {
         switch self {
+        case .createChannel(_, let model):
+            return [
+                "name": model.name,
+                "description": model.description
+            ]
         default:
             return nil
         }

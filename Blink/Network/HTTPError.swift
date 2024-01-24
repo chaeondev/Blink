@@ -73,3 +73,12 @@ enum InviteWorkspaceError: String, HTTPError {
     case wrongRequest = "E11" //잘못된 요청
     case serverConflict = "E12" //중복 데이터
 }
+
+// MARK: =======CHANNEL=======
+
+//채널 생성
+enum CreateChannelError: String, HTTPError {
+    case serverConflict = "E12" //중복데이터
+    case noData = "E13" //존재하지 않는 데이터
+    case wrongRequest = "E11" //잘못된 요청
+}
