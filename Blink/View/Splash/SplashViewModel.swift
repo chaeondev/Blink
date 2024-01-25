@@ -18,14 +18,14 @@ final class SplashViewModel: ViewModelType {
     }
     
     struct Output {
-        let autoLoginValidation: PublishSubject<Bool>
-        let workspaceListResult: PublishSubject<WorkspaceListResult>
+        let autoLoginValidation: BehaviorSubject<AutoLoginValidation>
+        let workspaceListResult: BehaviorSubject<WorkspaceListResult>
     }
     
     func transform(input: Input) -> Output {
         
-        let autoLoginValidation = PublishSubject<Bool>()
-        let workspaceListResult = PublishSubject<WorkspaceListResult>()
+        let autoLoginValidation = BehaviorSubject<AutoLoginValidation>(value: .nothing)
+        let workspaceListResult = BehaviorSubject<WorkspaceListResult>(value: .nothing)
         
         if let _ = KeyChainManager.shared.accessToken,
            let _ = KeyChainManager.shared.refreshToken {
@@ -35,16 +35,16 @@ final class SplashViewModel: ViewModelType {
                     switch result {
                     case .success(let response):
                         KeyChainManager.shared.create(account: .accessToken, value: response.accessToken)
-                        autoLoginValidation.onNext(true)
+                        autoLoginValidation.onNext(.accept)
                     case .failure(let error):
                         
                         let isCommonError = NetworkError.allCases.map { $0.rawValue }.contains(error.errorCode)
                         let customError: (any HTTPError)? = isCommonError ? NetworkError(rawValue: error.errorCode) : RefreshTokenError(rawValue: error.errorCode)
                         
                         if customError as? RefreshTokenError == .serverConflict {
-                            autoLoginValidation.onNext(true)
+                            autoLoginValidation.onNext(.accept)
                         } else {
-                            autoLoginValidation.onNext(false)
+                            autoLoginValidation.onNext(.reject)
                             KeyChainManager.shared.delete(account: .accessToken)
                             KeyChainManager.shared.delete(account: .refreshToken)
                             KeyChainManager.shared.delete(account: .userID)
@@ -55,11 +55,11 @@ final class SplashViewModel: ViewModelType {
                 }
                 .disposed(by: disposeBag)
         } else {
-            autoLoginValidation.onNext(false)
+            autoLoginValidation.onNext(.reject)
         }
         
         autoLoginValidation
-            .filter { $0 }
+            .filter { $0 == .accept }
             .flatMapLatest { _ in
                 APIService.shared.request(type: [WorkspaceInfoResponse].self, api: WorkspaceRouter.getMyWorkspaces)
             }
@@ -86,5 +86,12 @@ final class SplashViewModel: ViewModelType {
 enum WorkspaceListResult {
     case empty
     case notEmpty(id: Int)
+    case nothing
+}
+
+enum AutoLoginValidation {
+    case accept
+    case reject
+    case nothing
 }
 
