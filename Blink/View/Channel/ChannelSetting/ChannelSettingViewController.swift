@@ -23,12 +23,19 @@ final class ChannelSettingViewController: BaseViewController {
         
         title = "채널 설정"
         setTableView()
+        fetchData()
         
     }
     
     func setTableView() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+    }
+    
+    func fetchData() {
+        viewModel.fetchData {
+            self.mainView.tableView.reloadData()
+        }
     }
 }
 
@@ -37,7 +44,7 @@ extension ChannelSettingViewController: UITableViewDelegate, UITableViewDataSour
     //TableViewCell
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return (viewModel.isOpened) ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,18 +53,21 @@ extension ChannelSettingViewController: UITableViewDelegate, UITableViewDataSour
         case 0: // section
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionTableViewCell.description(), for: indexPath) as? SectionTableViewCell else { return UITableViewCell() }
             
+            let data = viewModel.infoForSection()
+            
+            cell.configureCell(count: data.count, expanded: data.expanded)
+            
             return cell
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberListTableViewCell.description(), for: indexPath) as? MemberListTableViewCell else { return UITableViewCell() }
             
-            cell.layoutIfNeeded()
+            let data = viewModel.infoForMemberCell()
+            cell.items = data
+            
             cell.collectionView.reloadData()
             
-            let height = cell.collectionView.collectionViewLayout.collectionViewContentSize.height
-            
-            cell.collectionView.heightAnchor.constraint(equalToConstant: height).isActive = true
-            
+            cell.setHeight()
             
             return cell
             
@@ -77,6 +87,10 @@ extension ChannelSettingViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        //섹션 Open Toggle
+        viewModel.toggleSection(indexPath) {
+            self.mainView.tableView.reloadData()
+        }
     }
     
     //TableViewHeaderFooter
@@ -102,7 +116,7 @@ extension ChannelSettingViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: ButtonFooterView.description()) as? ButtonFooterView else { return UIView() }
         
-        footer.isOwner = viewModel.isAdmin
+        footer.isOwner = viewModel.isOwner
         
         return footer
     }

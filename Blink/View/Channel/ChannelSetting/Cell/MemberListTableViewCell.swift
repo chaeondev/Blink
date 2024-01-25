@@ -18,7 +18,7 @@ final class MemberListTableViewCell: BaseTableViewCell {
         view.isScrollEnabled = false
         view.delegate = self
         view.dataSource = self
-        view.backgroundColor = .brown
+        view.backgroundColor = .backgroundPrimary
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -38,7 +38,18 @@ final class MemberListTableViewCell: BaseTableViewCell {
     
     override func setting() {
         self.selectionStyle = .none
-        contentView.backgroundColor = .red
+        contentView.backgroundColor = .backgroundPrimary
+    }
+
+    func setHeight() {
+        //collectionview 높이 자동 조절
+        self.layoutIfNeeded()
+        self.collectionView.reloadData()
+        
+        let height = self.collectionView.collectionViewLayout.collectionViewContentSize.height
+        
+        self.collectionView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        //===
     }
 }
 
@@ -49,7 +60,7 @@ extension MemberListTableViewCell {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        let size = UIScreen.main.bounds.width - 15 //horizontalEdges Spacing
+        let size = UIScreen.main.bounds.width - 13 //horizontalEdges Spacing
         let width = size / 5
         let height = 90.0
         layout.itemSize = CGSize(width: width, height: height)
@@ -60,17 +71,17 @@ extension MemberListTableViewCell {
 extension MemberListTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return items.count
-        return 21
+        
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemberCollectionViewCell.description(), for: indexPath) as? MemberCollectionViewCell else { return UICollectionViewCell() }
         
-//        let data = items[indexPath.item]
-//        
-//        cell.configureCell(name: data.nickname, imageUrl: data.profileImage)
+        let data = items[indexPath.item]
+        
+        cell.configureCell(name: data.nickname, imageUrl: data.profileImage)
         
         return cell
     }
