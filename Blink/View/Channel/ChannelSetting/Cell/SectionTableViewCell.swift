@@ -34,6 +34,11 @@ final class SectionTableViewCell: BaseTableViewCell {
         }
     }
     
+    override func setting() {
+        self.selectionStyle = .none
+        self.backgroundColor = .backgroundPrimary
+    }
+    
     func configureCell(count: Int, expanded: Bool) {
         
         titleLabel.text = "멤버 (\(count))"

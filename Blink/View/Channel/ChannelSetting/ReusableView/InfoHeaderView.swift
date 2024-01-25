@@ -45,4 +45,9 @@ final class InfoHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    func configureView(name: String, info: String) {
+        titleLabel.text = "#\(name)"
+        infoLabel.text = info
+    }
+    
 }

@@ -18,6 +18,8 @@ final class MemberListTableViewCell: BaseTableViewCell {
         view.isScrollEnabled = false
         view.delegate = self
         view.dataSource = self
+        view.backgroundColor = .brown
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -28,13 +30,15 @@ final class MemberListTableViewCell: BaseTableViewCell {
     override func setConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(6)
+            make.horizontalEdges.equalTo(contentView).inset(6)
             make.bottom.equalToSuperview()
         }
+
     }
     
     override func setting() {
         self.selectionStyle = .none
+        contentView.backgroundColor = .red
     }
 }
 
@@ -45,7 +49,7 @@ extension MemberListTableViewCell {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        let size = UIScreen.main.bounds.width - 12 //horizontalEdges Spacing
+        let size = UIScreen.main.bounds.width - 15 //horizontalEdges Spacing
         let width = size / 5
         let height = 90.0
         layout.itemSize = CGSize(width: width, height: height)
@@ -56,16 +60,17 @@ extension MemberListTableViewCell {
 extension MemberListTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        //return items.count
+        return 21
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemberCollectionViewCell.description(), for: indexPath) as? MemberCollectionViewCell else { return UICollectionViewCell() }
         
-        let data = items[indexPath.item]
-        
-        cell.configureCell(name: data.nickname, imageUrl: data.profileImage)
+//        let data = items[indexPath.item]
+//        
+//        cell.configureCell(name: data.nickname, imageUrl: data.profileImage)
         
         return cell
     }
@@ -73,4 +78,6 @@ extension MemberListTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // MARK: 프로필 이동 로직
     }
+
 }
+

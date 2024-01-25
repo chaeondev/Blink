@@ -41,6 +41,10 @@ final class MemberCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
+    override func setting() {
+        self.backgroundColor = .backgroundPrimary
+    }
+    
     func configureCell(name: String, imageUrl: String?) {
         memberNameLabel.text = name
         imageView.setKFImage(imageUrl: imageUrl ?? "")

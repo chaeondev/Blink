@@ -17,25 +17,32 @@ final class ChannelSettingView: BaseView {
     //footer -> ButtonFooterView -> isowner에 따라 버튼 4개/1개
     
     let tableView = {
-        let view = UITableView(frame: .zero)
+        let view = UITableView(frame: .zero, style: .grouped)
         view.register(SectionTableViewCell.self, forCellReuseIdentifier: SectionTableViewCell.description())
         view.register(MemberListTableViewCell.self, forCellReuseIdentifier: MemberListTableViewCell.description())
         view.register(InfoHeaderView.self, forHeaderFooterViewReuseIdentifier: InfoHeaderView.description())
         view.register(ButtonFooterView.self, forHeaderFooterViewReuseIdentifier: ButtonFooterView.description())
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .backgroundPrimary
         view.separatorStyle = .none
+        view.sectionHeaderTopPadding = 0
         
         return view
     }()
     
-    override func setConstraints() {
+    override func setHierarchy() {
         self.addSubview(tableView)
     }
     
-    override func setHierarchy() {
+    override func setConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self.safeAreaLayoutGuide)
         }
+    }
+    
+    override func setting() {
+        super.setting()
+        
+        self.backgroundColor = .backgroundPrimary
     }
 }
