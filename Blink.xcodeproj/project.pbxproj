@@ -68,6 +68,19 @@
 		DE54643A2B60FF7A00A29B79 /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464392B60FF7A00A29B79 /* ChattingView.swift */; };
 		DE54643C2B60FF8400A29B79 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54643B2B60FF8400A29B79 /* ChattingViewController.swift */; };
 		DE54643E2B60FF8D00A29B79 /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54643D2B60FF8D00A29B79 /* ChattingViewModel.swift */; };
+		DE5464402B612ACA00A29B79 /* Chatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54643F2B612ACA00A29B79 /* Chatting.swift */; };
+		DE5464422B612BE500A29B79 /* ChannelChatRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464412B612BE500A29B79 /* ChannelChatRes.swift */; };
+		DE5464452B61324800A29B79 /* ChannelSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464442B61324800A29B79 /* ChannelSettingView.swift */; };
+		DE5464472B61325200A29B79 /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464462B61325200A29B79 /* ChannelSettingViewController.swift */; };
+		DE5464492B61325E00A29B79 /* ChannelSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464482B61325E00A29B79 /* ChannelSettingViewModel.swift */; };
+		DE54644D2B61361D00A29B79 /* InfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54644C2B61361D00A29B79 /* InfoHeaderView.swift */; };
+		DE54644F2B6139EF00A29B79 /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54644E2B6139EF00A29B79 /* SectionTableViewCell.swift */; };
+		DE5464512B613BE900A29B79 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464502B613BE900A29B79 /* BaseCollectionViewCell.swift */; };
+		DE5464532B613C6C00A29B79 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464522B613C6C00A29B79 /* MemberCollectionViewCell.swift */; };
+		DE5464572B613ED600A29B79 /* MemberListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464562B613ED600A29B79 /* MemberListTableViewCell.swift */; };
+		DE5464592B625BB900A29B79 /* SpecificChannelRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464582B625BB900A29B79 /* SpecificChannelRes.swift */; };
+		DE54645B2B625FD000A29B79 /* ButtonFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54645A2B625FD000A29B79 /* ButtonFooterView.swift */; };
+		DE54645E2B62604C00A29B79 /* RoundedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54645D2B62604C00A29B79 /* RoundedBorderButton.swift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -204,6 +217,19 @@
 		DE5464392B60FF7A00A29B79 /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
 		DE54643B2B60FF8400A29B79 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		DE54643D2B60FF8D00A29B79 /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
+		DE54643F2B612ACA00A29B79 /* Chatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatting.swift; sourceTree = "<group>"; };
+		DE5464412B612BE500A29B79 /* ChannelChatRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatRes.swift; sourceTree = "<group>"; };
+		DE5464442B61324800A29B79 /* ChannelSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingView.swift; sourceTree = "<group>"; };
+		DE5464462B61325200A29B79 /* ChannelSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewController.swift; sourceTree = "<group>"; };
+		DE5464482B61325E00A29B79 /* ChannelSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewModel.swift; sourceTree = "<group>"; };
+		DE54644C2B61361D00A29B79 /* InfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHeaderView.swift; sourceTree = "<group>"; };
+		DE54644E2B6139EF00A29B79 /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
+		DE5464502B613BE900A29B79 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE5464522B613C6C00A29B79 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE5464562B613ED600A29B79 /* MemberListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListTableViewCell.swift; sourceTree = "<group>"; };
+		DE5464582B625BB900A29B79 /* SpecificChannelRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificChannelRes.swift; sourceTree = "<group>"; };
+		DE54645A2B625FD000A29B79 /* ButtonFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFooterView.swift; sourceTree = "<group>"; };
+		DE54645D2B62604C00A29B79 /* RoundedBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderButton.swift; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +433,7 @@
 		DE2A19312B43E19C00194ADA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE247D942B59926C007DE6E2 /* Splash */,
 				DE51E1AD2B5A82840038024C /* Common */,
 				DE5AEED92B4FC9DF00743DA5 /* Sign */,
 				DE5AEEDA2B4FCA0500743DA5 /* Workspace */,
@@ -418,6 +445,7 @@
 				DE1CD23F2B497EBA0083DD09 /* BaseView.swift */,
 				DE2A19452B44229B00194ADA /* BaseViewController.swift */,
 				DE13158B2B53A7FD0023D73D /* BaseTableViewCell.swift */,
+				DE5464502B613BE900A29B79 /* BaseCollectionViewCell.swift */,
 				DE8C27592B4670E300141F5F /* ViewModelType.swift */,
 			);
 			path = View;
@@ -495,6 +523,7 @@
 				DE8C27532B45666F00141F5F /* BTitleLabel.swift */,
 				DE8C27572B45670C00141F5F /* BTextField.swift */,
 				DEF48A2D2B5F87F500FDC7CC /* CircleButton.swift */,
+				DE54645D2B62604C00A29B79 /* RoundedBorderButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -526,6 +555,37 @@
 			path = Chatting;
 			sourceTree = "<group>";
 		};
+		DE5464432B61321000A29B79 /* ChannelSetting */ = {
+			isa = PBXGroup;
+			children = (
+				DE54644B2B61351800A29B79 /* ReusableView */,
+				DE54644A2B61350D00A29B79 /* Cell */,
+				DE5464442B61324800A29B79 /* ChannelSettingView.swift */,
+				DE5464462B61325200A29B79 /* ChannelSettingViewController.swift */,
+				DE5464482B61325E00A29B79 /* ChannelSettingViewModel.swift */,
+			);
+			path = ChannelSetting;
+			sourceTree = "<group>";
+		};
+		DE54644A2B61350D00A29B79 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE54644E2B6139EF00A29B79 /* SectionTableViewCell.swift */,
+				DE5464522B613C6C00A29B79 /* MemberCollectionViewCell.swift */,
+				DE5464562B613ED600A29B79 /* MemberListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DE54644B2B61351800A29B79 /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				DE54644C2B61361D00A29B79 /* InfoHeaderView.swift */,
+				DE54645A2B625FD000A29B79 /* ButtonFooterView.swift */,
+			);
+			path = ReusableView;
+			sourceTree = "<group>";
+		};
 		DE5AEED02B4FAB7C00743DA5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,7 +599,6 @@
 		DE5AEED92B4FC9DF00743DA5 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
-				DE247D942B59926C007DE6E2 /* Splash */,
 				DE2A19422B4411C900194ADA /* Onboarding */,
 				DE8C27472B4540DC00141F5F /* Auth */,
 				DE8C274F2B45624000141F5F /* SignUp */,
@@ -727,9 +786,12 @@
 		DEF48A1E2B5F261900FDC7CC /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				DE5464412B612BE500A29B79 /* ChannelChatRes.swift */,
 				DEF48A142B5F0BFC00FDC7CC /* ChannelRes.swift */,
 				DEF48A252B5F30CE00FDC7CC /* ChannelUnreadCount.swift */,
 				DE5464302B60D45800A29B79 /* CreateChannel.swift */,
+				DE54643F2B612ACA00A29B79 /* Chatting.swift */,
+				DE5464582B625BB900A29B79 /* SpecificChannelRes.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -768,6 +830,7 @@
 				DE5464382B60FF7000A29B79 /* Chatting */,
 				DEF48A392B5FF90F00FDC7CC /* ChannelAdd */,
 				DEF48A3A2B5FF91600FDC7CC /* ChannelSearch */,
+				DE5464432B61321000A29B79 /* ChannelSetting */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -946,14 +1009,19 @@
 				DE5AEEDD2B4FCA4D00743DA5 /* InitialView.swift in Sources */,
 				DE5AEEE12B4FCA5F00743DA5 /* InitialViewModel.swift in Sources */,
 				DE1315A12B53EC260023D73D /* WorkspaceListViewController.swift in Sources */,
+				DE54644F2B6139EF00A29B79 /* SectionTableViewCell.swift in Sources */,
 				DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */,
+				DE5464452B61324800A29B79 /* ChannelSettingView.swift in Sources */,
+				DE54645B2B625FD000A29B79 /* ButtonFooterView.swift in Sources */,
 				DE54642F2B60D02700A29B79 /* ChannelAddViewModel.swift in Sources */,
 				DE54643A2B60FF7A00A29B79 /* ChattingView.swift in Sources */,
 				DEF48A0F2B5EF89500FDC7CC /* AdminTableViewCell.swift in Sources */,
 				DE54642D2B60D02000A29B79 /* ChannelAddViewController.swift in Sources */,
 				DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */,
+				DE54644D2B61361D00A29B79 /* InfoHeaderView.swift in Sources */,
 				DE8C276F2B46D07000141F5F /* APIRouter.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
+				DE5464512B613BE900A29B79 /* BaseCollectionViewCell.swift in Sources */,
 				DE13159F2B53EC1B0023D73D /* WorkspaceListView.swift in Sources */,
 				DE247D9A2B5992D8007DE6E2 /* SplashViewModel.swift in Sources */,
 				DE8C275C2B46711C00141F5F /* SignUpViewModel.swift in Sources */,
@@ -976,6 +1044,7 @@
 				DE54643C2B60FF8400A29B79 /* ChattingViewController.swift in Sources */,
 				DE8C27722B46D4A500141F5F /* UserRouter.swift in Sources */,
 				DE8C27542B45666F00141F5F /* BTitleLabel.swift in Sources */,
+				DE5464592B625BB900A29B79 /* SpecificChannelRes.swift in Sources */,
 				DEF48A112B5F00F900FDC7CC /* User.swift in Sources */,
 				DE9D8C832B5664D200FBABC3 /* SettingViewController.swift in Sources */,
 				DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */,
@@ -983,7 +1052,9 @@
 				DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */,
 				DE1315882B53A64B0023D73D /* MessageCountLabel.swift in Sources */,
 				DE5464352B60E01700A29B79 /* ChannelSearchViewController.swift in Sources */,
+				DE5464532B613C6C00A29B79 /* MemberCollectionViewCell.swift in Sources */,
 				DE1CD2422B49ACC30083DD09 /* EmailValidation.swift in Sources */,
+				DE5464472B61325200A29B79 /* ChannelSettingViewController.swift in Sources */,
 				DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */,
 				DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */,
 				DE1315742B52E81A0023D73D /* WorkspaceInfo.swift in Sources */,
@@ -1007,11 +1078,13 @@
 				DE5AEED62B4FAB9C00743DA5 /* LoginViewModel.swift in Sources */,
 				DE13157B2B533CE90023D73D /* HomeEmptyViewController.swift in Sources */,
 				DE1315822B53A2910023D73D /* ChevronImageView.swift in Sources */,
+				DE54645E2B62604C00A29B79 /* RoundedBorderButton.swift in Sources */,
 				DE2A19442B44125500194ADA /* OnboardingViewController.swift in Sources */,
 				DE5AEEE82B4FDA4000743DA5 /* WSAddViewModel.swift in Sources */,
 				DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */,
 				DE1315702B52E7190023D73D /* WorkspaceRouter.swift in Sources */,
 				DE1CD2402B497EBA0083DD09 /* BaseView.swift in Sources */,
+				DE5464402B612ACA00A29B79 /* Chatting.swift in Sources */,
 				DE9D8C7F2B56649000FBABC3 /* DMViewController.swift in Sources */,
 				DE8C27582B45670C00141F5F /* BTextField.swift in Sources */,
 				DE9971CB2B4AC839008D92B1 /* KeyChainManager.swift in Sources */,
@@ -1024,11 +1097,13 @@
 				DE9D8C772B55542D00FBABC3 /* UIViewController+Extension.swift in Sources */,
 				DEF48A312B5F918200FDC7CC /* InviteMemberView.swift in Sources */,
 				DE13159C2B53CE3F0023D73D /* MessageCountButton.swift in Sources */,
+				DE5464492B61325E00A29B79 /* ChannelSettingViewModel.swift in Sources */,
 				DE2A193F2B43F63800194ADA /* LabelBuilder.swift in Sources */,
 				DE1315942B53B1B60023D73D /* HomePlusTableViewCell.swift in Sources */,
 				DEF48A352B5F919800FDC7CC /* InviteMemberViewModel.swift in Sources */,
 				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
 				DE1315902B53AAF50023D73D /* HomeChannelTableViewCell.swift in Sources */,
+				DE5464572B613ED600A29B79 /* MemberListTableViewCell.swift in Sources */,
 				DEF48A372B5F9A5200FDC7CC /* InviteWorkspace.swift in Sources */,
 				DE8C276D2B46C87500141F5F /* ErrorResponse.swift in Sources */,
 				DE51E1B02B5A82DF0038024C /* OneAlertViewController.swift in Sources */,
@@ -1039,6 +1114,7 @@
 				DE8C27692B46C62600141F5F /* HTTPError.swift in Sources */,
 				DE1315842B53A4520023D73D /* HomeCellTitleLabel.swift in Sources */,
 				DE247D912B59446E007DE6E2 /* UIImageView+Extension.swift in Sources */,
+				DE5464422B612BE500A29B79 /* ChannelChatRes.swift in Sources */,
 				DEF48A2E2B5F87F500FDC7CC /* CircleButton.swift in Sources */,
 				DEF48A242B5F289400FDC7CC /* ChannelRouter.swift in Sources */,
 				DEF48A152B5F0BFC00FDC7CC /* ChannelRes.swift in Sources */,

@@ -14,6 +14,8 @@ final class ChattingViewController: BaseViewController {
     private let mainView = ChattingView()
     let viewModel = ChattingViewModel()
     
+    private var disposeBag = DisposeBag()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -35,8 +37,12 @@ final class ChattingViewController: BaseViewController {
     private func bind() {
         navigationItem.rightBarButtonItem!.rx.tap
             .bind(with: self) { owner, _ in
-                <#code#>
+                let vc = ChannelSettingViewController()
+                vc.viewModel.channelInfo = owner.viewModel.channelInfo
+                
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
+            .disposed(by: disposeBag)
     }
     
 
@@ -48,6 +54,7 @@ extension ChattingViewController {
         title = "#\(viewModel.channelInfo.name)"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .list, style: .plain, target: self, action: nil)
         navigationController?.navigationBar.tintColor = .brandBlack
+        navigationItem.backButtonDisplayMode = .minimal
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
