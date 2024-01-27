@@ -15,6 +15,7 @@ final class ChattingView: BaseView {
         view.register(ChattingTableViewCell.self, forCellReuseIdentifier: ChattingTableViewCell.description())
         view.rowHeight = UITableView.automaticDimension
         view.backgroundColor = .backgroundSecondary
+        view.separatorStyle = .none
         return view
     }()
     
@@ -31,6 +32,7 @@ final class ChattingView: BaseView {
     }
     
     override func setting() {
+        super.setting()
         self.backgroundColor = .backgroundSecondary
     }
     

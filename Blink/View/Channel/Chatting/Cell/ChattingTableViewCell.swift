@@ -43,6 +43,7 @@ final class ChattingTableViewCell: BaseTableViewCell {
             make.top.equalToSuperview().offset(6)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.width.lessThanOrEqualTo(244)
+            make.bottom.equalToSuperview().offset(-6)
         }
         
         dateLabel.snp.makeConstraints { make in
@@ -54,6 +55,11 @@ final class ChattingTableViewCell: BaseTableViewCell {
     override func setting() {
         contentView.backgroundColor = .backgroundSecondary
     }
+    
+    func configureCell() {
+        
+    }
+    
 }
 
 

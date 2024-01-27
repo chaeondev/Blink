@@ -26,9 +26,18 @@ final class ChattingMessageContentView: BaseView {
         return view
     }()
     
+    lazy var stackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .equalSpacing
+        view.alignment = .leading
+        view.spacing = 5
+        return view
+    }()
+    
     override func setHierarchy() {
-        
-        [userNameLabel, messageTextView, photoCollectionView].forEach { self.addSubview($0) }
+        [messageTextView, photoCollectionView].forEach { stackView.addArrangedSubview($0) }
+        [userNameLabel, stackView].forEach { self.addSubview($0) }
         
     }
     
@@ -39,18 +48,23 @@ final class ChattingMessageContentView: BaseView {
             make.height.equalTo(18)
         }
         
-        messageTextView.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(userNameLabel.snp.bottom).offset(5)
-            make.leading.equalToSuperview()
-            make.width.lessThanOrEqualTo(244)
+            make.horizontalEdges.bottom.equalToSuperview()
+        }
+        
+        messageTextView.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview()
         }
         
         photoCollectionView.snp.makeConstraints { make in
             make.top.equalTo(messageTextView.snp.bottom).offset(5)
-            make.width.equalTo(244)
-            make.height.equalTo(80)
-            make.bottom.equalToSuperview()
+            make.leading.bottom.equalToSuperview()
         }
+    }
+    
+    override func setting() {
+        self.backgroundColor = .backgroundSecondary
     }
     
     //collectionView update
@@ -60,15 +74,22 @@ final class ChattingMessageContentView: BaseView {
         self.messageTextView.text = message
         self.imageFiles = images
         
+        messageTextView.isHidden = (message.isEmpty) ? true : false
+        
         let count = self.imageFiles.count
         
-        //snapkit layout -> collectionView 높이
-        self.remakeCollectionViewLayout(count)
-        
-        //compositional -> collectionView 내부 배치
-        photoCollectionView.collectionViewLayout = setCollectionViewLayout(count)
-        
-        photoCollectionView.reloadData()
+        if count == 0 {
+            photoCollectionView.isHidden = true
+        } else {
+            photoCollectionView.isHidden = false
+            //snapkit layout -> collectionView 높이
+            self.remakeCollectionViewLayout(count)
+            
+            //compositional -> collectionView 내부 배치
+            photoCollectionView.collectionViewLayout = setCollectionViewLayout(count)
+            
+            photoCollectionView.reloadData()
+        }
         
         setNeedsLayout()
         layoutIfNeeded()
@@ -78,14 +99,15 @@ final class ChattingMessageContentView: BaseView {
 extension ChattingMessageContentView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         return imageFiles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentImageCollectionViewCell.description(), for: indexPath) as? ContentImageCollectionViewCell else { return UICollectionViewCell() }
         
-        let data = imageFiles[indexPath.item]
-        cell.configureCell(imageUrl: data)
+//        let data = imageFiles[indexPath.item]
+//        cell.configureCell(imageUrl: data)
         
         return cell
     }
@@ -201,10 +223,11 @@ extension ChattingMessageContentView {
         let leadingItem1 = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(0.5)))
-        leadingItem1.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 2)
+        leadingItem1.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 1)
         let leadingItem2 = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(0.5)))
+        leadingItem2.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 0, bottom: 0, trailing: 1)
         
         let leadingGroup = NSCollectionLayoutGroup.vertical(
             layoutSize:  NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
@@ -214,11 +237,12 @@ extension ChattingMessageContentView {
         let trailingItem1 = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(0.5)))
+        trailingItem1.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 1, bottom: 1, trailing: 0)
         
         let trailingItem2 = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(0.5)))
-        trailingItem2.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 0, trailing: 0)
+        trailingItem2.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 0, trailing: 0)
         
         let trailingGroup = NSCollectionLayoutGroup.vertical(
             layoutSize:  NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
@@ -258,18 +282,19 @@ extension ChattingMessageContentView {
         let leadingItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                                heightDimension: .fractionalHeight(1.0)))
-        leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 2)
+        leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 1)
         
         let trailingItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                                heightDimension: .fractionalHeight(1.0)))
+        trailingItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 1, bottom: 0, trailing: 0)
         
         let downGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(0.5)),
             subitems: [leadingItem, trailingItem])
         
-        let nestedGroup = NSCollectionLayoutGroup.horizontal(
+        let nestedGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(1.0)),
             subitems: [topGroup, downGroup])

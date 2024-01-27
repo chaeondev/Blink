@@ -22,16 +22,23 @@ final class ChattingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .blue
-        
+    
         setNavigationBar()
+        setTableView()
+        
+        view.backgroundColor = .backgroundSecondary
         
         bind()
         
         viewModel.loadData {
             // MARK: 나중에 테이블 리로드 하기
+            self.mainView.messageTableView.reloadData()
         }
+    }
+    
+    private func setTableView() {
+        mainView.messageTableView.delegate = self
+        mainView.messageTableView.dataSource = self
     }
     
     private func bind() {
@@ -46,6 +53,25 @@ final class ChattingViewController: BaseViewController {
     }
     
 
+}
+
+extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingTableViewCell.description(), for: indexPath) as? ChattingTableViewCell else { return UITableViewCell() }
+        
+        cell.messageContentView.updateView(
+            user: "옹골찬 고래밥",
+            message: "",
+            images: ["","","",""]
+        )
+        
+        return cell
+    }
 }
 
 extension ChattingViewController {
