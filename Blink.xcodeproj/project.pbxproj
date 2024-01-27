@@ -89,6 +89,8 @@
 		DE5464722B64CCA900A29B79 /* SenderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464712B64CCA900A29B79 /* SenderTextView.swift */; };
 		DE5464742B64D19400A29B79 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464732B64D19400A29B79 /* SendButton.swift */; };
 		DE5464762B64D29200A29B79 /* SendPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464752B64D29200A29B79 /* SendPhotoCollectionViewCell.swift */; };
+		DE5464792B65124B00A29B79 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DE5464782B65124B00A29B79 /* Realm */; };
+		DE54647B2B65124B00A29B79 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE54647A2B65124B00A29B79 /* RealmSwift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -310,7 +312,9 @@
 				DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */,
 				DE247D8F2B594395007DE6E2 /* Kingfisher in Frameworks */,
 				DE1315A42B5401D40023D73D /* SideMenu in Frameworks */,
+				DE5464792B65124B00A29B79 /* Realm in Frameworks */,
 				DE2A19492B44237A00194ADA /* SnapKit in Frameworks */,
+				DE54647B2B65124B00A29B79 /* RealmSwift in Frameworks */,
 				DE1315772B5336040023D73D /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,6 +924,8 @@
 				DE1315762B5336040023D73D /* IQKeyboardManagerSwift */,
 				DE1315A32B5401D40023D73D /* SideMenu */,
 				DE247D8E2B594395007DE6E2 /* Kingfisher */,
+				DE5464782B65124B00A29B79 /* Realm */,
+				DE54647A2B65124B00A29B79 /* RealmSwift */,
 			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
@@ -1001,6 +1007,7 @@
 				DE1315752B5336040023D73D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DE1315A22B5401D40023D73D /* XCRemoteSwiftPackageReference "SideMenu" */,
 				DE247D8D2B594395007DE6E2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				DE5464772B65124B00A29B79 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
@@ -1544,6 +1551,14 @@
 				minimumVersion = 5.7.0;
 			};
 		};
+		DE5464772B65124B00A29B79 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		DE8C274A2B454E4F00141F5F /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -1590,6 +1605,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		DE5464782B65124B00A29B79 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE5464772B65124B00A29B79 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		DE54647A2B65124B00A29B79 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE5464772B65124B00A29B79 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		DE8C274B2B454E4F00141F5F /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
