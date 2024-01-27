@@ -85,6 +85,10 @@
 		DE5464662B63A8DF00A29B79 /* ChattingMessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464652B63A8DF00A29B79 /* ChattingMessageContentView.swift */; };
 		DE54646A2B63AA2800A29B79 /* ContentImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464692B63AA2800A29B79 /* ContentImageCollectionViewCell.swift */; };
 		DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54646B2B63AE6800A29B79 /* MessageBoxTextView.swift */; };
+		DE5464702B64CC0400A29B79 /* SenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54646F2B64CC0400A29B79 /* SenderView.swift */; };
+		DE5464722B64CCA900A29B79 /* SenderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464712B64CCA900A29B79 /* SenderTextView.swift */; };
+		DE5464742B64D19400A29B79 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464732B64D19400A29B79 /* SendButton.swift */; };
+		DE5464762B64D29200A29B79 /* SendPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464752B64D29200A29B79 /* SendPhotoCollectionViewCell.swift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -238,6 +242,10 @@
 		DE5464652B63A8DF00A29B79 /* ChattingMessageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingMessageContentView.swift; sourceTree = "<group>"; };
 		DE5464692B63AA2800A29B79 /* ContentImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE54646B2B63AE6800A29B79 /* MessageBoxTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoxTextView.swift; sourceTree = "<group>"; };
+		DE54646F2B64CC0400A29B79 /* SenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderView.swift; sourceTree = "<group>"; };
+		DE5464712B64CCA900A29B79 /* SenderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderTextView.swift; sourceTree = "<group>"; };
+		DE5464732B64D19400A29B79 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		DE5464752B64D29200A29B79 /* SendPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -601,6 +609,7 @@
 			children = (
 				DE5464632B63A81F00A29B79 /* ChattingTableViewCell.swift */,
 				DE5464692B63AA2800A29B79 /* ContentImageCollectionViewCell.swift */,
+				DE5464752B64D29200A29B79 /* SendPhotoCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -610,6 +619,9 @@
 			children = (
 				DE5464652B63A8DF00A29B79 /* ChattingMessageContentView.swift */,
 				DE54646B2B63AE6800A29B79 /* MessageBoxTextView.swift */,
+				DE54646F2B64CC0400A29B79 /* SenderView.swift */,
+				DE5464712B64CCA900A29B79 /* SenderTextView.swift */,
+				DE5464732B64D19400A29B79 /* SendButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1101,6 +1113,7 @@
 				DE54646A2B63AA2800A29B79 /* ContentImageCollectionViewCell.swift in Sources */,
 				DE5AEEE42B4FD90D00743DA5 /* WSAddView.swift in Sources */,
 				DE1315862B53A5B40023D73D /* HashtagImageView.swift in Sources */,
+				DE5464722B64CCA900A29B79 /* SenderTextView.swift in Sources */,
 				DE1315962B53B5620023D73D /* HomeDefaultView.swift in Sources */,
 				DE1315922B53AF680023D73D /* HomeDMTableViewCell.swift in Sources */,
 				DE5464272B60CDBE00A29B79 /* ChannelAddView.swift in Sources */,
@@ -1112,12 +1125,14 @@
 				DE54645E2B62604C00A29B79 /* RoundedBorderButton.swift in Sources */,
 				DE2A19442B44125500194ADA /* OnboardingViewController.swift in Sources */,
 				DE5AEEE82B4FDA4000743DA5 /* WSAddViewModel.swift in Sources */,
+				DE5464702B64CC0400A29B79 /* SenderView.swift in Sources */,
 				DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */,
 				DE1315702B52E7190023D73D /* WorkspaceRouter.swift in Sources */,
 				DE1CD2402B497EBA0083DD09 /* BaseView.swift in Sources */,
 				DE5464402B612ACA00A29B79 /* Chatting.swift in Sources */,
 				DE9D8C7F2B56649000FBABC3 /* DMViewController.swift in Sources */,
 				DE8C27582B45670C00141F5F /* BTextField.swift in Sources */,
+				DE5464762B64D29200A29B79 /* SendPhotoCollectionViewCell.swift in Sources */,
 				DE9971CB2B4AC839008D92B1 /* KeyChainManager.swift in Sources */,
 				DEF48A282B5F4A2100FDC7CC /* DMSRouter.swift in Sources */,
 				DE2A19462B44229B00194ADA /* BaseViewController.swift in Sources */,
@@ -1136,6 +1151,7 @@
 				DE1315902B53AAF50023D73D /* HomeChannelTableViewCell.swift in Sources */,
 				DE5464572B613ED600A29B79 /* MemberListTableViewCell.swift in Sources */,
 				DEF48A372B5F9A5200FDC7CC /* InviteWorkspace.swift in Sources */,
+				DE5464742B64D19400A29B79 /* SendButton.swift in Sources */,
 				DE8C276D2B46C87500141F5F /* ErrorResponse.swift in Sources */,
 				DE51E1B02B5A82DF0038024C /* OneAlertViewController.swift in Sources */,
 				DE9D8C812B5664BB00FBABC3 /* SearchViewController.swift in Sources */,
