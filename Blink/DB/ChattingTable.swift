@@ -11,12 +11,12 @@ import RealmSwift
 class ChattingTable: Object {
     
     @Persisted(primaryKey: true) var chat_id: Int
-    @Persisted var content: String
+    @Persisted var content: String?
     @Persisted var createdAt: Date
     @Persisted var files: List<String>
-    @Persisted var sender: UserTable
+    @Persisted var sender: UserTable?
     
-    convenience init(chat_id: Int, content: String, createdAt: Date, files: [String], sender: UserTable) {
+    convenience init(chat_id: Int, content: String?, createdAt: Date, files: [String]) {
         self.init()
         
         self.chat_id = chat_id
@@ -24,7 +24,6 @@ class ChattingTable: Object {
         self.createdAt = createdAt
         self.files = List<String>()
         self.files.append(objectsIn: files)
-        self.sender = sender
     }
     
 }
