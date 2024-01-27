@@ -81,6 +81,10 @@
 		DE5464592B625BB900A29B79 /* SpecificChannelRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464582B625BB900A29B79 /* SpecificChannelRes.swift */; };
 		DE54645B2B625FD000A29B79 /* ButtonFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54645A2B625FD000A29B79 /* ButtonFooterView.swift */; };
 		DE54645E2B62604C00A29B79 /* RoundedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54645D2B62604C00A29B79 /* RoundedBorderButton.swift */; };
+		DE5464642B63A81F00A29B79 /* ChattingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464632B63A81F00A29B79 /* ChattingTableViewCell.swift */; };
+		DE5464662B63A8DF00A29B79 /* ChattingMessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464652B63A8DF00A29B79 /* ChattingMessageContentView.swift */; };
+		DE54646A2B63AA2800A29B79 /* ContentImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464692B63AA2800A29B79 /* ContentImageCollectionViewCell.swift */; };
+		DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54646B2B63AE6800A29B79 /* MessageBoxTextView.swift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -230,6 +234,10 @@
 		DE5464582B625BB900A29B79 /* SpecificChannelRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificChannelRes.swift; sourceTree = "<group>"; };
 		DE54645A2B625FD000A29B79 /* ButtonFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFooterView.swift; sourceTree = "<group>"; };
 		DE54645D2B62604C00A29B79 /* RoundedBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderButton.swift; sourceTree = "<group>"; };
+		DE5464632B63A81F00A29B79 /* ChattingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewCell.swift; sourceTree = "<group>"; };
+		DE5464652B63A8DF00A29B79 /* ChattingMessageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingMessageContentView.swift; sourceTree = "<group>"; };
+		DE5464692B63AA2800A29B79 /* ContentImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE54646B2B63AE6800A29B79 /* MessageBoxTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoxTextView.swift; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -548,6 +556,8 @@
 		DE5464382B60FF7000A29B79 /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
+				DE5464602B637DBE00A29B79 /* Component */,
+				DE54645F2B637DAF00A29B79 /* Cell */,
 				DE5464392B60FF7A00A29B79 /* ChattingView.swift */,
 				DE54643B2B60FF8400A29B79 /* ChattingViewController.swift */,
 				DE54643D2B60FF8D00A29B79 /* ChattingViewModel.swift */,
@@ -584,6 +594,24 @@
 				DE54645A2B625FD000A29B79 /* ButtonFooterView.swift */,
 			);
 			path = ReusableView;
+			sourceTree = "<group>";
+		};
+		DE54645F2B637DAF00A29B79 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE5464632B63A81F00A29B79 /* ChattingTableViewCell.swift */,
+				DE5464692B63AA2800A29B79 /* ContentImageCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DE5464602B637DBE00A29B79 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				DE5464652B63A8DF00A29B79 /* ChattingMessageContentView.swift */,
+				DE54646B2B63AE6800A29B79 /* MessageBoxTextView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		DE5AEED02B4FAB7C00743DA5 /* Login */ = {
@@ -1030,6 +1058,7 @@
 				DE13156E2B52DB760023D73D /* Refresh.swift in Sources */,
 				DEF48A172B5F0FDF00FDC7CC /* UIButton+Extension.swift in Sources */,
 				DEF48A262B5F30CE00FDC7CC /* ChannelUnreadCount.swift in Sources */,
+				DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
 				DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */,
 				DE5AEEDF2B4FCA5800743DA5 /* InitialViewController.swift in Sources */,
@@ -1063,11 +1092,13 @@
 				DE8C27522B45626800141F5F /* SignUpViewController.swift in Sources */,
 				DE247D8C2B592AB1007DE6E2 /* WorkspaceListViewModel.swift in Sources */,
 				DE5AEEE62B4FD94700743DA5 /* WSAddViewController.swift in Sources */,
+				DE5464662B63A8DF00A29B79 /* ChattingMessageContentView.swift in Sources */,
 				DEF48A0A2B5EF87300FDC7CC /* ChangeAdminViewController.swift in Sources */,
 				DE5464372B60E01F00A29B79 /* ChannelSearchViewModel.swift in Sources */,
 				DE8C275A2B4670E300141F5F /* ViewModelType.swift in Sources */,
 				DE13156C2B52CE730023D73D /* AuthInterceptor.swift in Sources */,
 				DE1315792B533CC50023D73D /* HomeEmptyView.swift in Sources */,
+				DE54646A2B63AA2800A29B79 /* ContentImageCollectionViewCell.swift in Sources */,
 				DE5AEEE42B4FD90D00743DA5 /* WSAddView.swift in Sources */,
 				DE1315862B53A5B40023D73D /* HashtagImageView.swift in Sources */,
 				DE1315962B53B5620023D73D /* HomeDefaultView.swift in Sources */,
@@ -1114,6 +1145,7 @@
 				DE8C27692B46C62600141F5F /* HTTPError.swift in Sources */,
 				DE1315842B53A4520023D73D /* HomeCellTitleLabel.swift in Sources */,
 				DE247D912B59446E007DE6E2 /* UIImageView+Extension.swift in Sources */,
+				DE5464642B63A81F00A29B79 /* ChattingTableViewCell.swift in Sources */,
 				DE5464422B612BE500A29B79 /* ChannelChatRes.swift in Sources */,
 				DEF48A2E2B5F87F500FDC7CC /* CircleButton.swift in Sources */,
 				DEF48A242B5F289400FDC7CC /* ChannelRouter.swift in Sources */,

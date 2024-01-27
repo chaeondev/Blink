@@ -13,6 +13,7 @@ enum FontScale {
     case bodyBold
     case body
     case caption
+    case caption2
     
     var fontSize: CGFloat {
         switch self {
@@ -26,6 +27,8 @@ enum FontScale {
             return 13
         case .caption:
             return 12
+        case .caption2:
+            return 11
         }
     }
     
@@ -41,6 +44,8 @@ enum FontScale {
             return 18
         case .caption:
             return 18
+        case .caption2:
+            return 18
         }
     }
     
@@ -55,6 +60,8 @@ enum FontScale {
         case .body:
             return .regular
         case .caption:
+            return .regular
+        case .caption2:
             return .regular
         }
     }
