@@ -24,8 +24,8 @@ final class MessageBoxTextView: UITextView {
         isScrollEnabled = false
         isEditable = false
         backgroundColor = .backgroundSecondary
-        textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        layer.cornerRadius = 8
+        textContainerInset = UIEdgeInsets(top: 8, left: 6, bottom: 8, right: 6)
+        layer.cornerRadius = 12
         layer.borderWidth = 1
         layer.borderColor = UIColor.brandInactive.cgColor
         font = .customFont(.body)

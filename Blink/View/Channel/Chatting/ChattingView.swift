@@ -19,15 +19,24 @@ final class ChattingView: BaseView {
         return view
     }()
     
+    let senderView = SenderView()
+    
     override func setHierarchy() {
         self.addSubview(messageTableView)
+        self.addSubview(senderView)
     }
     
     override func setConstraints() {
+        
+        senderView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
+        }
+        
         messageTableView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
-            make.bottom.equalTo(self.keyboardLayoutGuide.snp.top) // MARK: 이부분 sendView 만들면 바꾸기
+            make.bottom.equalTo(senderView.snp.top) // MARK: 이부분 sendView 만들면 바꾸기
         }
     }
     

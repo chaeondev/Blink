@@ -34,6 +34,8 @@ final class ChattingViewController: BaseViewController {
             // MARK: 나중에 테이블 리로드 하기
             self.mainView.messageTableView.reloadData()
         }
+        
+        mainView.senderView.updateView(images: [""])
     }
     
     private func setTableView() {
@@ -66,7 +68,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.messageContentView.updateView(
             user: "옹골찬 고래밥",
-            message: "",
+            message: "아니 그런데 이건 좀\n이렇게 저렇게? \nㅋㅋ",
             images: ["","","",""]
         )
         
