@@ -91,6 +91,12 @@
 		DE5464762B64D29200A29B79 /* SendPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464752B64D29200A29B79 /* SendPhotoCollectionViewCell.swift */; };
 		DE5464792B65124B00A29B79 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DE5464782B65124B00A29B79 /* Realm */; };
 		DE54647B2B65124B00A29B79 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE54647A2B65124B00A29B79 /* RealmSwift */; };
+		DE54647E2B65147A00A29B79 /* ChannelTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54647D2B65147A00A29B79 /* ChannelTable.swift */; };
+		DE5464802B65161800A29B79 /* ChattingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54647F2B65161800A29B79 /* ChattingTable.swift */; };
+		DE5464822B65188200A29B79 /* UserTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464812B65188200A29B79 /* UserTable.swift */; };
+		DE5464842B65198000A29B79 /* RepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464832B65198000A29B79 /* RepositoryType.swift */; };
+		DE54648A2B652B3700A29B79 /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5464892B652B3700A29B79 /* ChannelRepository.swift */; };
+		DE54648C2B652B4B00A29B79 /* ChattingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE54648B2B652B4B00A29B79 /* ChattingRepository.swift */; };
 		DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A67822B4A6841004FE7AC /* String+Extension.swift */; };
 		DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */; };
 		DE5AEED42B4FAB9400743DA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */; };
@@ -248,6 +254,12 @@
 		DE5464712B64CCA900A29B79 /* SenderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderTextView.swift; sourceTree = "<group>"; };
 		DE5464732B64D19400A29B79 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
 		DE5464752B64D29200A29B79 /* SendPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE54647D2B65147A00A29B79 /* ChannelTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTable.swift; sourceTree = "<group>"; };
+		DE54647F2B65161800A29B79 /* ChattingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTable.swift; sourceTree = "<group>"; };
+		DE5464812B65188200A29B79 /* UserTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTable.swift; sourceTree = "<group>"; };
+		DE5464832B65198000A29B79 /* RepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryType.swift; sourceTree = "<group>"; };
+		DE5464892B652B3700A29B79 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
+		DE54648B2B652B4B00A29B79 /* ChattingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingRepository.swift; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +433,7 @@
 				DE2A19362B43E20000194ADA /* Utility */,
 				DE2A19352B43E1EF00194ADA /* Extension */,
 				DE2A19342B43E1E700194ADA /* Model */,
+				DE54647C2B65145100A29B79 /* DB */,
 				DE9971C92B4AC820008D92B1 /* Data */,
 				DE2A19332B43E1AE00194ADA /* Network */,
 				DE2A193D2B43F62700194ADA /* Builder */,
@@ -628,6 +641,19 @@
 				DE5464732B64D19400A29B79 /* SendButton.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		DE54647C2B65145100A29B79 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				DE54647D2B65147A00A29B79 /* ChannelTable.swift */,
+				DE54647F2B65161800A29B79 /* ChattingTable.swift */,
+				DE5464812B65188200A29B79 /* UserTable.swift */,
+				DE5464832B65198000A29B79 /* RepositoryType.swift */,
+				DE5464892B652B3700A29B79 /* ChannelRepository.swift */,
+				DE54648B2B652B4B00A29B79 /* ChattingRepository.swift */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		DE5AEED02B4FAB7C00743DA5 /* Login */ = {
@@ -1052,6 +1078,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE54648C2B652B4B00A29B79 /* ChattingRepository.swift in Sources */,
 				DEF48A2A2B5F4C0200FDC7CC /* DMsUnreadCount.swift in Sources */,
 				DE5AEEDD2B4FCA4D00743DA5 /* InitialView.swift in Sources */,
 				DE5AEEE12B4FCA5F00743DA5 /* InitialViewModel.swift in Sources */,
@@ -1059,6 +1086,7 @@
 				DE54644F2B6139EF00A29B79 /* SectionTableViewCell.swift in Sources */,
 				DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */,
 				DE5464452B61324800A29B79 /* ChannelSettingView.swift in Sources */,
+				DE5464822B65188200A29B79 /* UserTable.swift in Sources */,
 				DE54645B2B625FD000A29B79 /* ButtonFooterView.swift in Sources */,
 				DE54642F2B60D02700A29B79 /* ChannelAddViewModel.swift in Sources */,
 				DE54643A2B60FF7A00A29B79 /* ChattingView.swift in Sources */,
@@ -1102,6 +1130,7 @@
 				DE5464352B60E01700A29B79 /* ChannelSearchViewController.swift in Sources */,
 				DE5464532B613C6C00A29B79 /* MemberCollectionViewCell.swift in Sources */,
 				DE1CD2422B49ACC30083DD09 /* EmailValidation.swift in Sources */,
+				DE54647E2B65147A00A29B79 /* ChannelTable.swift in Sources */,
 				DE5464472B61325200A29B79 /* ChannelSettingViewController.swift in Sources */,
 				DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */,
 				DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */,
@@ -1110,6 +1139,7 @@
 				DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */,
 				DE8C27522B45626800141F5F /* SignUpViewController.swift in Sources */,
 				DE247D8C2B592AB1007DE6E2 /* WorkspaceListViewModel.swift in Sources */,
+				DE5464842B65198000A29B79 /* RepositoryType.swift in Sources */,
 				DE5AEEE62B4FD94700743DA5 /* WSAddViewController.swift in Sources */,
 				DE5464662B63A8DF00A29B79 /* ChattingMessageContentView.swift in Sources */,
 				DEF48A0A2B5EF87300FDC7CC /* ChangeAdminViewController.swift in Sources */,
@@ -1155,6 +1185,8 @@
 				DE1315942B53B1B60023D73D /* HomePlusTableViewCell.swift in Sources */,
 				DEF48A352B5F919800FDC7CC /* InviteMemberViewModel.swift in Sources */,
 				DE2A19382B43E8C500194ADA /* FontScale.swift in Sources */,
+				DE5464802B65161800A29B79 /* ChattingTable.swift in Sources */,
+				DE54648A2B652B3700A29B79 /* ChannelRepository.swift in Sources */,
 				DE1315902B53AAF50023D73D /* HomeChannelTableViewCell.swift in Sources */,
 				DE5464572B613ED600A29B79 /* MemberListTableViewCell.swift in Sources */,
 				DEF48A372B5F9A5200FDC7CC /* InviteWorkspace.swift in Sources */,
