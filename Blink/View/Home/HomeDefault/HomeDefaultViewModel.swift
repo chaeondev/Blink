@@ -227,35 +227,35 @@ extension HomeDefaultViewModel {
         }
     }
     
-    func chevronData(indexPath: IndexPath) -> ChevronData {
-        guard let channelData, let dmData else { return ChevronData(title: "", opened: false) }
+    func chevronData(indexPath: IndexPath) -> ChevronCellData {
+        guard let channelData, let dmData else { return ChevronCellData(title: "", opened: false) }
         if indexPath.section == 0 {
             
-            let data = ChevronData(title: channelData.title, opened: channelData.opened)
+            let data = ChevronCellData(title: channelData.title, opened: channelData.opened)
             
             return data
         } else {
             
-            let data = ChevronData(title: dmData.title, opened: dmData.opened)
+            let data = ChevronCellData(title: dmData.title, opened: dmData.opened)
             
             return data
         }
     }
     
-    func channelData(indexPath: IndexPath) -> ChannelData {
-        guard let channelData else { return ChannelData(title: "", count: 0) }
+    func channelData(indexPath: IndexPath) -> ChannelCellData {
+        guard let channelData else { return ChannelCellData(title: "", count: 0, channelInfo: nil) }
         
         let data = channelData.sectionData[indexPath.row - 1]
         
-        return ChannelData(title: data.channelInfo.name, count: data.unreadChatCnt)
+        return ChannelCellData(title: data.channelInfo.name, count: data.unreadChatCnt, channelInfo: data.channelInfo)
     }
     
-    func dmData(indexPath: IndexPath) -> DMdata {
-        guard let dmData else { return DMdata(image: nil, title: "", count: 0) }
+    func dmData(indexPath: IndexPath) -> DMCelldata {
+        guard let dmData else { return DMCelldata(image: nil, title: "", count: 0) }
         
         let data = dmData.sectionData[indexPath.row - 1]
         
-        return DMdata(image: data.dmInfo.user.profileImage, title: data.dmInfo.user.nickname, count: data.unreadDMCnt)
+        return DMCelldata(image: data.dmInfo.user.profileImage, title: data.dmInfo.user.nickname, count: data.unreadDMCnt)
     }
     
     func toggleSection(indexPath: IndexPath, completion: @escaping () -> Void) {
@@ -271,17 +271,18 @@ extension HomeDefaultViewModel {
     }
 }
 
-struct ChevronData {
+struct ChevronCellData {
     let title: String
     let opened: Bool
 }
 
-struct ChannelData {
+struct ChannelCellData {
     let title: String
     let count: Int
+    let channelInfo: ChannelRes?
 }
     
-struct DMdata {
+struct DMCelldata {
     let image: String?
     let title: String
     let count: Int

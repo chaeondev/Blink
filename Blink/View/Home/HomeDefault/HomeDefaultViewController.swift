@@ -83,6 +83,7 @@ final class HomeDefaultViewController: BaseViewController {
         bind()
 
         setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton, blurView: navigationBlurView)
+        navigationItem.backButtonDisplayMode = .minimal
         
         setTableView()
         
@@ -294,8 +295,17 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
                     self.present(nav, animated: true)
                 }
         case (0, _): //채널명
-            print("채널명")
-            // MARK: 채널 채팅 화면으로 전환
+            // 채널 채팅 화면으로 전환
+            guard let data = viewModel.channelData(indexPath: indexPath).channelInfo else { return }
+            print("===채팅 전환 전 정보 확인===")
+            print("===워크스페이스 ID: \(data.workspace_id)===")
+            print("===채팅방 이름 & 아이디; \(data.name) & \(data.channel_id)===")
+            
+            let chatVC = ChattingViewController()
+            chatVC.viewModel.channelInfo = data
+            chatVC.viewModel.workspaceID = data.workspace_id
+            
+            self.navigationController?.pushViewController(chatVC, animated: true)
         default:
             return
         }
