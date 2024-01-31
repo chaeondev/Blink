@@ -35,7 +35,8 @@ final class ChattingView: BaseView {
         
         messageTableView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview()
             make.bottom.equalTo(senderView.snp.top) // MARK: 이부분 sendView 만들면 바꾸기
         }
     }
