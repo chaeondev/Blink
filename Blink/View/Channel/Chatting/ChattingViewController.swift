@@ -35,7 +35,7 @@ final class ChattingViewController: BaseViewController {
             self.mainView.messageTableView.reloadData()
         }
         
-        mainView.senderView.updateView(images: [""])
+        mainView.senderView.updateView(images: [])
     }
     
     private func setTableView() {
@@ -69,7 +69,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.messageContentView.updateView(
             user: "옹골찬 고래밥",
             message: "아니 그런데 이건 좀\n이렇게 저렇게? \nㅋㅋ",
-            images: ["","","",""]
+            images: ["","",""]
         )
         
         return cell
