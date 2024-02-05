@@ -56,8 +56,36 @@ final class ChattingTableViewCell: BaseTableViewCell {
         contentView.backgroundColor = .backgroundSecondary
     }
     
-    func configureCell() {
+    func configureCell(_ chatInfo: ChattingInfoModel) {
         
+        //1. profileImage update
+        profileImageView.setKFImage(imageUrl: chatInfo.profileImage ?? "")
+        
+        //2. messageContentView update
+        messageContentView.updateView(
+            user: chatInfo.nickname,
+            message: chatInfo.content ?? "",
+            images: chatInfo.files
+        )
+        
+        //3. dateLabel update
+         // date 오늘인지 확인
+         // 오늘이면 형식: 08:13 오전
+         // 오늘 아니면 형식: 1/13\n08:16 오후
+        let chatDate = chatInfo.createdAt
+        
+        if isTodayOrNot(chatDate) {
+            self.dateLabel.text = chatDate.toString(dateType: .timeWithAMPM)
+        } else {
+            self.dateLabel.text = "\(chatDate.toString(dateType: .monthDay))\n\(chatDate.toString(dateType: .timeWithAMPM))"
+        }
+        
+        
+    }
+    
+    private func isTodayOrNot(_ date: Date) -> Bool {
+        let current = Calendar.current
+        return current.isDateInToday(date)
     }
     
 }

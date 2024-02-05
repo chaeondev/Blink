@@ -35,7 +35,7 @@ final class ChattingViewController: BaseViewController {
             self.mainView.messageTableView.reloadData()
         }
         
-        mainView.senderView.updateView(images: [])
+        mainView.senderView.updateView(images: ["",""])
     }
     
     private func setTableView() {
@@ -60,17 +60,15 @@ final class ChattingViewController: BaseViewController {
 extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingTableViewCell.description(), for: indexPath) as? ChattingTableViewCell else { return UITableViewCell() }
         
-        cell.messageContentView.updateView(
-            user: "옹골찬 고래밥",
-            message: "아니 그런데 이건 좀\n이렇게 저렇게? \nㅋㅋ",
-            images: ["","",""]
-        )
+        let data = viewModel.dataForRowAt(indexPath)
+        
+        cell.configureCell(data)
         
         return cell
     }

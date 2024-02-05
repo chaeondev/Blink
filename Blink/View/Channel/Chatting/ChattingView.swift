@@ -37,7 +37,7 @@ final class ChattingView: BaseView {
             make.top.equalToSuperview()
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(senderView.snp.top) // MARK: 이부분 sendView 만들면 바꾸기
+            make.bottom.equalTo(senderView.snp.top)
         }
     }
     

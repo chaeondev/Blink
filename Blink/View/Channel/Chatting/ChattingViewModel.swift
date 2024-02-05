@@ -14,6 +14,9 @@ final class ChattingViewModel: ViewModelType {
     var workspaceID: Int = 0
     var channelInfo: ChannelRes!
     
+    var lastDate: Date? // cursor_date의 기준이 되는 날짜-> Realm의 마지막 날짜 (안읽은 채팅 기준 날짜)
+    var chatInfoList: [ChattingInfoModel] = [] //TableView에 사용될 채팅 인포 리스트
+    
     struct Input {
         
     }
@@ -52,5 +55,17 @@ extension ChattingViewModel {
                 print("===채팅 내역 못불러옴ㅜㅜ===")
             }
         }
+    }
+}
+
+//TableView 관련 메서드
+extension ChattingViewModel {
+    
+    func numberOfRowsInSection() -> Int {
+        return chatInfoList.count
+    }
+    
+    func dataForRowAt(_ indexPath: IndexPath) -> ChattingInfoModel {
+        return chatInfoList[indexPath.row]
     }
 }
