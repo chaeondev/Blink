@@ -14,7 +14,7 @@ class ChannelTable: Object {
     @Persisted var workspace_id: Int
     @Persisted var channel_name: String
     
-    @Persisted var Chattings: List<ChattingTable>
+    @Persisted var chattings: List<ChattingTable>
     
     convenience init(channel_id: Int, workspace_id: Int, channel_name: String) {
         self.init()
