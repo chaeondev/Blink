@@ -11,8 +11,12 @@ import RxCocoa
 
 final class ChattingViewModel: ViewModelType {
     
+    //전달값
     var workspaceID: Int = 0
     var channelInfo: ChannelRes!
+    
+    //Realm Repository
+    private let chatRepository = RealmRepository()
     
     var lastDate: Date? // cursor_date의 기준이 되는 날짜-> Realm의 마지막 날짜 (안읽은 채팅 기준 날짜)
     var chatInfoList: [ChattingInfoModel] = [] //TableView에 사용될 채팅 인포 리스트
@@ -36,6 +40,15 @@ extension ChattingViewModel {
         fetchAllChatting {
             completion()
         }
+    }
+    
+    func fetchDBChats(completion: @escaping() -> Void) {
+        let channelData = ChannelInfoModel(
+            workspaceID: channelInfo.workspace_id,
+            channel_id: channelInfo.channel_id,
+            channel_name: channelInfo.name
+        )
+        chatRepository.fetchAllDBChatting(channelInfo: channelData)
     }
     
     func fetchAllChatting(completion: @escaping () -> Void) {
