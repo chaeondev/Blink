@@ -133,6 +133,7 @@
 		DE9D8C832B5664D200FBABC3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */; };
 		DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */; };
 		DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */; };
+		DEF0048A2B72714900375EF8 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF004892B72714900375EF8 /* RealmRepository.swift */; };
 		DEF48A082B5EF86900FDC7CC /* ChangeAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */; };
 		DEF48A0A2B5EF87300FDC7CC /* ChangeAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A092B5EF87300FDC7CC /* ChangeAdminViewController.swift */; };
 		DEF48A0C2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A0B2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift */; };
@@ -292,6 +293,7 @@
 		DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListTableViewCell.swift; sourceTree = "<group>"; };
 		DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
+		DEF004892B72714900375EF8 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminView.swift; sourceTree = "<group>"; };
 		DEF48A092B5EF87300FDC7CC /* ChangeAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewController.swift; sourceTree = "<group>"; };
 		DEF48A0B2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewModel.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 				DE5464832B65198000A29B79 /* RepositoryType.swift */,
 				DE5464892B652B3700A29B79 /* ChannelRepository.swift */,
 				DE54648B2B652B4B00A29B79 /* ChattingRepository.swift */,
+				DEF004892B72714900375EF8 /* RealmRepository.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -1203,6 +1206,7 @@
 				DE5464642B63A81F00A29B79 /* ChattingTableViewCell.swift in Sources */,
 				DE5464422B612BE500A29B79 /* ChannelChatRes.swift in Sources */,
 				DEF48A2E2B5F87F500FDC7CC /* CircleButton.swift in Sources */,
+				DEF0048A2B72714900375EF8 /* RealmRepository.swift in Sources */,
 				DEF48A242B5F289400FDC7CC /* ChannelRouter.swift in Sources */,
 				DEF48A152B5F0BFC00FDC7CC /* ChannelRes.swift in Sources */,
 				DEF48A192B5F146200FDC7CC /* ProfileRes.swift in Sources */,
