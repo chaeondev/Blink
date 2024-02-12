@@ -20,6 +20,7 @@ final class ChattingViewModel: ViewModelType {
     
     var lastDate: Date? // cursor_date의 기준이 되는 날짜-> Realm의 마지막 날짜 (안읽은 채팅 기준 날짜)
     var chatInfoList: [ChattingInfoModel] = [] //TableView에 사용될 채팅 인포 리스트
+    var scrollIndex: Int = -1 //진입했을때 스크롤 시점 -> 새 메세지가 많을때는 새메세지 최신거말고 오래된거부터 읽을 수 있게
     
     struct Input {
         
@@ -35,11 +36,27 @@ final class ChattingViewModel: ViewModelType {
     
     func loadData(completion: @escaping () -> Void) {
         
-        //1. DB 저장된 채팅 내역 가져오기
-        self.fetchDBChats()
         
-        //2. DB 가장 마지막 날짜 체크
+        //1. DB 가장 마지막 날짜 체크
         self.checkLastChatDate()
+        
+        //2. DB 마지막 채팅 index 확인 -> 스크롤 시점 또는 구분셀 넣을 수 있음
+        // DB저장된 거 없으면 -1
+        self.checkDBChatLastIndex()
+        
+        //3. 네트워크 콜 GET -> DB 저장
+        self.fetchRecentChatting {
+            
+            //4. DB 저장된 채팅 내역 가져오기 -> append아니고 아예 allDB여서 교체함 나중에 수정해야할수도..
+            self.fetchDBChats()
+            
+            //5. 소켓 오픈 해야함~~
+            
+            completion()
+            
+        }
+        
+        
         
     }
 }
@@ -56,7 +73,7 @@ extension ChattingViewModel {
         )
         let tableList = chatRepository.fetchAllDBChatting(channelInfo: channelData)
         let data = self.switchTableToInfo(tableList)
-        chatInfoList.append(contentsOf: data)
+        self.chatInfoList = data
     }
     
     func checkLastChatDate() {
@@ -69,6 +86,25 @@ extension ChattingViewModel {
         self.lastDate = chatRepository.checkChannelChatLastDate(channelInfo: channelData)
         
         print("===채팅 마지막 날짜는 이겁니다 \(self.lastDate)===")
+    }
+    
+    //GET 네트워크 통신 전에 읽은메세지 가장 마지막 채팅 인덱스 확인
+    //아예 DB를 fetch해서 index를 찾자
+    // 그러니까 순서가 바뀜
+    // 1. 마지막 날짜 확인
+    // 2. 네트워크 통신 전 저장된 DB 마지막 채팅 인덱스 확인 (DB내의 인덱스가 되는거임) -> 나중에 수정 필요할수도 -> 페이지네이션 할거면 수정해야함
+    // 3. GET 네트워크 통신
+    // 4. fetch All DB To TableList
+    
+    func checkDBChatLastIndex() {
+        let channelData = ChannelInfoModel(
+            workspaceID: channelInfo.workspace_id,
+            channel_id: channelInfo.channel_id,
+            channel_name: channelInfo.name
+        )
+        let tableList = chatRepository.fetchAllDBChatting(channelInfo: channelData)
+        
+        self.scrollIndex = tableList.count - 1
     }
     
     //DB 마지막 날짜 바탕으로 안읽은 메세지 GET 네트워크 통신
@@ -92,8 +128,13 @@ extension ChattingViewModel {
             switch result {
             case .success(let response):
                 print("DB 마지막 날짜 바탕으로 안읽은 채팅 내역 불러옴~~")
+                print("=====\n\(response)\n=====")
                 //여기서 DB에 저장해야함
-                // TODO: 여기까지 읽었습니다 넣을까? 그러면 스크롤도 맨밑이 아니라 여기서 있어야할텐데..
+                //여기까지 읽었습니다 넣을까? 그러면 스크롤도 맨밑이 아니라 여기서 있어야할텐데.. -> Index 네트워크 콜 이전에 저장
+                
+                self.chatRepository.addChatList(chatInfoList: response, workspaceID: self.workspaceID)
+                completion()
+                
             case .failure(let error):
                 print("===채팅 내역 못불러옴ㅜㅜ===")
             }

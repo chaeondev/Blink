@@ -30,10 +30,7 @@ final class ChattingViewController: BaseViewController {
         
         bind()
         
-        viewModel.loadData {
-            // MARK: 나중에 테이블 리로드 하기
-            self.mainView.messageTableView.reloadData()
-        }
+        loadData()
         
         mainView.senderView.updateView(images: ["",""])
     }
@@ -54,6 +51,13 @@ final class ChattingViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    func loadData() {
+        viewModel.loadData {
+            self.mainView.messageTableView.reloadData()
+            self.scrollToUnreadMessage()
+        }
+    }
+    
 
 }
 
@@ -71,6 +75,18 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(data)
         
         return cell
+    }
+    
+    //loadData completion으로 들어갈것 -> 안읽은 메세지 처음것부터 보여주기
+    func scrollToUnreadMessage() {
+        if viewModel.scrollIndex != -1 {
+            let row = viewModel.scrollIndex
+            
+            let indexPath = IndexPath(row: row, section: 0)
+            
+            self.mainView.messageTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+        }
+        //else 일떼 굳이 지정해야함? 어차피 없는데..
     }
 }
 
