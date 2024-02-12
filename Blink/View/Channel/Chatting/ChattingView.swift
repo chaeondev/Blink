@@ -19,7 +19,7 @@ final class ChattingView: BaseView {
         return view
     }()
     
-    let senderView = SenderView()
+    let senderView = SenderView(frame: .zero)
     
     override func setHierarchy() {
         self.addSubview(messageTableView)

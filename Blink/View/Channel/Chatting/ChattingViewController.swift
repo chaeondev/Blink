@@ -41,12 +41,51 @@ final class ChattingViewController: BaseViewController {
     }
     
     private func bind() {
+        //네비게이션 -> 채널 설정으로 가는 버튼
         navigationItem.rightBarButtonItem!.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = ChannelSettingViewController()
                 vc.viewModel.channelInfo = owner.viewModel.channelInfo
                 
                 owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        //senderView textView 특정 사이즈 이상 스크롤
+        mainView.senderView.textView.rx
+            .didChange
+            .subscribe(with: self) { owner, _ in
+                let size = CGSize(width: owner.mainView.senderView.textView.frame.width, height: .infinity)
+                let estimatedSize = owner.mainView.senderView.textView.sizeThatFits(size)
+                //print("====estimatedSize==== \(estimatedSize.height)")
+                // 3줄이면 47
+                let isMax = estimatedSize.height >= 50
+                owner.mainView.senderView.textView.isScrollEnabled = isMax
+                owner.mainView.senderView.remakeTextViewLayout(isMax: isMax)
+
+            }
+            .disposed(by: disposeBag)
+        
+        //senderView textView placeholder
+        mainView.senderView.textView
+            .rx
+            .didBeginEditing
+            .subscribe(with: self) { owner, _ in
+                if owner.mainView.senderView.textView.text == "메세지를 입력하세요" {
+                    owner.mainView.senderView.textView.text = nil
+                    owner.mainView.senderView.textView.textColor = .textPrimary
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.senderView.textView
+            .rx
+            .didEndEditing
+            .subscribe(with: self) { owner, _ in
+                if owner.mainView.senderView.textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    owner.mainView.senderView.textView.text = "메세지를 입력하세요"
+                    owner.mainView.senderView.textView.textColor = .textSecondary
+                }
             }
             .disposed(by: disposeBag)
     }

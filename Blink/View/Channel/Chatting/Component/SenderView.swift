@@ -93,7 +93,7 @@ final class SenderView: BaseView {
         textView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.lessThanOrEqualTo(52)
+            make.height.lessThanOrEqualTo(54)
             make.bottom.equalTo(photoCollectionView.snp.top).offset(-8)
         }
     }
@@ -110,6 +110,23 @@ final class SenderView: BaseView {
         photoCollectionView.isHidden = (count == 0) ? true : false
         photoCollectionView.reloadData()
     }
+    
+    func remakeTextViewLayout(isMax: Bool) {
+        
+        
+        textView.snp.remakeConstraints { make in
+            make.top.horizontalEdges.equalToSuperview()
+            make.width.equalToSuperview()
+            if isMax {
+                make.height.equalTo(48)
+            } else {
+                make.height.lessThanOrEqualTo(48)
+            }
+            make.bottom.equalTo(photoCollectionView.snp.top).offset(-8)
+        }
+        
+    }
+    
 }
 
 extension SenderView {
