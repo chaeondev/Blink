@@ -32,23 +32,72 @@ final class ChattingViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         return Output()
     }
+    
+    func loadData(completion: @escaping () -> Void) {
+        
+        //1. DB 저장된 채팅 내역 가져오기
+        self.fetchDBChats()
+        
+        //2. DB 가장 마지막 날짜 체크
+        self.checkLastChatDate()
+        
+    }
 }
 
 extension ChattingViewModel {
     
-    func loadData(completion: @escaping () -> Void) {
-        fetchAllChatting {
-            completion()
-        }
-    }
-    
-    func fetchDBChats(completion: @escaping() -> Void) {
+    // 우선 이전 DB데이터 TableList에 추가 -> Pagination 고려안함
+    // 굳이 completion쓸일 있나? 우선 냅두기 -> 우선 삭제~
+    func fetchDBChats() {
         let channelData = ChannelInfoModel(
             workspaceID: channelInfo.workspace_id,
             channel_id: channelInfo.channel_id,
             channel_name: channelInfo.name
         )
-        chatRepository.fetchAllDBChatting(channelInfo: channelData)
+        let tableList = chatRepository.fetchAllDBChatting(channelInfo: channelData)
+        let data = self.switchTableToInfo(tableList)
+        chatInfoList.append(contentsOf: data)
+    }
+    
+    func checkLastChatDate() {
+        let channelData = ChannelInfoModel(
+            workspaceID: channelInfo.workspace_id,
+            channel_id: channelInfo.channel_id,
+            channel_name: channelInfo.name
+        )
+        
+        self.lastDate = chatRepository.checkChannelChatLastDate(channelInfo: channelData)
+        
+        print("===채팅 마지막 날짜는 이겁니다 \(self.lastDate)===")
+    }
+    
+    //DB 마지막 날짜 바탕으로 안읽은 메세지 GET 네트워크 통신
+    func fetchRecentChatting(completion: @escaping () -> Void) {
+        var requestModel: ChattingRequest
+        
+        if let cursorDate = self.lastDate { // LastDate 있음 -> DB에 채팅 저장된 내역 있음
+            requestModel = ChattingRequest(
+                workspaceID: self.workspaceID,
+                channelName: self.channelInfo.name,
+                cursor_date: cursorDate.toString(dateType: .allDate))
+        } else { // LastDate 없음 -> 채팅 저장 내역 없음 -> 첨들어옴 -> 들어온 시점을 cursorDate에 넣어서 들어온 순간부터 채팅 보이게 만들기
+            requestModel = ChattingRequest(
+                workspaceID: self.workspaceID,
+                channelName: self.channelInfo.name,
+                cursor_date: Date().toString(dateType: .allDate)
+            )
+        }
+        
+        APIService.shared.requestCompletion(type: [ChannelChatRes].self, api: ChannelRouter.fetchChatting(requestModel)) { result in
+            switch result {
+            case .success(let response):
+                print("DB 마지막 날짜 바탕으로 안읽은 채팅 내역 불러옴~~")
+                //여기서 DB에 저장해야함
+                // TODO: 여기까지 읽었습니다 넣을까? 그러면 스크롤도 맨밑이 아니라 여기서 있어야할텐데..
+            case .failure(let error):
+                print("===채팅 내역 못불러옴ㅜㅜ===")
+            }
+        }
     }
     
     func fetchAllChatting(completion: @escaping () -> Void) {
@@ -81,4 +130,31 @@ extension ChattingViewModel {
     func dataForRowAt(_ indexPath: IndexPath) -> ChattingInfoModel {
         return chatInfoList[indexPath.row]
     }
+}
+
+//Chatting Model Switching
+extension ChattingViewModel {
+    
+    //DB Table -> ChatInfoModel(TableView재료)
+    func switchTableToInfo(_ data: [ChattingTable]) -> [ChattingInfoModel] {
+        var infoList: [ChattingInfoModel] = []
+        
+        data.forEach {
+            let info = ChattingInfoModel(
+                chat_id: $0.chat_id,
+                content: $0.content,
+                createdAt: $0.createdAt,
+                files: Array($0.files),
+                user_id: $0.sender?.user_id ?? 0,
+                nickname: $0.sender?.nickname ?? "",
+                profileImage: $0.sender?.profileImage
+            )
+            
+            infoList.append(info)
+        }
+        
+        print("===Table 그려질 InfoModel로 변환했음~ \n\(infoList)\n")
+        return infoList
+    }
+    
 }
