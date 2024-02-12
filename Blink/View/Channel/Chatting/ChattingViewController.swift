@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PhotosUI
 
 final class ChattingViewController: BaseViewController {
     
@@ -32,7 +33,7 @@ final class ChattingViewController: BaseViewController {
         
         loadData()
         
-        mainView.senderView.updateView(images: ["",""])
+        //mainView.senderView.updateView(images: ["",""])
     }
     
     private func setTableView() {
@@ -88,6 +89,19 @@ final class ChattingViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        //POST 사진 데이터 collectionView
+        viewModel.photoItems
+            .bind(with: self) { owner, data in
+                owner.mainView.senderView.updateView(images: data)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.senderView.plusButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.showPhotoLibrary()
+            }
+            .disposed(by: disposeBag)
     }
     
     func loadData() {
@@ -100,6 +114,7 @@ final class ChattingViewController: BaseViewController {
 
 }
 
+// MARK: TableView
 extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,6 +141,73 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             self.mainView.messageTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
         }
         //else 일떼 굳이 지정해야함? 어차피 없는데..
+    }
+}
+
+// MARK: PHPicker
+extension ChattingViewController: PHPickerViewControllerDelegate {
+    
+    func showPhotoLibrary() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 5
+        config.selection = .ordered
+        config.filter = .images
+        
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        self.present(picker, animated: true)
+    }
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let selectedItemCnt = viewModel.photoItems.value.count
+        let enableCnt = 5 - selectedItemCnt
+        if results.count > enableCnt {
+            print("===사진은 최대 5개 이하로 선택 가능합니다===")
+//            showOneActionViewController(title: "사진 갯수 제한", message: "사진은 최대 5개 이하로 선택 가능합니다.") {
+//                self.dismiss(animated: true)
+//            }
+            picker.dismiss(animated: true)
+            return
+        }
+        
+        picker.dismiss(animated: true)
+        
+        var group = DispatchGroup()
+        var dataArr = Array(repeating: Data(), count: results.count)
+        
+        if !(results.isEmpty) {
+            
+            for (index, item) in results.enumerated() {
+                
+                group.enter()
+                
+                let itemProvider = item.itemProvider
+                
+                if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    
+                    itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                        
+                        guard let image = image as? UIImage else { return }
+                        
+                        guard let imageData = image.jpegData(compressionQuality: 0.01) else { return }
+                        
+                        dataArr[index] = imageData
+                        
+                        group.leave()
+                    }
+                }
+            }
+        }
+        
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            
+            guard let self else { return }
+            
+            var photoData = self.viewModel.photoItems.value
+            photoData.append(contentsOf: dataArr)
+            
+            self.viewModel.photoItems.accept(photoData)
+        }
     }
 }
 

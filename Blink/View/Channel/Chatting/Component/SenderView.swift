@@ -9,7 +9,7 @@ import UIKit
 
 final class SenderView: BaseView {
     
-    var photoItems: [String] = []
+    var photoItems: [Data] = []
     
     let backView = {
         let view = UIView()
@@ -103,7 +103,7 @@ final class SenderView: BaseView {
         self.backgroundColor = .brandWhite
     }
     
-    func updateView(images: [String]) {
+    func updateView(images: [Data]) {
         self.photoItems = images
         let count = self.photoItems.count
         
@@ -151,6 +151,10 @@ extension SenderView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SendPhotoCollectionViewCell.description(), for: indexPath) as? SendPhotoCollectionViewCell else { return UICollectionViewCell() }
+        
+        let data = photoItems[indexPath.row]
+        
+        cell.configureCell(data)
         
         return cell
     }

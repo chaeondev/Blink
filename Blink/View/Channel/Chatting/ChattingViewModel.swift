@@ -22,6 +22,9 @@ final class ChattingViewModel: ViewModelType {
     var chatInfoList: [ChattingInfoModel] = [] //TableView에 사용될 채팅 인포 리스트
     var scrollIndex: Int = -1 //진입했을때 스크롤 시점 -> 새 메세지가 많을때는 새메세지 최신거말고 오래된거부터 읽을 수 있게
     
+    //senderView POST할 photoItems
+    let photoItems: BehaviorRelay<[Data]> = BehaviorRelay(value: [])
+    
     struct Input {
         
     }

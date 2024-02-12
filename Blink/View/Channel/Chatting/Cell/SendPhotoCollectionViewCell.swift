@@ -44,7 +44,7 @@ final class SendPhotoCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    func configureCell() {
-        
+    func configureCell(_ data: Data) {
+        photoImageView.image = UIImage(data: data)
     }
 }
