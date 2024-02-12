@@ -12,6 +12,7 @@ enum DateFormatType: String {
     case dotDate = "yy. MM. dd"
     case monthDay = "M/d"
     case timeWithAMPM = "hh:mm a"
+    case apiDate = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 }
 
 extension Date {

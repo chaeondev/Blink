@@ -106,8 +106,8 @@ extension ChattingMessageContentView: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentImageCollectionViewCell.description(), for: indexPath) as? ContentImageCollectionViewCell else { return UICollectionViewCell() }
         
-//        let data = imageFiles[indexPath.item]
-//        cell.configureCell(imageUrl: data)
+        let data = imageFiles[indexPath.item]
+        cell.configureCell(imageUrl: data)
         
         return cell
     }

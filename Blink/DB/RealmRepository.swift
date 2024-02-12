@@ -44,7 +44,7 @@ extension RealmRepository {
             channel_name: chatInfo.channelName
         )
         let chatChannel: ChannelTable = self.checkChatChannel(channelInfo)
-        print("\n채팅 유저 잘들어갔나 확인 \(chatChannel)=====")
+        print("\n채팅 채널 잘들어갔나 확인 \(chatChannel.channel_id)=====")
 
         //2. 유저 체크 후 없으면 생성 있으면 패스
         let chatUser: UserTable = self.checkChatUser(chatInfo)
@@ -54,7 +54,7 @@ extension RealmRepository {
         let chat = ChattingTable(
             chat_id: chatInfo.chat_id,
             content: chatInfo.content,
-            createdAt: chatInfo.createdAt.toDate(dateType: .allDate)!,
+            createdAt: chatInfo.createdAt.toDate(dateType: .apiDate)!,
             files: chatInfo.files
         )
         chat.sender = chatUser
