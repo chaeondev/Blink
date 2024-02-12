@@ -26,6 +26,7 @@ final class ChattingViewController: BaseViewController {
     
         setNavigationBar()
         setTableView()
+        setCollectionView()
         
         view.backgroundColor = .backgroundSecondary
         
@@ -39,6 +40,11 @@ final class ChattingViewController: BaseViewController {
     private func setTableView() {
         mainView.messageTableView.delegate = self
         mainView.messageTableView.dataSource = self
+    }
+    
+    private func setCollectionView() {
+        mainView.senderView.photoCollectionView.delegate = self
+        mainView.senderView.photoCollectionView.dataSource = self
     }
     
     private func bind() {
@@ -208,6 +214,35 @@ extension ChattingViewController: PHPickerViewControllerDelegate {
             
             self.viewModel.photoItems.accept(photoData)
         }
+    }
+}
+
+// MARK: senderView photoCollectionView
+extension ChattingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        let photoItems = viewModel.photoItems.value
+        
+        return photoItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SendPhotoCollectionViewCell.description(), for: indexPath) as? SendPhotoCollectionViewCell else { return UICollectionViewCell() }
+        
+        var photoItems = viewModel.photoItems.value
+        
+        let data = photoItems[indexPath.row]
+        
+        cell.configureCell(data)
+        cell.deleteAction = { [weak self] in
+            photoItems.remove(at: indexPath.row)
+            print("===지운 후 PhotoItems===", photoItems)
+            self?.viewModel.photoItems.accept(photoItems)
+        }
+        
+        return cell
     }
 }
 

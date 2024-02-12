@@ -19,11 +19,15 @@ final class SendPhotoCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
-    let deleteButton = {
+    lazy var deleteButton = {
         let view = UIButton()
         view.setImage(.delete, for: .normal)
+        view.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
         return view
     }()
+    
+    //deleteButton action 위한 closure
+    var deleteAction: (() -> Void)?
     
     override func setHierarchy() {
         contentView.addSubview(photoImageView)
@@ -46,5 +50,9 @@ final class SendPhotoCollectionViewCell: BaseCollectionViewCell {
     
     func configureCell(_ data: Data) {
         photoImageView.image = UIImage(data: data)
+    }
+
+    @objc private func deleteButtonClicked() {
+        deleteAction?()
     }
 }

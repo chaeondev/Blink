@@ -9,8 +9,6 @@ import UIKit
 
 final class SenderView: BaseView {
     
-    var photoItems: [Data] = []
-    
     let backView = {
         let view = UIView()
         view.backgroundColor = .backgroundPrimary
@@ -36,8 +34,6 @@ final class SenderView: BaseView {
         view.backgroundColor = .backgroundPrimary
         
         view.isScrollEnabled = false
-        view.delegate = self
-        view.dataSource = self
         
         return view
     }()
@@ -73,13 +69,13 @@ final class SenderView: BaseView {
         }
         
         sendButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-7)
             make.trailing.equalToSuperview().offset(-12)
             make.size.equalTo(24)
         }
         
         stackView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(8)
+            make.verticalEdges.equalToSuperview().inset(11)
             make.leading.equalToSuperview().offset(42)
             make.trailing.equalToSuperview().offset(-44)
         }
@@ -104,8 +100,7 @@ final class SenderView: BaseView {
     }
     
     func updateView(images: [Data]) {
-        self.photoItems = images
-        let count = self.photoItems.count
+        let count = images.count
         
         photoCollectionView.isHidden = (count == 0) ? true : false
         photoCollectionView.reloadData()
@@ -139,23 +134,5 @@ extension SenderView {
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: 50, height: 50)
         return layout
-    }
-}
-
-extension SenderView: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SendPhotoCollectionViewCell.description(), for: indexPath) as? SendPhotoCollectionViewCell else { return UICollectionViewCell() }
-        
-        let data = photoItems[indexPath.row]
-        
-        cell.configureCell(data)
-        
-        return cell
     }
 }
