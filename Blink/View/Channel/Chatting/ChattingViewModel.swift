@@ -15,6 +15,9 @@ final class ChattingViewModel: ViewModelType {
     var workspaceID: Int = 0
     var channelInfo: ChannelRes!
     
+    //Rx DisposeBag
+    private var disposeBag = DisposeBag()
+    
     //Realm Repository
     private let chatRepository = RealmRepository()
     
@@ -26,15 +29,40 @@ final class ChattingViewModel: ViewModelType {
     let photoItems: BehaviorRelay<[Data]> = BehaviorRelay(value: [])
     
     struct Input {
-        
+        let contentText: ControlProperty<String>
+        let sendButtonTapped: ControlEvent<Void>
     }
     
     struct Output {
-        
+        let sendButtonEnable: BehaviorSubject<Bool>
     }
     
     func transform(input: Input) -> Output {
-        return Output()
+        
+        let checkText = BehaviorSubject(value: false)
+        let checkImage = BehaviorSubject(value: false)
+        let sendButtonEnable = BehaviorSubject(value: false)
+        
+        // MARK: send button Enable 여부 체크
+        input.contentText
+            .asObservable()
+            .filter { $0 != "메세지를 입력하세요" }
+            .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+            .bind(to: checkText)
+            .disposed(by: disposeBag)
+        
+        photoItems
+            .map { !$0.isEmpty }
+            .bind(to: checkImage)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(checkText, checkImage)
+            .map { $0 || $1 }
+            .bind(to: sendButtonEnable)
+            .disposed(by: disposeBag)
+        
+        
+        return Output(sendButtonEnable: sendButtonEnable)
     }
     
     func loadData(completion: @escaping () -> Void) {

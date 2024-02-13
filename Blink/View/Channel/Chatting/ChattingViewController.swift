@@ -48,6 +48,20 @@ final class ChattingViewController: BaseViewController {
     }
     
     private func bind() {
+        // MARK: Input/Output -> 채팅 POST
+        let input = ChattingViewModel.Input(
+            contentText: mainView.senderView.textView.rx.text.orEmpty,
+            sendButtonTapped: mainView.senderView.sendButton.rx.tap
+        )
+        let output = viewModel.transform(input: input)
+        
+        output.sendButtonEnable
+            .bind(with: self) { owner, isEnable in
+                owner.mainView.senderView.sendButton.setButton(enable: isEnable)
+            }
+            .disposed(by: disposeBag)
+        
+        
         //네비게이션 -> 채널 설정으로 가는 버튼
         navigationItem.rightBarButtonItem!.rx.tap
             .bind(with: self) { owner, _ in
