@@ -40,6 +40,8 @@
 		DE247D962B5992C5007DE6E2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE247D952B5992C5007DE6E2 /* SplashView.swift */; };
 		DE247D982B5992D0007DE6E2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE247D972B5992D0007DE6E2 /* SplashViewController.swift */; };
 		DE247D9A2B5992D8007DE6E2 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE247D992B5992D8007DE6E2 /* SplashViewModel.swift */; };
+		DE28ED662B7C767B002BA071 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE28ED652B7C767B002BA071 /* SocketIO */; };
+		DE28ED6A2B7C77F1002BA071 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE28ED692B7C77F1002BA071 /* SocketIOManager.swift */; };
 		DE2A18FF2B43D27300194ADA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A18FE2B43D27300194ADA /* AppDelegate.swift */; };
 		DE2A19012B43D27300194ADA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2A19002B43D27300194ADA /* SceneDelegate.swift */; };
 		DE2A19082B43D27400194ADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2A19072B43D27400194ADA /* Assets.xcassets */; };
@@ -203,6 +205,7 @@
 		DE247D952B5992C5007DE6E2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		DE247D972B5992D0007DE6E2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		DE247D992B5992D8007DE6E2 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		DE28ED692B7C77F1002BA071 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		DE2A18FB2B43D27300194ADA /* Blink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2A18FE2B43D27300194ADA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE2A19002B43D27300194ADA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 				DE8C274E2B454E4F00141F5F /* RxSwift in Frameworks */,
 				DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */,
 				DE247D8F2B594395007DE6E2 /* Kingfisher in Frameworks */,
+				DE28ED662B7C767B002BA071 /* SocketIO in Frameworks */,
 				DE1315A42B5401D40023D73D /* SideMenu in Frameworks */,
 				DE5464792B65124B00A29B79 /* Realm in Frameworks */,
 				DE2A19492B44237A00194ADA /* SnapKit in Frameworks */,
@@ -406,6 +410,14 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		DE28ED682B7C77D9002BA071 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				DE28ED692B7C77F1002BA071 /* SocketIOManager.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		DE2A18F22B43D27300194ADA = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +450,7 @@
 				DE54647C2B65145100A29B79 /* DB */,
 				DE9971C92B4AC820008D92B1 /* Data */,
 				DE2A19332B43E1AE00194ADA /* Network */,
+				DE28ED682B7C77D9002BA071 /* Socket */,
 				DE2A193D2B43F62700194ADA /* Builder */,
 				DE2A194A2B4429E400194ADA /* Component */,
 				DE2A19312B43E19C00194ADA /* View */,
@@ -955,6 +968,7 @@
 				DE247D8E2B594395007DE6E2 /* Kingfisher */,
 				DE5464782B65124B00A29B79 /* Realm */,
 				DE54647A2B65124B00A29B79 /* RealmSwift */,
+				DE28ED652B7C767B002BA071 /* SocketIO */,
 			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
@@ -1037,6 +1051,7 @@
 				DE1315A22B5401D40023D73D /* XCRemoteSwiftPackageReference "SideMenu" */,
 				DE247D8D2B594395007DE6E2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DE5464772B65124B00A29B79 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				DE28ED642B7C767A002BA071 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
@@ -1199,6 +1214,7 @@
 				DE9D8C812B5664BB00FBABC3 /* SearchViewController.swift in Sources */,
 				DE5464332B60E00C00A29B79 /* ChannelSearchView.swift in Sources */,
 				DE8C27672B46A59100141F5F /* APIKey.swift in Sources */,
+				DE28ED6A2B7C77F1002BA071 /* SocketIOManager.swift in Sources */,
 				DE9971C82B4A75AB008D92B1 /* SignUp.swift in Sources */,
 				DE8C27692B46C62600141F5F /* HTTPError.swift in Sources */,
 				DE1315842B53A4520023D73D /* HomeCellTitleLabel.swift in Sources */,
@@ -1579,6 +1595,14 @@
 				minimumVersion = 7.10.2;
 			};
 		};
+		DE28ED642B7C767A002BA071 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		DE2A19472B44237A00194ADA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1636,6 +1660,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE247D8D2B594395007DE6E2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		DE28ED652B7C767B002BA071 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE28ED642B7C767A002BA071 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 		DE2A19482B44237A00194ADA /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
