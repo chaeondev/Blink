@@ -91,13 +91,27 @@ final class ChattingViewModel: ViewModelType {
                     print("====SEND CHAT SUCCESS====")
                     print(response)
                     
-                    sendChatResult.onNext(.success)
-                    
                     //1. 성공시 응답값 DB 저장 -> 업데이트?
-                    //2. 테이블 뷰 갱신
-                    //3. 스크롤 맨밑으로 보내기? -> 이게 맞나? 고민
-                    //4. senderView 초기화
+                    //2. 테이블뷰 리스트에 append
+                    //3. 성공여부 VC에 전달
+                    //4. 테이블 뷰 갱신
+                    //5. 스크롤 맨밑으로 보내기? -> 이게 맞나? 고민
+                    //6. senderView 초기화
                     
+                    ///잠시만 생각해보자.. DB에 업데이트 하고 테이블 리로드 한다고 바로 추가되는게 아니잖아..?
+                    ///DB 업데이트 -> 테이블 재료 업데이트 -> 테이블 리로드 이게 맞단 말이지?
+                    ///근데 생각해보면 그렇게했을때..DB를 전체 fetch해야하나?너무 부담..
+                    ///차라리 바로 append를 하고..DB에도 저장하고..아 어렵.. 소켓통신도 있잖아...
+                    
+                    //1.
+                    owner.chatRepository.addChat(chatInfo: response, workspaceID: owner.workspaceID)
+                    
+                    //2.
+                    let newChat = owner.switchModelToInfo(response)
+                    owner.chatInfoList.append(newChat)
+                    
+                    //3.
+                    sendChatResult.onNext(.success)
                     
                 case .failure(let error):
                     print("====SEND CHAT FAILED====")
@@ -240,7 +254,7 @@ extension ChattingViewModel {
     }
 }
 
-//TableView 관련 메서드
+//TableView 관련 메서드 + SenderView - Images 관련 메서드
 extension ChattingViewModel {
     
     func numberOfRowsInSection() -> Int {
@@ -249,6 +263,10 @@ extension ChattingViewModel {
     
     func dataForRowAt(_ indexPath: IndexPath) -> ChattingInfoModel {
         return chatInfoList[indexPath.row]
+    }
+    
+    func clearImages() {
+        photoItems.accept([])
     }
 }
 
@@ -275,6 +293,19 @@ extension ChattingViewModel {
         
         print("===Table 그려질 InfoModel로 변환했음~ \n\(infoList)\n")
         return infoList
+    }
+    
+    //Network response -> ChatInfoModel (POST때 append)
+    func switchModelToInfo(_ data: ChannelChatRes) -> ChattingInfoModel {
+        return ChattingInfoModel(
+            chat_id: data.chat_id,
+            content: data.content,
+            createdAt: data.createdAt.toDate(dateType: .allDate) ?? Date(),
+            files: data.files,
+            user_id: data.user.user_id,
+            nickname: data.user.nickname,
+            profileImage: data.user.profileImage
+        )
     }
     
 }

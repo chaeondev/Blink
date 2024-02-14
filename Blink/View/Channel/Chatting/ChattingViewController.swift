@@ -61,6 +61,31 @@ final class ChattingViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.sendChatResult
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success:
+                    //1. 성공시 응답값 DB 저장 -> 업데이트?
+                    //2. 테이블뷰 리스트에 append
+                    //3. 성공여부 VC에 전달
+                    //4. 테이블 뷰 갱신
+                    //5. 스크롤 맨밑으로 보내기? -> 이게 맞나? 고민
+                    //6. senderView 초기화
+                    
+                    //4.
+                    owner.mainView.messageTableView.reloadData()
+                    //5.
+                    owner.scrollToBottom()
+                    //6.
+                    owner.mainView.senderView.textView.text = "메세지를 입력하세요" // TODO: 이거 제대로 작동하는지 확인
+                    owner.viewModel.clearImages()
+                   
+                case .failure:
+                    print("===여기서 실패시 다시 재전송 로직 나중에 세우기===")
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
         //네비게이션 -> 채널 설정으로 가는 버튼
         navigationItem.rightBarButtonItem!.rx.tap
@@ -161,6 +186,12 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             self.mainView.messageTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
         }
         //else 일떼 굳이 지정해야함? 어차피 없는데..
+    }
+    
+    //POST했을 때 tableView scroll
+    func scrollToBottom() {
+        let indexPath = IndexPath(row: viewModel.numberOfRowsInSection() - 1, section: 0)
+        self.mainView.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
     }
 }
 
