@@ -21,8 +21,7 @@ class SocketIOManager: NSObject {
     override init() {
         super.init()
         
-        //socket = manager.defaultSocket
-        socket = manager.socket(forNamespace: "/ws-channel-244") //우선 244번으로 고정하기
+        socket = manager.defaultSocket
         
         socket.on(clientEvent: .connect) { data, ack in
             print("\nSOCKET CONNECTED", data, ack)
@@ -33,10 +32,12 @@ class SocketIOManager: NSObject {
     }
     
     // MARK: 소켓 연결
-    func establishConnection() {
+    func establishConnection(channelID: Int) {
         
+        self.closeConnection() // 혹시 연결된 소켓있으면 제거
+        socket = manager.socket(forNamespace: "/ws-channel-\(channelID)")
         socket.connect()
-        print("소켓 연결 시도")
+        print("소켓 연결")
         self.isOpen = true
         
     }
@@ -45,6 +46,8 @@ class SocketIOManager: NSObject {
     func closeConnection() {
         
         socket.disconnect()
+        socket.removeAllHandlers()
+
         print("소켓 연결 종료")
         self.isOpen = false
         

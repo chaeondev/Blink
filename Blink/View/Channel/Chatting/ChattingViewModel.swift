@@ -34,6 +34,9 @@ final class ChattingViewModel: ViewModelType {
     //senderView POST할 photoItems
     let photoItems: BehaviorRelay<[Data]> = BehaviorRelay(value: [])
     
+    //Socket으로 전달받는 newChat
+    var newChat = PublishSubject<ChattingInfoModel>()
+    
     struct Input {
         let contentText: ControlProperty<String>
         let sendButtonTapped: ControlEvent<Void>
@@ -42,6 +45,7 @@ final class ChattingViewModel: ViewModelType {
     struct Output {
         let sendButtonEnable: BehaviorSubject<Bool>
         let sendChatResult: PublishSubject<SendChattingResult>
+        let newChat: PublishSubject<ChattingInfoModel>
     }
     
     func transform(input: Input) -> Output {
@@ -127,9 +131,19 @@ final class ChattingViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        // MARK: Socket 통신
+        
+        //소켓으로 전달받은 데이터 -> 테이블리스트에 추가
+        self.newChat
+            .bind(with: self) { owner, chatInfo in
+                owner.chatInfoList.append(chatInfo)
+            }
+            .disposed(by: disposeBag)
+        
         
         return Output(sendButtonEnable: sendButtonEnable, 
-                      sendChatResult: sendChatResult)
+                      sendChatResult: sendChatResult,
+                      newChat: self.newChat)
     }
     
     func loadData(completion: @escaping () -> Void) {
@@ -149,7 +163,9 @@ final class ChattingViewModel: ViewModelType {
             self.fetchDBChats()
             
             //5. 소켓 오픈 해야함~~
-            
+            //연결하고, 응답대기
+            self.connectSocket()
+            self.receiveSocketInfo()
             completion()
             
         }
@@ -159,6 +175,7 @@ final class ChattingViewModel: ViewModelType {
     }
 }
 
+// MARK: fetch 네트워크 통신 관련 메서드
 extension ChattingViewModel {
     
     // 우선 이전 DB데이터 TableList에 추가 -> Pagination 고려안함
@@ -260,7 +277,39 @@ extension ChattingViewModel {
     }
 }
 
-//TableView 관련 메서드 + SenderView - Images 관련 메서드
+// MARK: Socket 관련 메서드
+extension ChattingViewModel {
+    
+    func connectSocket() {
+        SocketIOManager.shared.establishConnection(channelID: self.channelInfo.channel_id)
+    }
+    
+    func disconnectSocket() {
+        SocketIOManager.shared.closeConnection()
+    }
+    
+    func receiveSocketInfo() {
+        SocketIOManager.shared.receiveMessage(type: ChannelChatRes.self) { [weak self] response in
+            
+            guard let self else { return }
+            
+            print("\n소켓으로 전달받은 채팅 \(response)")
+            
+            //1. userID 체크해서 내가 보낸거는 걸러주기
+            if "\(response.user.user_id)" == KeyChainManager.shared.userID { return }
+            
+            //Realm에 Socket통신한거 추가
+            self.chatRepository.addChat(chatInfo: response, workspaceID: self.workspaceID)
+            
+            //새로운 데이터로 전달 (추후 테이블리스트에 업데이트 예정)
+            let chatInfo = self.switchModelToInfo(response)
+            self.newChat.onNext(chatInfo)
+            
+        }
+    }
+}
+
+// MARK: TableView 관련 메서드 + SenderView - Images 관련 메서드
 extension ChattingViewModel {
     
     func numberOfRowsInSection() -> Int {
@@ -276,7 +325,7 @@ extension ChattingViewModel {
     }
 }
 
-//Chatting Model Switching
+// MARK: Chatting Model Switching
 extension ChattingViewModel {
     
     //DB Table -> ChatInfoModel(TableView재료)

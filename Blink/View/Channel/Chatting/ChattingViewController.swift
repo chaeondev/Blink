@@ -32,9 +32,27 @@ final class ChattingViewController: BaseViewController {
         
         bind()
         
-        loadData()
+        //loadData()
         
         //mainView.senderView.updateView(images: ["",""])
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print(#function)
+        loadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        print(#function)
+        viewModel.disconnectSocket()
+    }
+    
+    deinit {
+        print("===========채널 채팅뷰 DEINIT============")
     }
     
     private func setTableView() {
@@ -48,13 +66,15 @@ final class ChattingViewController: BaseViewController {
     }
     
     private func bind() {
-        // MARK: Input/Output -> 채팅 POST
+        // MARK: Input/Output
+        
         let input = ChattingViewModel.Input(
             contentText: mainView.senderView.textView.rx.text.orEmpty,
             sendButtonTapped: mainView.senderView.sendButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         
+        // 1. 채팅 POST
         output.sendButtonEnable
             .bind(with: self) { owner, isEnable in
                 owner.mainView.senderView.sendButton.setButton(enable: isEnable)
@@ -86,6 +106,16 @@ final class ChattingViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        //2. SOCKET 통신
+        
+        //receive data -> 테이블 리로드, 스크롤 어떻게 할까
+        //우선 아래로 보내고 나중에 newMessageView 띄울지 결정하자
+        output.newChat
+            .bind(with: self) { owner, chatInfo in
+                owner.mainView.messageTableView.reloadData()
+                owner.scrollToBottom()
+            }
+            .disposed(by: disposeBag)
         
         //네비게이션 -> 채널 설정으로 가는 버튼
         navigationItem.rightBarButtonItem!.rx.tap
@@ -223,7 +253,7 @@ extension ChattingViewController: PHPickerViewControllerDelegate {
         
         picker.dismiss(animated: true)
         
-        var group = DispatchGroup()
+        let group = DispatchGroup()
         var dataArr = Array(repeating: Data(), count: results.count)
         
         if !(results.isEmpty) {
