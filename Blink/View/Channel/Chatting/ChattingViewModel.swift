@@ -54,6 +54,7 @@ final class ChattingViewModel: ViewModelType {
         // MARK: send button Enable 여부 체크
         input.contentText
             .asObservable()
+            .distinctUntilChanged()
             .filter { $0 != "메세지를 입력하세요" }
             .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
             .bind(to: checkText)
@@ -70,12 +71,16 @@ final class ChattingViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         // MARK: 채팅 POST 네트워크 통신
+        
+        let realText = input.contentText
+            .filter { $0 != "메세지를 입력하세요" }
+        
         let requestModel = Observable.combineLatest(input.contentText, photoItems)
             .map { (text, photos) in
                 return SendChattingRequest(
                     workspaceID: self.workspaceID,
                     channelName: self.channelInfo.name,
-                    content: text,
+                    content: (text != "메세지를 입력하세요") ? text : "",
                     files: photos
                 )
             }
@@ -230,6 +235,7 @@ extension ChattingViewModel {
                 
             case .failure(let error):
                 print("===채팅 내역 못불러옴ㅜㅜ===")
+                print(error)
             }
         }
     }
@@ -280,7 +286,7 @@ extension ChattingViewModel {
         data.forEach {
             let info = ChattingInfoModel(
                 chat_id: $0.chat_id,
-                content: $0.content,
+                content: $0.content ?? "",
                 createdAt: $0.createdAt,
                 files: Array($0.files),
                 user_id: $0.sender?.user_id ?? 0,
@@ -299,7 +305,7 @@ extension ChattingViewModel {
     func switchModelToInfo(_ data: ChannelChatRes) -> ChattingInfoModel {
         return ChattingInfoModel(
             chat_id: data.chat_id,
-            content: data.content,
+            content: data.content ?? "",
             createdAt: data.createdAt.toDate(dateType: .allDate) ?? Date(),
             files: data.files,
             user_id: data.user.user_id,

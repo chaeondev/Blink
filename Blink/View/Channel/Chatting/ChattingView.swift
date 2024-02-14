@@ -16,6 +16,7 @@ final class ChattingView: BaseView {
         view.rowHeight = UITableView.automaticDimension
         view.backgroundColor = .backgroundSecondary
         view.separatorStyle = .none
+        view.keyboardDismissMode = .onDrag
         return view
     }()
     

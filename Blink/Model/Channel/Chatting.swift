@@ -18,7 +18,7 @@ struct ChattingRequest: Encodable {
 struct SendChattingRequest: Encodable {
     let workspaceID: Int
     let channelName: String
-    let content: String?
+    let content: String
     let files: [Data]
 }
 
@@ -28,7 +28,7 @@ struct ChattingInfoModel: Decodable {
     
     let chat_id: Int
     
-    let content: String?
+    let content: String
     let createdAt: Date
     let files: [String]
     

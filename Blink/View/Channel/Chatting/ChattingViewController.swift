@@ -77,7 +77,7 @@ final class ChattingViewController: BaseViewController {
                     //5.
                     owner.scrollToBottom()
                     //6.
-                    owner.mainView.senderView.textView.text = "메세지를 입력하세요" // TODO: 이거 제대로 작동하는지 확인
+                    owner.clearTextView()
                     owner.viewModel.clearImages()
                    
                 case .failure:
@@ -307,5 +307,11 @@ extension ChattingViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
+    }
+    
+    func clearTextView() {
+        self.mainView.senderView.textView.text = "메세지를 입력하세요" // TODO: 이거 제대로 작동하는지 확인
+        self.mainView.senderView.textView.textColor = .textSecondary
+        self.mainView.senderView.textView.resignFirstResponder()
     }
 }
