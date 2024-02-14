@@ -7,10 +7,19 @@
 
 import Foundation
 
+//채널 채팅 조회 Request
 struct ChattingRequest: Encodable {
     let workspaceID: Int
     let channelName: String
     let cursor_date: String?
+}
+
+//채널 채팅 생성 Request
+struct SendChattingRequest: Encodable {
+    let workspaceID: Int
+    let channelName: String
+    let content: String?
+    let files: [Data]
 }
 
 //실제로 채팅 보여줄때 사용되는 구조체

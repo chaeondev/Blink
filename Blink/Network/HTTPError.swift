@@ -82,3 +82,9 @@ enum CreateChannelError: String, HTTPError {
     case noData = "E13" //존재하지 않는 데이터
     case wrongRequest = "E11" //잘못된 요청
 }
+
+//채널채팅 생성
+enum SendChattingError: String, HTTPError {
+    case wrongRequest = "E11" // 잘못된 요청
+    case noData = "E13" //존재하지 않는 데이터
+}

@@ -9,6 +9,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+// failure시 채팅 다시보내기 -> RequestModel이 필요함 -> 나중에 하자.. -> VC에서 하는일 있음..
+enum SendChattingResult {
+    case success // 어차피 DB에만 저장하고 업데이트하니까 response 보낼 필요없음?
+    case failure
+}
+
 final class ChattingViewModel: ViewModelType {
     
     //전달값
@@ -35,6 +41,7 @@ final class ChattingViewModel: ViewModelType {
     
     struct Output {
         let sendButtonEnable: BehaviorSubject<Bool>
+        let sendChatResult: PublishSubject<SendChattingResult>
     }
     
     func transform(input: Input) -> Output {
@@ -42,6 +49,7 @@ final class ChattingViewModel: ViewModelType {
         let checkText = BehaviorSubject(value: false)
         let checkImage = BehaviorSubject(value: false)
         let sendButtonEnable = BehaviorSubject(value: false)
+        let sendChatResult = PublishSubject<SendChattingResult>()
         
         // MARK: send button Enable 여부 체크
         input.contentText
@@ -61,8 +69,48 @@ final class ChattingViewModel: ViewModelType {
             .bind(to: sendButtonEnable)
             .disposed(by: disposeBag)
         
+        // MARK: 채팅 POST 네트워크 통신
+        let requestModel = Observable.combineLatest(input.contentText, photoItems)
+            .map { (text, photos) in
+                return SendChattingRequest(
+                    workspaceID: self.workspaceID,
+                    channelName: self.channelInfo.name,
+                    content: text,
+                    files: photos
+                )
+            }
         
-        return Output(sendButtonEnable: sendButtonEnable)
+        input.sendButtonTapped
+            .withLatestFrom(requestModel)
+            .flatMapLatest {
+                APIService.shared.requestMultipart(type: ChannelChatRes.self, api: ChannelRouter.sendChatting($0))
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    print("====SEND CHAT SUCCESS====")
+                    print(response)
+                    
+                    sendChatResult.onNext(.success)
+                    
+                    //1. 성공시 응답값 DB 저장 -> 업데이트?
+                    //2. 테이블 뷰 갱신
+                    //3. 스크롤 맨밑으로 보내기? -> 이게 맞나? 고민
+                    //4. senderView 초기화
+                    
+                    
+                case .failure(let error):
+                    print("====SEND CHAT FAILED====")
+                    print(error)
+                    
+                    sendChatResult.onNext(.failure)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
+        return Output(sendButtonEnable: sendButtonEnable, 
+                      sendChatResult: sendChatResult)
     }
     
     func loadData(completion: @escaping () -> Void) {

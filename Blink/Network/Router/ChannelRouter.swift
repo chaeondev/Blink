@@ -17,6 +17,7 @@ enum ChannelRouter: APIRouter {
     
     //채팅
     case fetchChatting(_ model: ChattingRequest)
+    case sendChatting(_ model: SendChattingRequest)
     case channelChatUnreadCount(_ model: ChannelUnreadCountRequest)
     
     var baseURL: URL {
@@ -37,6 +38,8 @@ enum ChannelRouter: APIRouter {
         //채팅
         case .fetchChatting(let model):
             return "/v1/workspaces/\(model.workspaceID)/channels/\(model.channelName)/chats"
+        case .sendChatting(let model):
+            return "/v1/workspaces/\(model.workspaceID)/channels/\(model.channelName)/chats"
         case .channelChatUnreadCount(let model):
             return "/v1/workspaces/\(model.workspaceID)/channels/\(model.channelName)/unreads"
         }
@@ -44,6 +47,9 @@ enum ChannelRouter: APIRouter {
     
     var header: Alamofire.HTTPHeaders {
         switch self {
+        case .sendChatting:
+            return ["Content-Type": "multipart/form-data",
+                    "SesacKey": APIKey.sesacKey]
         default:
             return ["Content-Type": "application/json",
                     "SesacKey": APIKey.sesacKey]
@@ -54,7 +60,7 @@ enum ChannelRouter: APIRouter {
         switch self {
         case .checkAllChannels, .checkMyChannels, .channelChatUnreadCount, .fetchChatting, .checkChannelInfo:
             return .get
-        case .createChannel:
+        case .createChannel, .sendChatting:
             return .post
         }
     }
@@ -65,6 +71,11 @@ enum ChannelRouter: APIRouter {
             return [
                 "name": model.name,
                 "description": model.description
+            ]
+        case .sendChatting(let model):
+            return [
+                "content": model.content,
+                "files": model.files
             ]
         default:
             return nil
@@ -118,6 +129,11 @@ enum ChannelRouter: APIRouter {
             // 이미지 데이터
             if let imageData = value as? Data {
                 multiData.append(imageData, withName: key, fileName: "image.jpeg", mimeType: "image/jpeg")
+            } else if let imageList = value as? [Data] {
+                
+                imageList.forEach { image in
+                    multiData.append(image, withName: key, fileName: "image.jpeg", mimeType: "image/jpeg")
+                }
             } else {
                 multiData.append("\(value)".data(using: .utf8)!, withName: key)
             }
