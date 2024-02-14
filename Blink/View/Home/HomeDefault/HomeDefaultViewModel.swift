@@ -41,6 +41,9 @@ final class HomeDefaultViewModel: ViewModelType {
     var channelData: HomeChannelsData?
     var dmData: HomeDMsData?
     
+    //읽지않은 채팅개수 위한 RealmRepository
+    let channelChatRepository = RealmRepository()
+    
     struct Input {
         
     }
@@ -115,12 +118,21 @@ final class HomeDefaultViewModel: ViewModelType {
         guard let channelData else { return }
         
         for (index, item) in channelData.sectionData.enumerated() {
+            
+            let channelInfo = ChannelInfoModel(
+                workspaceID: self.workspaceID,
+                channel_id: item.channelInfo.channel_id,
+                channel_name: item.channelInfo.name
+            )
+            
+            let chatLastDate = channelChatRepository.checkChannelChatLastDate(channelInfo: channelInfo)
+
             let requestModel = ChannelUnreadCountRequest(
                 workspaceID: self.workspaceID,
                 channelName: item.channelInfo.name,
-                after: item.channelInfo.createdAt // TODO: 현재는 생성 시점부터 읽지않은걸로 처리!! 꼭꼭 바꾸기!!
+                after: chatLastDate?.toString(dateType: .apiDate) ?? ""
             )
-            
+
             APIService.shared.requestCompletion(type: ChannelUnreadCountResponse.self, api: ChannelRouter.channelChatUnreadCount(requestModel)) { [weak self] result in
                 switch result {
                 case .success(let response):
