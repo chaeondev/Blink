@@ -31,10 +31,7 @@ final class ChattingViewController: BaseViewController {
         view.backgroundColor = .backgroundSecondary
         
         bind()
-        
-        //loadData()
-        
-        //mainView.senderView.updateView(images: ["",""])
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
