@@ -9,6 +9,7 @@ import Foundation
 
 enum UserDefaultsKey: String {
     case channelID
+    case fcmDeviceToken
 }
 
 @propertyWrapper

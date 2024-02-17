@@ -11,4 +11,7 @@ enum UserDefaultsManager {
     
     @UserDefaultsWrapper(key: .channelID, defaultValue: -1)
     static var channelID
+    
+    @UserDefaultsWrapper(key: .fcmDeviceToken, defaultValue: "")
+    static var fcmDeviceToken
 }

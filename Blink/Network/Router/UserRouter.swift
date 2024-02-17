@@ -24,6 +24,9 @@ enum UserRouter: APIRouter {
     //로그아웃
     case logout
     
+    //FCM Device Token 저장
+    case saveFcmToken(_ model: FCMDeviceTokenRequest)
+    
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
     }
@@ -45,6 +48,9 @@ enum UserRouter: APIRouter {
             
         case .logout:
             "/v1/users/logout"
+            
+        case .saveFcmToken:
+            "/v1/users/deviceToken"
         }
     }
     
@@ -62,7 +68,7 @@ enum UserRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .emailValidation, .join, .login:
+        case .emailValidation, .join, .login, .saveFcmToken:
             return .post
         case .refreshToken, .checkMyProfile, .logout:
             return .get
@@ -87,6 +93,10 @@ enum UserRouter: APIRouter {
             return [
                 "email": model.email,
                 "password": model.password,
+                "deviceToken": model.deviceToken
+            ]
+        case .saveFcmToken(let model):
+            return [
                 "deviceToken": model.deviceToken
             ]
         default:

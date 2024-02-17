@@ -86,6 +86,22 @@ final class HomeDefaultViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        // MARK: FCM Token POST
+        let requestModel = FCMDeviceTokenRequest(deviceToken: UserDefaultsManager.fcmDeviceToken)
+        
+        print("======DEVICETOKEN=======", UserDefaultsManager.fcmDeviceToken)
+        APIService.shared.requestEmptyReesponse(api: UserRouter.saveFcmToken(requestModel))
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success:
+                    print("FCM Token 저장 성공")
+                case .failure(let error):
+                    print("FCM Token 저장 실패")
+                    print(error)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
         
         return Output(workspaceResource: workspaceResource, profileResource: profileResource)
