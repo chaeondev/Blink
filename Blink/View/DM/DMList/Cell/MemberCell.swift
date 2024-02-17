@@ -42,7 +42,7 @@ final class MemberCell: BaseCollectionViewCell {
     }
     
     override func setting() {
-        self.backgroundColor = .backgroundPrimary
+        self.backgroundColor = .brandWhite
     }
     
     func configureCell(name: String, imageUrl: String?) {

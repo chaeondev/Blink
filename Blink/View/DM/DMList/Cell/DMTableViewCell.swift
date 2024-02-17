@@ -28,7 +28,11 @@ final class DMTableViewCell: BaseTableViewCell {
     
     let dateLabel = UILabel.labelBuilder(text: "2023년 12월 22일", font: .caption2, textColor: .textSecondary, numberOfLines: 1, textAlignment: .right)
     
-    let messageCntButton = MessageCountButton()
+    let messageCntButton = {
+        let view = MessageCountButton()
+        view.setText(count: 10)
+        return view
+    }()
     
     override func setHierarchy() {
         [profileImageView, nameLabel, dateLabel, messageCntButton, contentLabel].forEach { contentView.addSubview($0) }
@@ -64,14 +68,14 @@ final class DMTableViewCell: BaseTableViewCell {
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
             make.leading.equalTo(nameLabel)
-            make.trailing.equalTo(messageCntButton.snp.leading).offset(-5)
+            make.width.equalToSuperview().multipliedBy(0.72)
             make.bottom.equalToSuperview().inset(6)
         }
     }
     
     override func setting() {
-        self.selectionStyle = .none
-        contentView.backgroundColor = .backgroundPrimary
+        //self.selectionStyle = .none
+        contentView.backgroundColor = .brandWhite
     }
     
     func configureCell(_ data: DMListCellInfo) {
@@ -98,20 +102,4 @@ final class DMTableViewCell: BaseTableViewCell {
         let current = Calendar.current
         return current.isDateInToday(date)
     }
-}
-
-struct DMListCellInfo {
-    let roomID: Int
-    
-    //user
-    let userID: Int
-    let profileImage: String?
-    let nickname: String
-    
-    //chatting
-    let content: String
-    let date: Date
-    
-    let messageCnt: Int
-    
 }

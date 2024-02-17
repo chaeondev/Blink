@@ -17,11 +17,19 @@ final class MemberListHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
+    let separatorView = {
+        let view = UIView()
+        view.backgroundColor = .seperator
+        return view
+    }()
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
         setHierarchy()
         setConstraints()
+        
+        contentView.backgroundColor = .brandWhite
         
     }
     
@@ -31,11 +39,19 @@ final class MemberListHeaderView: UITableViewHeaderFooterView {
     
     private func setHierarchy() {
         contentView.addSubview(collectionView)
+        contentView.addSubview(separatorView)
     }
     
     private func setConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.horizontalEdges.equalToSuperview()
+            make.height.equalTo(98)
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(collectionView)
         }
     }
 }
