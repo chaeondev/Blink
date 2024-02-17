@@ -12,7 +12,7 @@ class SocketIOManager: NSObject {
     
     static let shared = SocketIOManager()
     
-    var manager = SocketManager(socketURL: URL(string: APIKey.baseURL)!, config: [.log(true), .compress])
+    var manager = SocketManager(socketURL: URL(string: APIKey.baseURL)!, config: [/*.log(true),*/ .compress])
     var socket: SocketIOClient!
     
     //소켓 연결 상태

@@ -13,11 +13,12 @@ class HomeTabViewController: UITabBarController {
     var workspaceID: Int = 0 {
         didSet {
             homeVC.viewModel.workspaceID = workspaceID
+            dmVC.viewModel.workspaceID = workspaceID
         }
     }
     
     let homeVC = HomeDefaultViewController()
-    let dmVC = DMViewController()
+    let dmVC = DMListViewController()
     let searchVC = SearchViewController()
     let settingVC = SettingViewController()
     
@@ -26,6 +27,7 @@ class HomeTabViewController: UITabBarController {
 
         //값 전달
         homeVC.viewModel.workspaceID = workspaceID
+        dmVC.viewModel.workspaceID = workspaceID
         
         let homeNav = UINavigationController(rootViewController: homeVC)
         let dmNav = UINavigationController(rootViewController: dmVC)

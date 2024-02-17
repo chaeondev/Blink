@@ -218,7 +218,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     //POST했을 때 tableView scroll
     func scrollToBottom() {
         let indexPath = IndexPath(row: viewModel.numberOfRowsInSection() - 1, section: 0)
-        self.mainView.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+        self.mainView.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 }
 
