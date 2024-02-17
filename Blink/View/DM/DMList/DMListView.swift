@@ -10,21 +10,21 @@ import SnapKit
 
 final class DMListView: BaseView {
     
-    let tableView = {
-        let view = UITableView(frame: .zero, style: .grouped)
+    let headerView = {
+        let view = MemberListHeaderView()
+        view.frame = CGRect(x: 0, y: 0, width: 0, height: 114)
+        return view
+    }()
+    
+    lazy var tableView = {
+        let view = UITableView()
         view.backgroundColor = .brandWhite
         
         view.register(DMTableViewCell.self, forCellReuseIdentifier: DMTableViewCell.description())
-        view.register(MemberListHeaderView.self, forHeaderFooterViewReuseIdentifier: MemberListHeaderView.description())
+        view.tableHeaderView = headerView
+        
         view.rowHeight = UITableView.automaticDimension
         view.separatorStyle = .none
-        view.sectionHeaderTopPadding = 0
-        
-        let footer = UIView()
-        footer.frame.size.height = 1
-        
-        view.tableFooterView = footer
-        view.sectionFooterHeight = 0
         
         return view
     }()

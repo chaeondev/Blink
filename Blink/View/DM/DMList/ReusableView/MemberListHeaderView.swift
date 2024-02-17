@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class MemberListHeaderView: UITableViewHeaderFooterView {
+final class MemberListHeaderView: UIView {
     
     lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -23,23 +23,23 @@ final class MemberListHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setHierarchy()
         setConstraints()
         
-        contentView.backgroundColor = .brandWhite
-        
+        self.backgroundColor = .brandWhite
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func setHierarchy() {
-        contentView.addSubview(collectionView)
-        contentView.addSubview(separatorView)
+        self.addSubview(collectionView)
+        self.addSubview(separatorView)
     }
     
     private func setConstraints() {

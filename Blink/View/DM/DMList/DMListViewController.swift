@@ -14,6 +14,8 @@ final class DMListViewController: BaseViewController {
     private let mainView = DMListView()
     let viewModel = DMListViewModel()
     
+    private let disposeBag = DisposeBag()
+    
     //Custom Navigation
     let customView = UIView()
     
@@ -56,17 +58,46 @@ final class DMListViewController: BaseViewController {
         setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton)
         
         setTableView()
+        setCollectionView()
         
+        loadData()
+
     }
     
     func bind() {
         let input = DMListViewModel.Input()
         let output = viewModel.transform(input: input)
+        
+        //네비게이션 leftButton, title 업데이트
+        output.workspaceResource
+            .bind(with: self) { owner, model in
+                owner.naviTitleButton.setTitle(model.name, for: .normal)
+                owner.leftButton.setKFImage(imageUrl: model.thumbnail, placeholderImage: .dummy)
+            }
+            .disposed(by: disposeBag)
+        
+        //프로필 조회 -> 네비게이션 rightButton 업데이트
+        output.profileResource
+            .bind(with: self) { owner, model in
+                owner.rightButton.setKFImage(imageUrl: model.profileImage ?? "", placeholderImage: .noPhotoB)
+            }
+            .disposed(by: disposeBag)
     }
     
     func setTableView() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+    }
+    
+    func setCollectionView() {
+        mainView.headerView.collectionView.delegate = self
+        mainView.headerView.collectionView.dataSource = self
+    }
+    
+    func loadData() {
+        viewModel.reloadCompletion = { [weak self] in
+            self?.mainView.headerView.collectionView.reloadData()
+        }
     }
  
 }
@@ -81,19 +112,6 @@ extension DMListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DMTableViewCell.description(), for: indexPath) as? DMTableViewCell else { return UITableViewCell() }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MemberListHeaderView.description()) as? MemberListHeaderView else { return UIView() }
-        
-        header.collectionView.delegate = self
-        header.collectionView.dataSource = self
-        
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 114
     }
 
 }

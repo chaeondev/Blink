@@ -24,7 +24,8 @@ final class DMTableViewCell: BaseTableViewCell {
     let nameLabel = UILabel.labelBuilder(text: "옹골찬 고래밥", font: .caption, textColor: .brandBlack, numberOfLines: 1)
     
     //286x18 / 286x36 (최대 2줄)
-    let contentLabel = UILabel.labelBuilder(text: "Cause I know what you like boy You're my chemical hype boy 내 지난날들은 눈 뜨면 잊는 꿈 Hype boyCause I know what you like boy You're my chemical hype boy", font: .caption2, textColor: .textSecondary, numberOfLines: 2)
+    //"Cause I know what you like boy You're my chemical hype boy 내 지난날들은 눈 뜨면 잊는 꿈 Hype boyCause I know what you like boy You're my chemical hype boy"
+    let contentLabel = UILabel.labelBuilder(text: "Cause I know what you like boy", font: .caption2, textColor: .textSecondary, numberOfLines: 2)
     
     let dateLabel = UILabel.labelBuilder(text: "2023년 12월 22일", font: .caption2, textColor: .textSecondary, numberOfLines: 1, textAlignment: .right)
     
@@ -41,7 +42,7 @@ final class DMTableViewCell: BaseTableViewCell {
     override func setConstraints() {
         
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(6)
+            make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(16)
             make.size.equalTo(34)
         }
@@ -69,7 +70,7 @@ final class DMTableViewCell: BaseTableViewCell {
             make.top.equalTo(nameLabel.snp.bottom)
             make.leading.equalTo(nameLabel)
             make.width.equalToSuperview().multipliedBy(0.72)
-            make.bottom.equalToSuperview().inset(6)
+            make.bottom.equalToSuperview().inset(8)
         }
     }
     
