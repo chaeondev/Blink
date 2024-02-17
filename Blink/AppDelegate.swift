@@ -76,6 +76,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         UserDefaultsManager.fcmDeviceToken = token
         
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("identifier : \(notification.request.identifier)")
+        
+        completionHandler([.banner, .sound, .badge])
+    }
 }
 
 extension AppDelegate: MessagingDelegate {

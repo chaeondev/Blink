@@ -133,6 +133,9 @@
 		DE8C27722B46D4A500141F5F /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27712B46D4A500141F5F /* UserRouter.swift */; };
 		DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27732B46DCDA00141F5F /* APIService.swift */; };
 		DE990FFB2B7F5B8000A87075 /* FCMDeviceTokenRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE990FFA2B7F5B8000A87075 /* FCMDeviceTokenRes.swift */; };
+		DE990FFE2B808EE200A87075 /* DMListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE990FFD2B808EE200A87075 /* DMListView.swift */; };
+		DE9910002B808EEA00A87075 /* DMListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE990FFF2B808EEA00A87075 /* DMListViewController.swift */; };
+		DE9910022B808EF300A87075 /* DMListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9910012B808EF300A87075 /* DMListViewModel.swift */; };
 		DE9971C82B4A75AB008D92B1 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9971C72B4A75AB008D92B1 /* SignUp.swift */; };
 		DE9971CB2B4AC839008D92B1 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9971CA2B4AC839008D92B1 /* KeyChainManager.swift */; };
 		DE9D8C772B55542D00FBABC3 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C762B55542D00FBABC3 /* UIViewController+Extension.swift */; };
@@ -299,6 +302,9 @@
 		DE8C27712B46D4A500141F5F /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		DE8C27732B46DCDA00141F5F /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		DE990FFA2B7F5B8000A87075 /* FCMDeviceTokenRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMDeviceTokenRes.swift; sourceTree = "<group>"; };
+		DE990FFD2B808EE200A87075 /* DMListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListView.swift; sourceTree = "<group>"; };
+		DE990FFF2B808EEA00A87075 /* DMListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewController.swift; sourceTree = "<group>"; };
+		DE9910012B808EF300A87075 /* DMListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewModel.swift; sourceTree = "<group>"; };
 		DE9971C72B4A75AB008D92B1 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		DE9971CA2B4AC839008D92B1 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		DE9D8C762B55542D00FBABC3 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -780,6 +786,16 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		DE990FFC2B808ED500A87075 /* DMList */ = {
+			isa = PBXGroup;
+			children = (
+				DE990FFD2B808EE200A87075 /* DMListView.swift */,
+				DE990FFF2B808EEA00A87075 /* DMListViewController.swift */,
+				DE9910012B808EF300A87075 /* DMListViewModel.swift */,
+			);
+			path = DMList;
+			sourceTree = "<group>";
+		};
 		DE9971C92B4AC820008D92B1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -804,6 +820,7 @@
 		DE9D8C7B2B56644B00FBABC3 /* DM */ = {
 			isa = PBXGroup;
 			children = (
+				DE990FFC2B808ED500A87075 /* DMList */,
 				DE9D8C7E2B56649000FBABC3 /* DMViewController.swift */,
 			);
 			path = DM;
@@ -1150,6 +1167,7 @@
 				DE22B6C82B7E9DAC002663A5 /* UserDefaultsManager.swift in Sources */,
 				DEF48A262B5F30CE00FDC7CC /* ChannelUnreadCount.swift in Sources */,
 				DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */,
+				DE9910022B808EF300A87075 /* DMListViewModel.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
 				DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */,
 				DE5AEEDF2B4FCA5800743DA5 /* InitialViewController.swift in Sources */,
@@ -1162,6 +1180,7 @@
 				DE13158E2B53A8A20023D73D /* HomeSectionTableViewCell.swift in Sources */,
 				DE247D982B5992D0007DE6E2 /* SplashViewController.swift in Sources */,
 				DE54643C2B60FF8400A29B79 /* ChattingViewController.swift in Sources */,
+				DE9910002B808EEA00A87075 /* DMListViewController.swift in Sources */,
 				DE8C27722B46D4A500141F5F /* UserRouter.swift in Sources */,
 				DE22B6CA2B7E9DBB002663A5 /* UserDefaultsWrapper.swift in Sources */,
 				DE8C27542B45666F00141F5F /* BTitleLabel.swift in Sources */,
@@ -1174,6 +1193,7 @@
 				DE1315882B53A64B0023D73D /* MessageCountLabel.swift in Sources */,
 				DE5464352B60E01700A29B79 /* ChannelSearchViewController.swift in Sources */,
 				DE5464532B613C6C00A29B79 /* MemberCollectionViewCell.swift in Sources */,
+				DE990FFE2B808EE200A87075 /* DMListView.swift in Sources */,
 				DE1CD2422B49ACC30083DD09 /* EmailValidation.swift in Sources */,
 				DE54647E2B65147A00A29B79 /* ChannelTable.swift in Sources */,
 				DE5464472B61325200A29B79 /* ChannelSettingViewController.swift in Sources */,
