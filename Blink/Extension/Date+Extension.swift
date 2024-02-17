@@ -13,6 +13,7 @@ enum DateFormatType: String {
     case monthDay = "M/d"
     case timeWithAMPM = "hh:mm a"
     case apiDate = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    case onlyDate = "yyyy년 M월 d일"
 }
 
 extension Date {

@@ -136,6 +136,9 @@
 		DE990FFE2B808EE200A87075 /* DMListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE990FFD2B808EE200A87075 /* DMListView.swift */; };
 		DE9910002B808EEA00A87075 /* DMListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE990FFF2B808EEA00A87075 /* DMListViewController.swift */; };
 		DE9910022B808EF300A87075 /* DMListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9910012B808EF300A87075 /* DMListViewModel.swift */; };
+		DE9910062B80950300A87075 /* MemberListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9910052B80950300A87075 /* MemberListHeaderView.swift */; };
+		DE99100C2B80985100A87075 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99100B2B80985100A87075 /* MemberCell.swift */; };
+		DE99100E2B80A95100A87075 /* DMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99100D2B80A95100A87075 /* DMTableViewCell.swift */; };
 		DE9971C82B4A75AB008D92B1 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9971C72B4A75AB008D92B1 /* SignUp.swift */; };
 		DE9971CB2B4AC839008D92B1 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9971CA2B4AC839008D92B1 /* KeyChainManager.swift */; };
 		DE9D8C772B55542D00FBABC3 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C762B55542D00FBABC3 /* UIViewController+Extension.swift */; };
@@ -305,6 +308,9 @@
 		DE990FFD2B808EE200A87075 /* DMListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListView.swift; sourceTree = "<group>"; };
 		DE990FFF2B808EEA00A87075 /* DMListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewController.swift; sourceTree = "<group>"; };
 		DE9910012B808EF300A87075 /* DMListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewModel.swift; sourceTree = "<group>"; };
+		DE9910052B80950300A87075 /* MemberListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListHeaderView.swift; sourceTree = "<group>"; };
+		DE99100B2B80985100A87075 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		DE99100D2B80A95100A87075 /* DMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMTableViewCell.swift; sourceTree = "<group>"; };
 		DE9971C72B4A75AB008D92B1 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		DE9971CA2B4AC839008D92B1 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		DE9D8C762B55542D00FBABC3 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -789,11 +795,30 @@
 		DE990FFC2B808ED500A87075 /* DMList */ = {
 			isa = PBXGroup;
 			children = (
+				DE9910032B80947900A87075 /* ReusableView */,
+				DE9910042B80948400A87075 /* Cell */,
 				DE990FFD2B808EE200A87075 /* DMListView.swift */,
 				DE990FFF2B808EEA00A87075 /* DMListViewController.swift */,
 				DE9910012B808EF300A87075 /* DMListViewModel.swift */,
 			);
 			path = DMList;
+			sourceTree = "<group>";
+		};
+		DE9910032B80947900A87075 /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				DE9910052B80950300A87075 /* MemberListHeaderView.swift */,
+			);
+			path = ReusableView;
+			sourceTree = "<group>";
+		};
+		DE9910042B80948400A87075 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE99100B2B80985100A87075 /* MemberCell.swift */,
+				DE99100D2B80A95100A87075 /* DMTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		DE9971C92B4AC820008D92B1 /* Data */ = {
@@ -1153,6 +1178,7 @@
 				DEF48A0F2B5EF89500FDC7CC /* AdminTableViewCell.swift in Sources */,
 				DE54642D2B60D02000A29B79 /* ChannelAddViewController.swift in Sources */,
 				DE5AEED22B4FAB8B00743DA5 /* LoginView.swift in Sources */,
+				DE99100C2B80985100A87075 /* MemberCell.swift in Sources */,
 				DE54644D2B61361D00A29B79 /* InfoHeaderView.swift in Sources */,
 				DE8C276F2B46D07000141F5F /* APIRouter.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
@@ -1217,6 +1243,7 @@
 				DE5AEEE42B4FD90D00743DA5 /* WSAddView.swift in Sources */,
 				DE1315862B53A5B40023D73D /* HashtagImageView.swift in Sources */,
 				DE5464722B64CCA900A29B79 /* SenderTextView.swift in Sources */,
+				DE99100E2B80A95100A87075 /* DMTableViewCell.swift in Sources */,
 				DE1315962B53B5620023D73D /* HomeDefaultView.swift in Sources */,
 				DE1315922B53AF680023D73D /* HomeDMTableViewCell.swift in Sources */,
 				DE5464272B60CDBE00A29B79 /* ChannelAddView.swift in Sources */,
@@ -1265,6 +1292,7 @@
 				DE28ED6A2B7C77F1002BA071 /* SocketIOManager.swift in Sources */,
 				DE9971C82B4A75AB008D92B1 /* SignUp.swift in Sources */,
 				DE8C27692B46C62600141F5F /* HTTPError.swift in Sources */,
+				DE9910062B80950300A87075 /* MemberListHeaderView.swift in Sources */,
 				DE1315842B53A4520023D73D /* HomeCellTitleLabel.swift in Sources */,
 				DE247D912B59446E007DE6E2 /* UIImageView+Extension.swift in Sources */,
 				DE5464642B63A81F00A29B79 /* ChattingTableViewCell.swift in Sources */,
