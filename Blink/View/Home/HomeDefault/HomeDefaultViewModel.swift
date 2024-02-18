@@ -177,6 +177,9 @@ final class HomeDefaultViewModel: ViewModelType {
                         HomeDMsData.DMCellInfo(dmInfo: $0, unreadDMCnt: 10)
                     }
                 )
+                self?.fetchDMsUnreadCount {
+                    completion()
+                }
                 
             case .failure(let error):
                 print("===DM 정보 조회 실패 ===", error)
