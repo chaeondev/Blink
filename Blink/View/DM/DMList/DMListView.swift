@@ -48,6 +48,7 @@ final class DMListView: BaseView {
 
 struct DMListCellInfo {
     let roomID: Int
+    let roomCreatedAt: String
     
     //user
     let userID: Int
@@ -55,9 +56,9 @@ struct DMListCellInfo {
     let nickname: String
     
     //chatting
-    let content: String
-    let date: Date
+    var content: String
+    var date: Date
     
-    let messageCnt: Int
+    var messageCnt: Int
     
 }

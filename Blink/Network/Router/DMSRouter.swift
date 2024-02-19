@@ -12,6 +12,7 @@ enum DMSRouter: APIRouter {
     
     case checkDMRooms(_ id: Int) //workspaceID
     case dmsUnreadCount(_ model: DMsUnreadCountRequest)
+    case fetchDMChatting(_ model: DMChattingRequest)
     
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
@@ -23,6 +24,8 @@ enum DMSRouter: APIRouter {
             return "/v1/workspaces/\(id)/dms"
         case .dmsUnreadCount(let model):
             return "/v1/workspaces/\(model.workspaceID)/dms/\(model.roomID)/unreads"
+        case .fetchDMChatting(let model):
+            return "/v1/workspaces/\(model.workspaceID)/dms/\(model.userID)/chats"
         }
     }
     
@@ -36,7 +39,7 @@ enum DMSRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .checkDMRooms, .dmsUnreadCount:
+        case .checkDMRooms, .dmsUnreadCount, .fetchDMChatting:
             return .get
         }
     }
@@ -52,6 +55,8 @@ enum DMSRouter: APIRouter {
         switch self {
         case .dmsUnreadCount(let model):
             return ["after": model.after]
+        case .fetchDMChatting(let model):
+            return ["cursor_date": model.cursor_date ?? ""]
         default:
             return [:]
         }

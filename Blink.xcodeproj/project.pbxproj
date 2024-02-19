@@ -115,6 +115,9 @@
 		DE5AEEE42B4FD90D00743DA5 /* WSAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEEE32B4FD90D00743DA5 /* WSAddView.swift */; };
 		DE5AEEE62B4FD94700743DA5 /* WSAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEEE52B4FD94700743DA5 /* WSAddViewController.swift */; };
 		DE5AEEE82B4FDA4000743DA5 /* WSAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEEE72B4FDA4000743DA5 /* WSAddViewModel.swift */; };
+		DE78CBC12B837A520058B065 /* DMChatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBC02B837A520058B065 /* DMChatting.swift */; };
+		DE78CBC32B837CB70058B065 /* DMsChatsRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBC22B837CB70058B065 /* DMsChatsRes.swift */; };
+		DE78CBC52B837CCD0058B065 /* DMChatRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBC42B837CCD0058B065 /* DMChatRes.swift */; };
 		DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27482B45412A00141F5F /* AuthViewController.swift */; };
 		DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C274B2B454E4F00141F5F /* RxCocoa */; };
 		DE8C274E2B454E4F00141F5F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C274D2B454E4F00141F5F /* RxSwift */; };
@@ -291,6 +294,9 @@
 		DE5AEEE32B4FD90D00743DA5 /* WSAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSAddView.swift; sourceTree = "<group>"; };
 		DE5AEEE52B4FD94700743DA5 /* WSAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSAddViewController.swift; sourceTree = "<group>"; };
 		DE5AEEE72B4FDA4000743DA5 /* WSAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSAddViewModel.swift; sourceTree = "<group>"; };
+		DE78CBC02B837A520058B065 /* DMChatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatting.swift; sourceTree = "<group>"; };
+		DE78CBC22B837CB70058B065 /* DMsChatsRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsChatsRes.swift; sourceTree = "<group>"; };
+		DE78CBC42B837CCD0058B065 /* DMChatRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatRes.swift; sourceTree = "<group>"; };
 		DE8C27482B45412A00141F5F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DE8C27512B45626800141F5F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DE8C27532B45666F00141F5F /* BTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTitleLabel.swift; sourceTree = "<group>"; };
@@ -958,6 +964,9 @@
 			children = (
 				DEF48A212B5F265E00FDC7CC /* DMsRoomRes.swift */,
 				DEF48A292B5F4C0200FDC7CC /* DMsUnreadCount.swift */,
+				DE78CBC02B837A520058B065 /* DMChatting.swift */,
+				DE78CBC22B837CB70058B065 /* DMsChatsRes.swift */,
+				DE78CBC42B837CCD0058B065 /* DMChatRes.swift */,
 			);
 			path = DM;
 			sourceTree = "<group>";
@@ -1186,6 +1195,7 @@
 				DE13159F2B53EC1B0023D73D /* WorkspaceListView.swift in Sources */,
 				DE247D9A2B5992D8007DE6E2 /* SplashViewModel.swift in Sources */,
 				DE8C275C2B46711C00141F5F /* SignUpViewModel.swift in Sources */,
+				DE78CBC12B837A520058B065 /* DMChatting.swift in Sources */,
 				DE247D932B594667007DE6E2 /* Date+Extension.swift in Sources */,
 				DE1315982B53B5730023D73D /* HomeDefaultViewController.swift in Sources */,
 				DE13156E2B52DB760023D73D /* Refresh.swift in Sources */,
@@ -1195,8 +1205,10 @@
 				DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */,
 				DE9910022B808EF300A87075 /* DMListViewModel.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
+				DE78CBC32B837CB70058B065 /* DMsChatsRes.swift in Sources */,
 				DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */,
 				DE5AEEDF2B4FCA5800743DA5 /* InitialViewController.swift in Sources */,
+				DE78CBC52B837CCD0058B065 /* DMChatRes.swift in Sources */,
 				DEF48A0C2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift in Sources */,
 				DE51E1B22B5A82F20038024C /* TwoAlertViewController.swift in Sources */,
 				DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */,
