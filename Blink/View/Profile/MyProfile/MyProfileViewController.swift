@@ -14,6 +14,8 @@ final class MyProfileViewController: BaseViewController {
     private let mainView = MyProfileView()
     let viewModel = MyProfileViewModel()
     
+    private let disposeBag = DisposeBag()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -21,18 +23,33 @@ final class MyProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigation(title: "내 정보 수정")
+        setNavigation(title: "내 정보 수정", isLeftButton: false)
         setTableView()
         
+        bind()
+        fetchData()
     }
     
     func bind() {
+        let input = MyProfileViewModel.Input()
+        let output = viewModel.transform(input: input)
         
+        output.profileImageStr
+            .bind(with: self) { owner, str in
+                owner.mainView.profileButton.setKFImage(imageUrl: str, placeholderImage: .noPhotoB)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setTableView() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+    }
+    
+    private func fetchData() {
+        viewModel.fetchProfileData { [weak self] in
+            self?.mainView.tableView.reloadData()
+        }
     }
 
 }

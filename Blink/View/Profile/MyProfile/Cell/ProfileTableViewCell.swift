@@ -67,6 +67,7 @@ final class ProfileTableViewCell: UITableViewCell {
         self.detailTextLabel?.font = .customFont(.body)
         
         contentView.backgroundColor = .backgroundSecondary
+        self.selectionStyle = .none
     }
     
     func configureCell(_ data: ProfileCellInfo) {
@@ -80,6 +81,7 @@ final class ProfileTableViewCell: UITableViewCell {
             
             self.textLabel?.attributedText = attributedStr
         } else {
+            self.textLabel?.textColor = .brandBlack
             self.textLabel?.text = data.title
         }
         
@@ -89,8 +91,10 @@ final class ProfileTableViewCell: UITableViewCell {
         //Accessory
         switch data.accessory {
         case .none:
+            self.accessoryView = nil
             self.accessoryType = .none
         case .disclosure:
+            self.accessoryView = nil
             self.accessoryType = .disclosureIndicator
         case .custom(let socialList):
             appleImageView.isHidden = socialList.contains(.apple) ? false : true

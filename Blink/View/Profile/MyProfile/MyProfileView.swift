@@ -12,6 +12,8 @@ final class MyProfileView: BaseView {
     let profileButton = {
         let view = UIButton()
         view.setImage(.noPhotoB, for: .normal)
+        view.contentVerticalAlignment = .fill
+        view.contentHorizontalAlignment = .fill
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 8
@@ -31,6 +33,7 @@ final class MyProfileView: BaseView {
         view.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.description())
         view.rowHeight = 44
         view.separatorStyle = .none
+        view.isScrollEnabled = false
         return view
     }()
     
@@ -53,7 +56,7 @@ final class MyProfileView: BaseView {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(profileButton.snp.bottom).offset(20)
+            make.top.equalTo(profileButton.snp.bottom).offset(5)
             make.horizontalEdges.bottom.equalToSuperview()
         }
     }
