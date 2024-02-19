@@ -20,7 +20,7 @@ class HomeTabViewController: UITabBarController {
     let homeVC = HomeDefaultViewController()
     let dmVC = DMListViewController()
     let searchVC = SearchViewController()
-    let settingVC = SettingViewController()
+    let settingVC = MyProfileViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
