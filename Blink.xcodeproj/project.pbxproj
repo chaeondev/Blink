@@ -122,6 +122,11 @@
 		DE78CBCB2B838D620058B065 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBCA2B838D620058B065 /* MyProfileViewController.swift */; };
 		DE78CBCD2B838D6A0058B065 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBCC2B838D6A0058B065 /* MyProfileViewModel.swift */; };
 		DE78CBD02B838D940058B065 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBCF2B838D940058B065 /* ProfileTableViewCell.swift */; };
+		DE78CBD32B83CE0D0058B065 /* CoinShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBD22B83CE0D0058B065 /* CoinShopView.swift */; };
+		DE78CBD52B83CE190058B065 /* CoinShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBD42B83CE190058B065 /* CoinShopViewController.swift */; };
+		DE78CBD72B83CE220058B065 /* CoinShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBD62B83CE220058B065 /* CoinShopViewModel.swift */; };
+		DE78CBDA2B83CE6D0058B065 /* CoinShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBD92B83CE6D0058B065 /* CoinShopTableViewCell.swift */; };
+		DE78CBDD2B83D0E80058B065 /* MoneyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBDC2B83D0E80058B065 /* MoneyButton.swift */; };
 		DE8C27492B45412A00141F5F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8C27482B45412A00141F5F /* AuthViewController.swift */; };
 		DE8C274C2B454E4F00141F5F /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C274B2B454E4F00141F5F /* RxCocoa */; };
 		DE8C274E2B454E4F00141F5F /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8C274D2B454E4F00141F5F /* RxSwift */; };
@@ -305,6 +310,11 @@
 		DE78CBCA2B838D620058B065 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		DE78CBCC2B838D6A0058B065 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		DE78CBCF2B838D940058B065 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		DE78CBD22B83CE0D0058B065 /* CoinShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopView.swift; sourceTree = "<group>"; };
+		DE78CBD42B83CE190058B065 /* CoinShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopViewController.swift; sourceTree = "<group>"; };
+		DE78CBD62B83CE220058B065 /* CoinShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopViewModel.swift; sourceTree = "<group>"; };
+		DE78CBD92B83CE6D0058B065 /* CoinShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopTableViewCell.swift; sourceTree = "<group>"; };
+		DE78CBDC2B83D0E80058B065 /* MoneyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyButton.swift; sourceTree = "<group>"; };
 		DE8C27482B45412A00141F5F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DE8C27512B45626800141F5F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DE8C27532B45666F00141F5F /* BTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTitleLabel.swift; sourceTree = "<group>"; };
@@ -781,6 +791,7 @@
 			isa = PBXGroup;
 			children = (
 				DE78CBC72B838D400058B065 /* MyProfile */,
+				DE78CBD12B83CDF30058B065 /* CoinShop */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -802,6 +813,34 @@
 				DE78CBCF2B838D940058B065 /* ProfileTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DE78CBD12B83CDF30058B065 /* CoinShop */ = {
+			isa = PBXGroup;
+			children = (
+				DE78CBDB2B83CEC20058B065 /* Component */,
+				DE78CBD82B83CE2A0058B065 /* Cell */,
+				DE78CBD22B83CE0D0058B065 /* CoinShopView.swift */,
+				DE78CBD42B83CE190058B065 /* CoinShopViewController.swift */,
+				DE78CBD62B83CE220058B065 /* CoinShopViewModel.swift */,
+			);
+			path = CoinShop;
+			sourceTree = "<group>";
+		};
+		DE78CBD82B83CE2A0058B065 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE78CBD92B83CE6D0058B065 /* CoinShopTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DE78CBDB2B83CEC20058B065 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				DE78CBDC2B83D0E80058B065 /* MoneyButton.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		DE8C27472B4540DC00141F5F /* Auth */ = {
@@ -1243,6 +1282,7 @@
 				DEF48A262B5F30CE00FDC7CC /* ChannelUnreadCount.swift in Sources */,
 				DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */,
 				DE9910022B808EF300A87075 /* DMListViewModel.swift in Sources */,
+				DE78CBD72B83CE220058B065 /* CoinShopViewModel.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
 				DE78CBC32B837CB70058B065 /* DMsChatsRes.swift in Sources */,
 				DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */,
@@ -1251,6 +1291,7 @@
 				DEF48A0C2B5EF87E00FDC7CC /* ChangeAdminViewModel.swift in Sources */,
 				DE51E1B22B5A82F20038024C /* TwoAlertViewController.swift in Sources */,
 				DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */,
+				DE78CBD32B83CE0D0058B065 /* CoinShopView.swift in Sources */,
 				DE5A67832B4A6841004FE7AC /* String+Extension.swift in Sources */,
 				DE247D962B5992C5007DE6E2 /* SplashView.swift in Sources */,
 				DE5464312B60D45800A29B79 /* CreateChannel.swift in Sources */,
@@ -1276,6 +1317,7 @@
 				DE5464472B61325200A29B79 /* ChannelSettingViewController.swift in Sources */,
 				DE2A193C2B43F35800194ADA /* UILabel+Extension.swift in Sources */,
 				DE78CBC92B838D5A0058B065 /* MyProfileView.swift in Sources */,
+				DE78CBDA2B83CE6D0058B065 /* CoinShopTableViewCell.swift in Sources */,
 				DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */,
 				DE1315742B52E81A0023D73D /* WorkspaceInfo.swift in Sources */,
 				DE13159A2B53B5810023D73D /* HomeDefaultViewModel.swift in Sources */,
@@ -1301,6 +1343,7 @@
 				DE5464272B60CDBE00A29B79 /* ChannelAddView.swift in Sources */,
 				DEF48A332B5F918D00FDC7CC /* InviteMemberViewController.swift in Sources */,
 				DE13158C2B53A7FD0023D73D /* BaseTableViewCell.swift in Sources */,
+				DE78CBDD2B83D0E80058B065 /* MoneyButton.swift in Sources */,
 				DE5AEED62B4FAB9C00743DA5 /* LoginViewModel.swift in Sources */,
 				DE13157B2B533CE90023D73D /* HomeEmptyViewController.swift in Sources */,
 				DE1315822B53A2910023D73D /* ChevronImageView.swift in Sources */,
@@ -1317,6 +1360,7 @@
 				DE5464762B64D29200A29B79 /* SendPhotoCollectionViewCell.swift in Sources */,
 				DE9971CB2B4AC839008D92B1 /* KeyChainManager.swift in Sources */,
 				DEF48A282B5F4A2100FDC7CC /* DMSRouter.swift in Sources */,
+				DE78CBD52B83CE190058B065 /* CoinShopViewController.swift in Sources */,
 				DE2A19462B44229B00194ADA /* BaseViewController.swift in Sources */,
 				DE42794D2B4537F2005DC4A7 /* ButtonBuilder.swift in Sources */,
 				DEF48A132B5F0B9100FDC7CC /* WorkspaceRes.swift in Sources */,

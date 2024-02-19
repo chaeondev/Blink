@@ -73,4 +73,15 @@ extension MyProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (0,0):
+            let vc = CoinShopViewController()
+            vc.viewModel.coinCnt = self.viewModel.coin
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            return
+        }
+    }
 }

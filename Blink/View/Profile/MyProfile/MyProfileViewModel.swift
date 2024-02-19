@@ -25,6 +25,7 @@ final class MyProfileViewModel: ViewModelType {
     )
     
     var profileImageStr = BehaviorSubject(value: "")
+    var coin = -1
     
     struct Input {
         
@@ -51,6 +52,7 @@ extension MyProfileViewModel {
                 //TableView
                 //1. 새싹코인
                 self?.profileData.first[0].title = "내 새싹 코인 \(response.sesacCoin)"
+                self?.coin = response.sesacCoin
                 //2. 닉네임
                 self?.profileData.first[1].detail = response.nickname
                 //3. 연락처
