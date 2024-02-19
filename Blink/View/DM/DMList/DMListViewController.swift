@@ -55,10 +55,14 @@ final class DMListViewController: BaseViewController {
         
         view.backgroundColor = .brandWhite
         
+        fetchDMTableData()
+        
         setCustomNavigationbar(customView: customView, left: leftButton, title: naviTitleButton, right: rightButton)
         
         setTableView()
         setCollectionView()
+
+        bind()
         
         loadData()
 
@@ -99,17 +103,27 @@ final class DMListViewController: BaseViewController {
             self?.mainView.headerView.collectionView.reloadData()
         }
     }
+    
+    func fetchDMTableData() {
+        viewModel.fetchDMCellInfo {
+            self.mainView.tableView.reloadData()
+        }
+    }
  
 }
 
 extension DMListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.dmListData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DMTableViewCell.description(), for: indexPath) as? DMTableViewCell else { return UITableViewCell() }
+        
+        let data = viewModel.dmListData[indexPath.row]
+        
+        cell.configureCell(data)
         
         return cell
     }
@@ -119,11 +133,14 @@ extension DMListViewController: UITableViewDelegate, UITableViewDataSource {
 extension DMListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.memberListData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemberCell.description(), for: indexPath) as? MemberCell else { return UICollectionViewCell() }
+        
+        let data = viewModel.memberListData[indexPath.item]
+        cell.configureCell(name: data.nickname, imageUrl: data.profileImage)
         
         return cell
     }
