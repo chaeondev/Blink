@@ -24,6 +24,9 @@ final class MyProfileViewController: BaseViewController {
         super.viewDidLoad()
         
         setNavigation(title: "내 정보 수정", isLeftButton: false)
+        navigationController?.navigationBar.tintColor = .brandBlack
+        navigationItem.backButtonDisplayMode = .minimal
+        
         setTableView()
         
         bind()
