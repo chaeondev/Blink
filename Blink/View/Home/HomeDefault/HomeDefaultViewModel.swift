@@ -133,6 +133,8 @@ final class HomeDefaultViewModel: ViewModelType {
     func fetchChannelUnreadCount(completion: @escaping () -> Void) {
         guard let channelData else { return }
         
+        let group = DispatchGroup()
+        
         for (index, item) in channelData.sectionData.enumerated() {
             
             let channelInfo = ChannelInfoModel(
@@ -149,20 +151,26 @@ final class HomeDefaultViewModel: ViewModelType {
                 after: chatLastDate?.toString(dateType: .apiDate) ?? ""
             )
 
+            group.enter()
             APIService.shared.requestCompletion(type: ChannelUnreadCountResponse.self, api: ChannelRouter.channelChatUnreadCount(requestModel)) { [weak self] result in
                 switch result {
                 case .success(let response):
                     print("===\(response.name) 채널 읽지 않은 채팅 개수: \(response.count) 네트워크 성공===")
                     self?.channelData!.sectionData[index].unreadChatCnt = response.count
                     
-                    completion()
                 case .failure(let error):
                     print("===채널 읽지 않은 채팅 개수 네트워크 실패===")
                     print("===채널 정보: \(String(describing: self?.channelData?.sectionData[index].channelInfo))===")
                     print("===에러: \(error)===")
                 }
+                
+                group.leave()
             }
             
+        }
+        
+        group.notify(queue: .main) {
+            completion()
         }
     }
     
@@ -190,25 +198,33 @@ final class HomeDefaultViewModel: ViewModelType {
     func fetchDMsUnreadCount(completion: @escaping () -> Void) {
         guard let dmData else { return }
         
+        let group = DispatchGroup()
+        
         for (index, item) in dmData.sectionData.enumerated() {
             let requestModel = DMsUnreadCountRequest(
                 roomID: item.dmInfo.room_id,
                 workspaceID: self.workspaceID,
                 after: item.dmInfo.createdAt) // TODO: 꼭 바꾸기!!!
             
+            group.enter()
             APIService.shared.requestCompletion(type: DMsUnreadCountResponse.self, api: DMSRouter.dmsUnreadCount(requestModel)) { [weak self] result in
                 switch result {
                 case .success(let response):
                     print("===\(response.room_id) 방 DM개수: \(response.count) 네트워크 성공===")
                     self?.dmData!.sectionData[index].unreadDMCnt = response.count
-                    
-                    completion()
+
                 case .failure(let error):
                     print("===DM 읽지 않은 채팅 개수 네트워크 실패===")
                     print("===DM방 정보: \(String(describing: self?.dmData?.sectionData[index].dmInfo))")
                     print("===에러: \(error)===")
                 }
+                
+                group.leave()
             }
+        }
+        
+        group.notify(queue: .main) {
+            completion()
         }
     }
     
