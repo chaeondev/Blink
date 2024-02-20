@@ -159,6 +159,7 @@
 		DE9D8C832B5664D200FBABC3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */; };
 		DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */; };
 		DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */; };
+		DEC4BD742B84DF90004A19BD /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = DEC4BD732B84DF90004A19BD /* iamport-ios */; };
 		DED868092B7F531D00F16FF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DED868082B7F531C00F16FF1 /* GoogleService-Info.plist */; };
 		DEF0048A2B72714900375EF8 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF004892B72714900375EF8 /* RealmRepository.swift */; };
 		DEF48A082B5EF86900FDC7CC /* ChangeAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */; };
@@ -371,6 +372,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEC4BD742B84DF90004A19BD /* iamport-ios in Frameworks */,
 				DE8C27622B46A41500141F5F /* Alamofire in Frameworks */,
 				DE8C275F2B4688CC00141F5F /* Toast in Frameworks */,
 				DE22B6DB2B7F4677002663A5 /* FirebaseMessaging in Frameworks */,
@@ -1118,6 +1120,7 @@
 				DE22B6D62B7F4677002663A5 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				DE22B6D82B7F4677002663A5 /* FirebaseCrashlytics */,
 				DE22B6DA2B7F4677002663A5 /* FirebaseMessaging */,
+				DEC4BD732B84DF90004A19BD /* iamport-ios */,
 			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
@@ -1202,6 +1205,7 @@
 				DE5464772B65124B00A29B79 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				DE28ED642B7C767A002BA071 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 				DE22B6D52B7F4677002663A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DEC4BD722B84DF90004A19BD /* XCRemoteSwiftPackageReference "iamport-ios" */,
 			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
@@ -1571,11 +1575,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Blink/Blink.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
+				DEVELOPMENT_TEAM = 94879TT8BU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Blink/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 허용해주세요.";
@@ -1589,10 +1592,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaewon.Blink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1608,11 +1610,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Blink/Blink.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
+				DEVELOPMENT_TEAM = 94879TT8BU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Blink/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근 허용해주세요.";
@@ -1626,10 +1627,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chaewon.Blink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1837,6 +1837,14 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		DEC4BD722B84DF90004A19BD /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1909,6 +1917,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE8C27602B46A41500141F5F /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DEC4BD732B84DF90004A19BD /* iamport-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEC4BD722B84DF90004A19BD /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

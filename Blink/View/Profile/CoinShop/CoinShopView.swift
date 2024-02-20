@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import WebKit
 
 final class CoinShopView: BaseView {
     

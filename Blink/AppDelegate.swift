@@ -9,6 +9,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Firebase
 import FirebaseMessaging
+import iamport_ios
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -93,6 +94,14 @@ extension AppDelegate: MessagingDelegate {
             name: Notification.Name("FCMToken"),
             object: nil,
             userInfo: dataDict
-            )
-        }
+        )
     }
+}
+
+extension AppDelegate {
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        Iamport.shared.receivedURL(url)
+        return true
+    }
+}

@@ -7,8 +7,13 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class CoinShopTableViewCell: UITableViewCell {
+    
+    let moneyButton = MoneyButton(money: 100)
+    
+    var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
@@ -17,6 +22,12 @@ final class CoinShopTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
     }
     
     private func setting() {
@@ -53,7 +64,7 @@ final class CoinShopTableViewCell: UITableViewCell {
         case .none:
             self.accessoryView = nil
         case .custom(let money):
-            let moneyButton = MoneyButton(money: money)
+            moneyButton.setTitle("₩\(money)", for: .normal)
             moneyButton.frame = CGRect(x: 0, y: 0, width: 74, height: 28)
             self.accessoryView = moneyButton
         }

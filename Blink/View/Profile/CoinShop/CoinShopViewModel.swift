@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import iamport_ios
 
 final class CoinShopViewModel: ViewModelType {
     
@@ -23,7 +26,7 @@ final class CoinShopViewModel: ViewModelType {
     )
     
     struct Input {
-        
+        let cellButtonClicked: PublishSubject<IndexPath>
     }
     
     struct Output {
@@ -31,6 +34,10 @@ final class CoinShopViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
+        
+        
+        
+        
         return Output()
     }
 }
@@ -46,5 +53,36 @@ extension CoinShopViewModel {
         default:
             return CoinCellData(title: "오류오류", isAccessoryView: .none)
         }
+    }
+}
+
+// MARK: 결제 관련
+extension CoinShopViewModel {
+    
+    //1. 결제 요청 데이터 구성
+    func createPaymentData(_ title: String?) -> IamportPayment {
+        var amount = ""
+        var coin = -1
+        
+        if let title {
+            amount = title.replacingOccurrences(of: "₩", with: "")
+            coin = (Int(amount) ?? 10)/10
+            print("AMOUNT: \(amount), COIN: \(coin)")
+        } else {
+            print("버튼에서 amount 못구함!!!!!!")
+            print("coin도 못구함!!!!!!!!!!")
+        }
+        
+        let payment = IamportPayment(
+            pg: PG.html5_inicis.makePgRawName(pgId: "INIpayTest"),
+            merchant_uid: "ios_\(APIKey.sesacKey)_\(Int(Date().timeIntervalSince1970))",
+            amount: amount).then {
+                $0.pay_method = PayMethod.card.rawValue
+                $0.name = "\(coin) coin"
+                $0.buyer_name = "윤채원"
+                $0.app_scheme = "sesac"
+            }
+        
+        return payment
     }
 }
