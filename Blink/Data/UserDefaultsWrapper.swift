@@ -8,6 +8,7 @@
 import Foundation
 
 enum UserDefaultsKey: String {
+    case workspaceID
     case channelID
     case fcmDeviceToken
 }
