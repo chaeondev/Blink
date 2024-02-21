@@ -58,5 +58,7 @@ final class HomeDMTableViewCell: BaseTableViewCell {
             titleLabel.update(false)
             messageCountButton.isHidden = true
         }
+        
+        profileImageView.setKFImage(imageUrl: image ?? "")
     }
 }

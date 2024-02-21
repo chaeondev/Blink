@@ -321,6 +321,7 @@ extension HomeDefaultViewController: WorkspaceListDelegate {
     // TODO: reload data
     func updateWorkspaceIDToHome(id: Int) {
         self.viewModel.workspaceID = id
+        UserDefaultsManager.workspaceID = id
         //reload data
         
         //네비게이션바 업데이트
