@@ -27,6 +27,9 @@ enum UserRouter: APIRouter {
     //FCM Device Token 저장
     case saveFcmToken(_ model: FCMDeviceTokenRequest)
     
+    //store 결제
+    case payValidation(_ model: PayValidationRequest)
+    
     var baseURL: URL {
         return URL(string: APIKey.baseURL)!
     }
@@ -51,6 +54,9 @@ enum UserRouter: APIRouter {
             
         case .saveFcmToken:
             "/v1/users/deviceToken"
+            
+        case .payValidation:
+            "/v1/store/pay/validation"
         }
     }
     
@@ -68,7 +74,7 @@ enum UserRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .emailValidation, .join, .login, .saveFcmToken:
+        case .emailValidation, .join, .login, .saveFcmToken, .payValidation:
             return .post
         case .refreshToken, .checkMyProfile, .logout:
             return .get
@@ -98,6 +104,11 @@ enum UserRouter: APIRouter {
         case .saveFcmToken(let model):
             return [
                 "deviceToken": model.deviceToken
+            ]
+        case .payValidation(let model):
+            return [
+                "imp_uid": model.imp_uid,
+                "merchant_uid": model.merchant_uid
             ]
         default:
             return [:]

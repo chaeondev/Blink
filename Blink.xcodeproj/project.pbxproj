@@ -159,6 +159,8 @@
 		DE9D8C832B5664D200FBABC3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */; };
 		DE9D8C862B5676D700FBABC3 /* WorkspaceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */; };
 		DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */; };
+		DEAFAE962B85118A00D42D36 /* PayValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAFAE952B85118A00D42D36 /* PayValidationRequest.swift */; };
+		DEAFAE982B85123200D42D36 /* BillingResultRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAFAE972B85123200D42D36 /* BillingResultRes.swift */; };
 		DEC4BD742B84DF90004A19BD /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = DEC4BD732B84DF90004A19BD /* iamport-ios */; };
 		DED868092B7F531D00F16FF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DED868082B7F531C00F16FF1 /* GoogleService-Info.plist */; };
 		DEF0048A2B72714900375EF8 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF004892B72714900375EF8 /* RealmRepository.swift */; };
@@ -344,6 +346,8 @@
 		DE9D8C822B5664D200FBABC3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DE9D8C852B5676D700FBABC3 /* WorkspaceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListTableViewCell.swift; sourceTree = "<group>"; };
 		DE9D8C872B57A05000FBABC3 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
+		DEAFAE952B85118A00D42D36 /* PayValidationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationRequest.swift; sourceTree = "<group>"; };
+		DEAFAE972B85123200D42D36 /* BillingResultRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResultRes.swift; sourceTree = "<group>"; };
 		DED868082B7F531C00F16FF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DEF004892B72714900375EF8 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		DEF48A072B5EF86900FDC7CC /* ChangeAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminView.swift; sourceTree = "<group>"; };
@@ -1032,6 +1036,8 @@
 				DEF48A102B5F00F900FDC7CC /* User.swift */,
 				DEF48A182B5F146200FDC7CC /* ProfileRes.swift */,
 				DE990FFA2B7F5B8000A87075 /* FCMDeviceTokenRes.swift */,
+				DEAFAE952B85118A00D42D36 /* PayValidationRequest.swift */,
+				DEAFAE972B85123200D42D36 /* BillingResultRes.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1285,6 +1291,7 @@
 				DE22B6C82B7E9DAC002663A5 /* UserDefaultsManager.swift in Sources */,
 				DEF48A262B5F30CE00FDC7CC /* ChannelUnreadCount.swift in Sources */,
 				DE54646C2B63AE6800A29B79 /* MessageBoxTextView.swift in Sources */,
+				DEAFAE962B85118A00D42D36 /* PayValidationRequest.swift in Sources */,
 				DE9910022B808EF300A87075 /* DMListViewModel.swift in Sources */,
 				DE78CBD72B83CE220058B065 /* CoinShopViewModel.swift in Sources */,
 				DE8C27742B46DCDA00141F5F /* APIService.swift in Sources */,
@@ -1323,6 +1330,7 @@
 				DE78CBC92B838D5A0058B065 /* MyProfileView.swift in Sources */,
 				DE78CBDA2B83CE6D0058B065 /* CoinShopTableViewCell.swift in Sources */,
 				DE2A194C2B442B0E00194ADA /* RoundedButton.swift in Sources */,
+				DEAFAE982B85123200D42D36 /* BillingResultRes.swift in Sources */,
 				DE1315742B52E81A0023D73D /* WorkspaceInfo.swift in Sources */,
 				DE13159A2B53B5810023D73D /* HomeDefaultViewModel.swift in Sources */,
 				DE9D8C882B57A05000FBABC3 /* HomeTabViewController.swift in Sources */,

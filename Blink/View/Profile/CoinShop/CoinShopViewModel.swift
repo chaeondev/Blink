@@ -78,11 +78,49 @@ extension CoinShopViewModel {
             merchant_uid: "ios_\(APIKey.sesacKey)_\(Int(Date().timeIntervalSince1970))",
             amount: amount).then {
                 $0.pay_method = PayMethod.card.rawValue
-                $0.name = "\(coin) coin"
+                $0.name = "\(coin) Coin"
                 $0.buyer_name = "윤채원"
                 $0.app_scheme = "sesac"
             }
         
         return payment
+    }
+    
+    func validPayment(_ iamportResponse: IamportResponse?, completion: @escaping (Int) -> Void) {
+        guard let iamportResponse else { return }
+        
+        let requestModel = PayValidationRequest(imp_uid: iamportResponse.imp_uid ?? "결제거래번호 없음", merchant_uid: iamportResponse.merchant_uid ?? "상점고유번호 없음")
+        
+        print("======유효성 requestModel======\n", requestModel)
+        
+        APIService.shared.requestCompletion(type: BillingResultRes.self, api: UserRouter.payValidation(requestModel)) { result in
+            switch result {
+            case .success(let response):
+                print("\n=======결제 유효성 검사 성공!!!=======")
+                print("\n\n", response, "\n")
+                
+                let coin = response.sesacCoin
+                completion(coin)
+                
+            case .failure(let error):
+                print("=====결제 유효성 검사 에러!!!=====")
+                print(error)
+            }
+        }
+    }
+    
+    func updateProfileCoin(completion: @escaping () -> Void) {
+        
+        APIService.shared.requestCompletion(type: ProfileRes.self, api: UserRouter.checkMyProfile) { result in
+            switch result {
+            case .success(let response):
+                print("프로필 새싹 코인 업데이트 성공")
+                let totalCoin = response.sesacCoin
+                self.coinTableData.first[0].title = "🌱 현재 보유한 코인 \(totalCoin)개"
+                completion()
+            case .failure(let error):
+                print("프로필 새싹 코인 업데이트 실패")
+            }
+        }
     }
 }

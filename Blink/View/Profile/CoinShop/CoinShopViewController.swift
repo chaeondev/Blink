@@ -74,11 +74,6 @@ extension CoinShopViewController: UITableViewDelegate, UITableViewDataSource {
         let data = viewModel.coinDataForCell(indexPath)
         cell.configureCell(data)
         
-//        cell.moneyButton.rx.tap
-//            .bind(with: self) { owner, _ in
-//                owner.cellButtonClicked.onNext(indexPath)
-//            }
-//            .disposed(by: cell.disposeBag)
         cell.moneyButton.addTarget(self, action: #selector(moneyButtonClicked), for: .touchUpInside)
         
         return cell
@@ -89,24 +84,58 @@ extension CoinShopViewController {
     
     @objc func moneyButtonClicked(_ sender: UIButton) {
         
+        //0. 기반되는 웹뷰 레이아웃 잡기
         setupWebView()
         
+        //1. 결제 요청 데이터 구성
         let payment = viewModel.createPaymentData(sender.titleLabel?.text)
+
         //2. 포트원 SDK에 결제 요청
         Iamport.shared.paymentWebView(webViewMode: webView, userCode: "imp57573124", payment: payment) { [weak self] iamportResponse in
-            
-            print("======결제창 떠주세여...=======")
+
+            print("=====결제요청결과=====")
             print(String(describing: iamportResponse))
+            
+            
+            //콜백메서드
+            self?.removeWebView()
+            self?.tabBarController?.tabBar.isHidden = false
+            
+            //결제 유효성 검증
+            if iamportResponse?.success == true {
+                print("결제 자체는 성공!!!!!!")
+                self?.paymentCallback(iamportResponse)
+            }
             
         }
     }
     
-    func setupWebView() {
+    private func setupWebView() {
         mainView.addSubview(webView)
         
         webView.snp.makeConstraints { make in
-            make.edges.equalTo(mainView.safeAreaLayoutGuide)
+            make.top.horizontalEdges.equalTo(mainView.safeAreaLayoutGuide)
+            make.bottom.equalTo(mainView)
         }
+        
+        tabBarController?.tabBar.isHidden = true
     }
     
+    private func removeWebView() {
+        mainView.willRemoveSubview(webView)
+        webView.stopLoading()
+        webView.removeFromSuperview()
+    }
+    
+    private func paymentCallback(_ response: IamportResponse?) {
+        viewModel.validPayment(response) { [weak self] coin in
+            
+            self?.toast(message: "\(coin) Coin이 결제되었습니다")
+            
+            self?.viewModel.updateProfileCoin {
+                self?.mainView.tableView.reloadData()
+            }
+            
+        }
+    }
 }
