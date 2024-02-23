@@ -11,22 +11,6 @@ import RxCocoa
 
 final class LoginViewModel: ViewModelType {
     
-    enum LoginValidation {
-        case invalidEmail
-        case invalidPassword
-    }
-    
-    enum LoginNetworkResult<T: Decodable> {
-        case networkError
-        case loginFailed
-        case success(T)
-    }
-    
-    enum WorkspaceType {
-        case empty
-        case notEmpty(wsID: Int)
-    }
-    
     private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.com"
     private let pwRegEx = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,50}"
     
@@ -156,3 +140,18 @@ final class LoginViewModel: ViewModelType {
     }
 }
 
+enum LoginValidation {
+    case invalidEmail
+    case invalidPassword
+}
+
+enum LoginNetworkResult<T: Decodable> {
+    case networkError
+    case loginFailed
+    case success(T)
+}
+
+enum WorkspaceType {
+    case empty
+    case notEmpty(wsID: Int)
+}

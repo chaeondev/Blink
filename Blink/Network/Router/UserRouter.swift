@@ -14,6 +14,7 @@ enum UserRouter: APIRouter {
     case emailValidation(_ model: EmailValidationRequest)
     case join(_ model: SignUpRequest)
     case login(_ model: LoginRequest)
+    case kakaoLogin(_ model: KakaoLoginRequest)
     
     //토큰 refresh
     case refreshToken
@@ -42,6 +43,8 @@ enum UserRouter: APIRouter {
             "/v1/users/join"
         case .login:
             "/v2/users/login"
+        case .kakaoLogin:
+            "/v1/users/login/kakao"
             
         case .refreshToken:
             "/v1/auth/refresh"
@@ -74,7 +77,7 @@ enum UserRouter: APIRouter {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .emailValidation, .join, .login, .saveFcmToken, .payValidation:
+        case .emailValidation, .join, .login, .kakaoLogin, .saveFcmToken, .payValidation:
             return .post
         case .refreshToken, .checkMyProfile, .logout:
             return .get
@@ -99,6 +102,11 @@ enum UserRouter: APIRouter {
             return [
                 "email": model.email,
                 "password": model.password,
+                "deviceToken": model.deviceToken
+            ]
+        case .kakaoLogin(let model):
+            return [
+                "oauthToken": model.oauthToken,
                 "deviceToken": model.deviceToken
             ]
         case .saveFcmToken(let model):

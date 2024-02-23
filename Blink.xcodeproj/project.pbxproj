@@ -116,6 +116,8 @@
 		DE5AEEE42B4FD90D00743DA5 /* WSAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEEE32B4FD90D00743DA5 /* WSAddView.swift */; };
 		DE5AEEE62B4FD94700743DA5 /* WSAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEEE52B4FD94700743DA5 /* WSAddViewController.swift */; };
 		DE5AEEE82B4FDA4000743DA5 /* WSAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5AEEE72B4FDA4000743DA5 /* WSAddViewModel.swift */; };
+		DE70205B2B88A11C006749F8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE70205A2B88A11C006749F8 /* AuthViewModel.swift */; };
+		DE70205D2B88AAF7006749F8 /* KakaoLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE70205C2B88AAF7006749F8 /* KakaoLoginRequest.swift */; };
 		DE78CBC12B837A520058B065 /* DMChatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBC02B837A520058B065 /* DMChatting.swift */; };
 		DE78CBC32B837CB70058B065 /* DMsChatsRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBC22B837CB70058B065 /* DMsChatsRes.swift */; };
 		DE78CBC52B837CCD0058B065 /* DMChatRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE78CBC42B837CCD0058B065 /* DMChatRes.swift */; };
@@ -308,6 +310,8 @@
 		DE5AEEE32B4FD90D00743DA5 /* WSAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSAddView.swift; sourceTree = "<group>"; };
 		DE5AEEE52B4FD94700743DA5 /* WSAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSAddViewController.swift; sourceTree = "<group>"; };
 		DE5AEEE72B4FDA4000743DA5 /* WSAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSAddViewModel.swift; sourceTree = "<group>"; };
+		DE70205A2B88A11C006749F8 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		DE70205C2B88AAF7006749F8 /* KakaoLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginRequest.swift; sourceTree = "<group>"; };
 		DE78CBC02B837A520058B065 /* DMChatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatting.swift; sourceTree = "<group>"; };
 		DE78CBC22B837CB70058B065 /* DMsChatsRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsChatsRes.swift; sourceTree = "<group>"; };
 		DE78CBC42B837CCD0058B065 /* DMChatRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMChatRes.swift; sourceTree = "<group>"; };
@@ -857,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8C27482B45412A00141F5F /* AuthViewController.swift */,
+				DE70205A2B88A11C006749F8 /* AuthViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -999,6 +1004,7 @@
 				DE1CD2412B49ACC30083DD09 /* EmailValidation.swift */,
 				DE9971C72B4A75AB008D92B1 /* SignUp.swift */,
 				DE5AEED72B4FB42B00743DA5 /* Login.swift */,
+				DE70205C2B88AAF7006749F8 /* KakaoLoginRequest.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1286,6 +1292,7 @@
 				DE8C276F2B46D07000141F5F /* APIRouter.swift in Sources */,
 				DE2A19412B43F70F00194ADA /* UIFont+Extension.swift in Sources */,
 				DE5464512B613BE900A29B79 /* BaseCollectionViewCell.swift in Sources */,
+				DE70205D2B88AAF7006749F8 /* KakaoLoginRequest.swift in Sources */,
 				DE13159F2B53EC1B0023D73D /* WorkspaceListView.swift in Sources */,
 				DE247D9A2B5992D8007DE6E2 /* SplashViewModel.swift in Sources */,
 				DE8C275C2B46711C00141F5F /* SignUpViewModel.swift in Sources */,
@@ -1413,6 +1420,7 @@
 				DE5464422B612BE500A29B79 /* ChannelChatRes.swift in Sources */,
 				DEF48A2E2B5F87F500FDC7CC /* CircleButton.swift in Sources */,
 				DEF0048A2B72714900375EF8 /* RealmRepository.swift in Sources */,
+				DE70205B2B88A11C006749F8 /* AuthViewModel.swift in Sources */,
 				DEF48A242B5F289400FDC7CC /* ChannelRouter.swift in Sources */,
 				DEF48A152B5F0BFC00FDC7CC /* ChannelRes.swift in Sources */,
 				DEF48A192B5F146200FDC7CC /* ProfileRes.swift in Sources */,
@@ -1466,6 +1474,7 @@
 /* Begin XCBuildConfiguration section */
 		DE2A19232B43D27400194ADA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE58B6F72B889E0E0069B151 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1529,6 +1538,7 @@
 		};
 		DE2A19242B43D27400194ADA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE58B6F72B889E0E0069B151 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

@@ -22,6 +22,7 @@ final class AuthViewController: BaseViewController {
         return view
     }()
     
+    let viewModel = AuthViewModel()
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -31,6 +32,40 @@ final class AuthViewController: BaseViewController {
     
     private func bind() {
         
+        let input = AuthViewModel.Input(
+            kakaoLoginButtonTapped: kakaoLoginButton.rx.tap
+        )
+        let output = viewModel.transform(input: input)
+        
+        // MARK: 카카오 로그인
+        output.kakaoLoginResult
+            .bind(with: self) { owner, result in
+                
+                switch result {
+                case .success(let response):
+                    print("==Login Success== \(response)")
+                case .loginFailed:
+                    owner.toast(message: "카카오 로그인 오류가 발생했어요")
+                case .networkError:
+                    owner.toast(message: "에러가 발생했어요. 잠시 후 다시 시도해주세요.")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.workspaceInfo
+            .bind(with: self) { owner, type in
+                switch type {
+                case .empty:
+                    owner.changeRootViewController(viewController: HomeEmptyViewController())
+                case .notEmpty(let wsID):
+                    let vc = HomeTabViewController()
+                    vc.workspaceID = wsID
+                    owner.changeRootViewController(viewController: vc)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        // MARK: 이메일 로그인
         emailLoginButton.rx.tap
             .subscribe(with: self) { owner, _ in
                 
