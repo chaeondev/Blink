@@ -5,6 +5,7 @@
 
 APIKey.swift
 GoogleService-Info.plist
+*.xcconfig
 
 
 

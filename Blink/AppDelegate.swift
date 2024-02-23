@@ -10,6 +10,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import FirebaseMessaging
 import iamport_ios
+import RxKakaoSDKCommon
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -47,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("FCM registration token: \(token)")
           }
         }
+        
+        //카카오 로그인
+        let kakaoAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
+        RxKakaoSDK.initSDK(appKey: kakaoAppKey as! String)
         
         return true
     }
@@ -95,13 +100,5 @@ extension AppDelegate: MessagingDelegate {
             object: nil,
             userInfo: dataDict
         )
-    }
-}
-
-extension AppDelegate {
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        Iamport.shared.receivedURL(url)
-        return true
     }
 }

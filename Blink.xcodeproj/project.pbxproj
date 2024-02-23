@@ -30,6 +30,7 @@
 		DE13159F2B53EC1B0023D73D /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE13159E2B53EC1B0023D73D /* WorkspaceListView.swift */; };
 		DE1315A12B53EC260023D73D /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1315A02B53EC260023D73D /* WorkspaceListViewController.swift */; };
 		DE1315A42B5401D40023D73D /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = DE1315A32B5401D40023D73D /* SideMenu */; };
+		DE15E3D12B88931B00A8BA99 /* RxKakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = DE15E3D02B88931B00A8BA99 /* RxKakaoSDK */; };
 		DE1CD23E2B497EAB0083DD09 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CD23D2B497EAB0083DD09 /* SignUpView.swift */; };
 		DE1CD2402B497EBA0083DD09 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CD23F2B497EBA0083DD09 /* BaseView.swift */; };
 		DE1CD2422B49ACC30083DD09 /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1CD2412B49ACC30083DD09 /* EmailValidation.swift */; };
@@ -295,6 +296,7 @@
 		DE5464832B65198000A29B79 /* RepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryType.swift; sourceTree = "<group>"; };
 		DE5464892B652B3700A29B79 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
 		DE54648B2B652B4B00A29B79 /* ChattingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingRepository.swift; sourceTree = "<group>"; };
+		DE58B6F72B889E0E0069B151 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		DE5A67822B4A6841004FE7AC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		DE5AEED12B4FAB8B00743DA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5AEED32B4FAB9400743DA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				DE5464792B65124B00A29B79 /* Realm in Frameworks */,
 				DE22B6D92B7F4677002663A5 /* FirebaseCrashlytics in Frameworks */,
 				DE2A19492B44237A00194ADA /* SnapKit in Frameworks */,
+				DE15E3D12B88931B00A8BA99 /* RxKakaoSDK in Frameworks */,
 				DE54647B2B65124B00A29B79 /* RealmSwift in Frameworks */,
 				DE1315772B5336040023D73D /* IQKeyboardManagerSwift in Frameworks */,
 			);
@@ -516,6 +519,7 @@
 				DE2A190C2B43D27400194ADA /* Info.plist */,
 				DE8C27642B46A4E500141F5F /* .gitignore */,
 				DED868082B7F531C00F16FF1 /* GoogleService-Info.plist */,
+				DE58B6F72B889E0E0069B151 /* Config.xcconfig */,
 			);
 			path = Blink;
 			sourceTree = "<group>";
@@ -1127,6 +1131,7 @@
 				DE22B6D82B7F4677002663A5 /* FirebaseCrashlytics */,
 				DE22B6DA2B7F4677002663A5 /* FirebaseMessaging */,
 				DEC4BD732B84DF90004A19BD /* iamport-ios */,
+				DE15E3D02B88931B00A8BA99 /* RxKakaoSDK */,
 			);
 			productName = Blink;
 			productReference = DE2A18FB2B43D27300194ADA /* Blink.app */;
@@ -1212,6 +1217,7 @@
 				DE28ED642B7C767A002BA071 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 				DE22B6D52B7F4677002663A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				DEC4BD722B84DF90004A19BD /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				DE15E3CF2B88931B00A8BA99 /* XCRemoteSwiftPackageReference "kakao-ios-sdk-rx" */,
 			);
 			productRefGroup = DE2A18FC2B43D27300194ADA /* Products */;
 			projectDirPath = "";
@@ -1781,6 +1787,14 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		DE15E3CF2B88931B00A8BA99 /* XCRemoteSwiftPackageReference "kakao-ios-sdk-rx" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk-rx";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.20.0;
+			};
+		};
 		DE22B6D52B7F4677002663A5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1865,6 +1879,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE1315A22B5401D40023D73D /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
+		};
+		DE15E3D02B88931B00A8BA99 /* RxKakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE15E3CF2B88931B00A8BA99 /* XCRemoteSwiftPackageReference "kakao-ios-sdk-rx" */;
+			productName = RxKakaoSDK;
 		};
 		DE22B6D62B7F4677002663A5 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;

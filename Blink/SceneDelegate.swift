@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxKakaoSDKAuth
+import KakaoSDKAuth
+import iamport_ios
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -63,3 +66,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+//카카오 로그인
+extension SceneDelegate {
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        //카카오 로그인
+        if let url = URLContexts.first?.url {
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                _ = AuthController.rx.handleOpenUrl(url: url)
+            }
+        }
+        
+        //코인 결제
+        if let url = URLContexts.first?.url {
+            Iamport.shared.receivedURL(url)
+        }
+        
+    }
+}
