@@ -29,7 +29,7 @@ final class DMListViewController: BaseViewController {
     
     private lazy var naviTitleButton = {
         let button = UIButton()
-        button.setTitle("iOS Developers Study", for: .normal)
+        button.setTitle("Direct Message", for: .normal)
         button.setTitleColor(.brandBlack, for: .normal)
         button.titleLabel?.font = UIFont.customFont(.title1)
         button.contentHorizontalAlignment = .left
@@ -75,7 +75,6 @@ final class DMListViewController: BaseViewController {
         //네비게이션 leftButton, title 업데이트
         output.workspaceResource
             .bind(with: self) { owner, model in
-                owner.naviTitleButton.setTitle(model.name, for: .normal)
                 owner.leftButton.setKFImage(imageUrl: model.thumbnail, placeholderImage: .dummy)
             }
             .disposed(by: disposeBag)

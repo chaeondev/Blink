@@ -235,7 +235,7 @@ extension ChattingViewModel {
             requestModel = ChattingRequest(
                 workspaceID: self.workspaceID,
                 channelName: self.channelInfo.name,
-                cursor_date: Date().toString(dateType: .allDate)
+                cursor_date: "" // MARK: DB 없어도 우선 지난채팅내역 다 볼수있게 구성(나중에 수정가능)
             )
         }
         
