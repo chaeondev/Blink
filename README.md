@@ -9,7 +9,10 @@
 ## Preview
 <img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/0e1db4b1-16ee-42fe-9c1d-b402f85ab3f3">
 
-[상세 UI 보러가기](https://github.com/chaeondev/Blink#%EC%83%81%EC%84%B8-ui)
+
+
+[상세 UI 보러가기](https://github.com/chaeondev/Blink#ui)
+
 
 ## 프로젝트 소개
 
@@ -57,7 +60,7 @@
 
 ## 회고
 
-## 상세 UI
+## UI
 
 <div align=right> 
  
