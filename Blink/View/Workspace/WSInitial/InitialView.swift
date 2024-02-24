@@ -9,7 +9,7 @@ import UIKit
 
 class InitialView: BaseView {
     let titleLabel = UILabel.labelBuilder(text: "출시 준비 완료!", font: .title1, textColor: .brandBlack, textAlignment: .center)
-    let infoLabel = UILabel.labelBuilder(text: "옹골찬 고래밥님의 조직을 위해 새로운 새싹톡 워크스페이스를 시작할 준비가 완료되었어요!", font: .body, textColor: .brandBlack, numberOfLines: 0, textAlignment: .center)
+    let infoLabel = UILabel.labelBuilder(text: "옹골찬 고래밥님의 조직을 위해 새로운 Blink 워크스페이스를 시작할 준비가 완료되었어요!", font: .body, textColor: .brandBlack, numberOfLines: 0, textAlignment: .center)
     let welcomImageView = {
         let view = UIImageView()
         view.image = .launching

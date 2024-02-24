@@ -10,7 +10,7 @@ import UIKit
 class SplashView: BaseView {
     
     let introduceLabel = {
-        let view = UILabel.labelBuilder(text: "새싹톡을 사용하면 어디서나\n팀을 모을 수 있습니다", font: .title1, textColor: .brandBlack, numberOfLines: 0, textAlignment: .center)
+        let view = UILabel.labelBuilder(text: "Blink를 사용하면 어디서나\n팀을 모을 수 있습니다", font: .title1, textColor: .brandBlack, numberOfLines: 0, textAlignment: .center)
         view.lineBreakMode = .byWordWrapping
         return view
     }()

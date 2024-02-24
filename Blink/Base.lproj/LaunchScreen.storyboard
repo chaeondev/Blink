@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="height" constant="60" id="NJl-ro-7gR"/>
                                     <constraint firstAttribute="width" constant="345" id="S4r-YM-OGl"/>
                                 </constraints>
-                                <string key="text">새싹톡을 사용하면 어디서나
+                                <string key="text">Blink를 사용하면 어디서나
  팀을 모을 수 있습니다</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" name="BrandBlack"/>
