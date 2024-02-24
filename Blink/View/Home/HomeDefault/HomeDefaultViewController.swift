@@ -268,6 +268,8 @@ extension HomeDefaultViewController: UITableViewDelegate, UITableViewDataSource 
               let dmData = viewModel.dmData else { return }
         
         switch (indexPath.section, indexPath.row) {
+        case (0,0), (1,0):
+            print("테이블 접습니다.")
         case (2,0): //팀원추가(section2) cell 클릭한 경우 -> 화면전환
             let vc = InviteMemberViewController()
             vc.delegate = self
