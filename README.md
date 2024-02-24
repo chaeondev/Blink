@@ -1,4 +1,4 @@
-<p align="left">
+<p>
   <img width="100" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/cf3a2161-422f-462c-8d6b-29c1ff47b771">
 </p>
 
@@ -7,7 +7,9 @@
 #### 사용자 간 팀 커뮤니케이션이 가능한 메신저 앱입니다.
 
 ## Preview
-<img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/0e1db4b1-16ee-42fe-9c1d-b402f85ab3f3">
+
+<img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/9fd7c6c4-13da-46e2-a7fd-f3f88cee6387">
+
 
 [📱 상세 UI 보러가기](https://github.com/chaeondev/Blink#ui) 
 
@@ -63,11 +65,28 @@
 
 ## UI
 
+#### ✔︎ 회원가입, 로그인  
+
+<img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/a37cb6a8-b156-49fa-82fc-92680f37b4c0">
+
+#### ✔︎ 워크스페이스
+
+<img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/b240d41c-cb96-4385-9775-4ca42b37521d">
+
+
+#### ✔︎ 채널, DM
+
+<img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/5b6a2c40-bebb-4bd9-8655-d3c2cc9bf034">
+
+
+#### ✔︎ 프로필, 인앱결제, Push Notification
+
+<img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/6dbd1c38-c6fb-4666-98f3-ffb6803a4034">
+
+
+
 <div align=right> 
  
  [Preview로 돌아가기](https://github.com/chaeondev/Blink#preview)
-
- 
- [주요기능으로 돌아가기](https://github.com/chaeondev/Blink#%EF%B8%8E-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8)
  
 </div>
