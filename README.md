@@ -9,9 +9,7 @@
 ## Preview
 <img width="1000" alt="image" src="https://github.com/chaeondev/Blink/assets/80023607/0e1db4b1-16ee-42fe-9c1d-b402f85ab3f3">
 
-
-
-[상세 UI 보러가기](https://github.com/chaeondev/Blink#ui)
+[📱 상세 UI 보러가기](https://github.com/chaeondev/Blink#ui) 
 
 
 ## 프로젝트 소개
@@ -52,6 +50,9 @@
 #### ✔︎ 채널, DM
 #### ✔︎ 프로필, 인앱결제, Push Notification
 
+
+[📱 상세 UI 보러가기](https://github.com/chaeondev/Blink#ui)
+
 ---
 
 <br> </br>
@@ -65,5 +66,8 @@
 <div align=right> 
  
  [Preview로 돌아가기](https://github.com/chaeondev/Blink#preview)
+
+ 
+ [주요기능으로 돌아가기](https://github.com/chaeondev/Blink#%EF%B8%8E-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EB%A1%9C%EA%B7%B8%EC%9D%B8)
  
 </div>
