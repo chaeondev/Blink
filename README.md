@@ -49,7 +49,7 @@
 
 - **RxKakaoSDK**(카카오), **AuthenticationServices**(애플)을 통해 **소셜 로그인** 제공
 - **First Responder**, Toast Message를 활용해 **RxSwift** 기반 **반응형** 회원가입 로직 구현
-- 섹션 별 계층적 구조 데이터 기반 홈화면 **Expandable Section(토글)** TableView UI 구현
+- 홈 화면에서 **계층적 데이터 구조**를 기반으로 **Expandable Section** TableView UI를 구현
 - **Dispatch Group**을 활용하여 비동기 네트워크 호출의 순차적 실행을 보장
 - **SocketIO**를 활용하여 양방향 **실시간** 통신 기반 다인원 **채팅** 시스템 구현
 - 과거 채팅 내역을 **Realm DB**에 저장하여, **네트워크 요청 최소화**
