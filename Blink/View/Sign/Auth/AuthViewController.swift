@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import AuthenticationServices
+
 final class AuthViewController: BaseViewController {
     
     private let appleLoginButton = UIButton.buttonBuilder(image: .appleIDLogin)
@@ -33,7 +35,8 @@ final class AuthViewController: BaseViewController {
     private func bind() {
         
         let input = AuthViewModel.Input(
-            kakaoLoginButtonTapped: kakaoLoginButton.rx.tap
+            kakaoLoginButtonTapped: kakaoLoginButton.rx.tap,
+            appleLoginButtonTapped: appleLoginButton.rx.tap
         )
         let output = viewModel.transform(input: input)
         
@@ -64,6 +67,21 @@ final class AuthViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        // MARK: 애플 로그인
+        input.appleLoginButtonTapped
+            .bind(with: self) { owner, _ in
+                let appleIDProvider = ASAuthorizationAppleIDProvider()
+                let request = appleIDProvider.createRequest()
+                request.requestedScopes = [.email, .fullName]
+                
+                let controller = ASAuthorizationController(authorizationRequests: [request])
+                controller.delegate = self
+                controller.presentationContextProvider = self
+                controller.performRequests()
+            }
+            .disposed(by: disposeBag)
+        
         
         // MARK: 이메일 로그인
         emailLoginButton.rx.tap
@@ -123,4 +141,28 @@ final class AuthViewController: BaseViewController {
             make.height.equalTo(20)
         }
     }
+}
+
+extension AuthViewController: ASAuthorizationControllerDelegate {
+    
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("APPLE Login Failed \(error.localizedDescription)")
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        let vc = InitialViewController()
+        self.present(vc, animated: true)
+        
+    }
+}
+
+
+extension AuthViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
 }

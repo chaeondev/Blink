@@ -20,6 +20,7 @@ final class AuthViewModel: ViewModelType {
     
     struct Input {
         let kakaoLoginButtonTapped: ControlEvent<Void>
+        let appleLoginButtonTapped: ControlEvent<Void>
     }
     
     struct Output {
