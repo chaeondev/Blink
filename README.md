@@ -188,52 +188,6 @@ func sceneDidEnterBackground(_ scene: UIScene) {
 
 <br> </br>
 
-### 3. 채팅뷰 스크롤 시점 관리
-
-#### Issue
-
-#### Solution
-
-```swift
-//ChattingViewModel
-
-func checkDBChatLastIndex() {
-    let channelData = ChannelInfoModel(
-        workspaceID: channelInfo.workspace_id,
-        channel_id: channelInfo.channel_id,
-        channel_name: channelInfo.name
-    )
-    let tableList = chatRepository.fetchAllDBChatting(channelInfo: channelData)
-    
-    self.scrollIndex = tableList.count - 1
-}
-```
-
-
-```swift
-//ChattingViewController
-
-//안읽은 메세지 처음부터 보여주기
-func scrollToUnreadMessage() {
-    if viewModel.scrollIndex != -1 {
-        let row = viewModel.scrollIndex
-        
-        let indexPath = IndexPath(row: row, section: 0)
-        
-        self.mainView.messageTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-    }
-}
-
-//POST했을 때 tableView scroll
-func scrollToBottom() {
-    let indexPath = IndexPath(row: viewModel.numberOfRowsInSection() - 1, section: 0)
-    self.mainView.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-}
-```
-
-<br> </br>
-
-
 ## UI
 
 #### ✔︎ 회원가입, 로그인  
