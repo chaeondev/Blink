@@ -17,6 +17,7 @@ class SocketIOManager: NSObject {
     
     //소켓 연결 상태
     var isOpen = false
+    var isBreak = false
     
     override init() {
         super.init()
@@ -51,6 +52,20 @@ class SocketIOManager: NSObject {
         print("소켓 연결 종료")
         self.isOpen = false
         
+    }
+    
+    func pauseConnect() {
+        if isOpen && !isBreak {
+            closeConnection()
+            isBreak = true
+        }
+    }
+    
+    func reconnect() {
+        if isBreak {
+            socket.connect()
+            isBreak = false
+        }
     }
     
     // MARK: 소켓 데이터 RECEIVE

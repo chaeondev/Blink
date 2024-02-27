@@ -50,6 +50,7 @@ final class ChattingViewController: BaseViewController {
     
     deinit {
         print("===========채널 채팅뷰 DEINIT============")
+        viewModel.disconnectSocket()
     }
     
     private func setTableView() {
