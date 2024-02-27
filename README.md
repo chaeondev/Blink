@@ -72,16 +72,119 @@
 ### 1. 화면 내 다수의 비동기 네트워크 콜에서 발생하는 순서 의존성 에러
 
 #### Issue
+홈화면에 채팅 목록과 안읽은 메세지 개수를 데이터로 요청해야 했습니다. 
+**여러 번의 네트워크 통신이 순차적**으로 일어나야 했는데, 네트워크 통신은 **비동기 작업**으로 수행되기 때문에 작업 완료 시점을 체크하기 힘들었습니다.
+이로 인해 채팅 목록 또는 안읽은 메세지 개수 데이터가 누락된 채로 뷰가 보여지는 문제가 발생했습니다.
 
 #### Solution
+completionHandler와 **DispatchGroup**을 이용해 작업 완료 시점을 체크할 수 있었습니다.
+안읽은 메세지 개수 네트워크 통신의 경우 여러 번의 비동기 작업을 그룹화하고, 완료 시점을 **notify**로 체크했습니다.
+이후 해당 시점에 completion()을 통해 원하는 작업을 원하는 시점에 할 수 있도록 구현했습니다.
+
+```swift
+//HomeDefaultViewModel
+
+func fetchDMInfo(completion: @escaping () -> Void) {
+    APIService.shared.requestCompletion(type: [DMsRoomRes].self, api: DMSRouter.checkDMRooms(self.workspaceID)) { [weak self] result in
+        switch result {
+        case .success(let response):
+            print("===DM 정보 조회 성공 ===")
+            self?.dmData = HomeDMsData(
+                opened: true,
+                sectionData: response.map {
+                    HomeDMsData.DMCellInfo(dmInfo: $0, unreadDMCnt: 10)
+                }
+            )
+            self?.fetchDMsUnreadCount {
+                completion()
+            }
+            
+        case .failure(let error):
+            print("===DM 정보 조회 실패 ===", error)
+        }
+    }
+}
+
+func fetchDMsUnreadCount(completion: @escaping () -> Void) {
+  guard let dmData else { return }
+  
+  let group = DispatchGroup()
+  
+  for (index, item) in dmData.sectionData.enumerated() {
+      let requestModel = DMsUnreadCountRequest(
+          roomID: item.dmInfo.room_id,
+          workspaceID: self.workspaceID,
+          after: item.dmInfo.createdAt)
+      
+      group.enter()
+      APIService.shared.requestCompletion(type: DMsUnreadCountResponse.self, api: DMSRouter.dmsUnreadCount(requestModel)) { [weak self] result in
+          switch result {
+          case .success(let response):
+              print("===\(response.room_id) 방 DM개수: \(response.count) 네트워크 성공===")
+              self?.dmData!.sectionData[index].unreadDMCnt = response.count
+
+          case .failure(let error):
+              print("===DM 읽지 않은 채팅 개수 네트워크 실패===")
+              print("===DM방 정보: \(String(describing: self?.dmData?.sectionData[index].dmInfo))")
+              print("===에러: \(error)===")
+          }
+          
+          group.leave()
+      }
+  }
+  
+  group.notify(queue: .main) {
+      completion()
+  }
+}
+```
 
 <br> </br>
 
 ### 2. 소켓 통신 연결 해제 시점 이슈
 
 #### Issue
+실시간 채팅을 구현하기 위해 소켓을 연결해야 했고, 소켓 연결과 해제 시점이 중요했습니다.
+view에 들어갈 때 뷰를 구현하면서 소켓을 연결시켰고, 화면을 나가는 경우 viewDidDissapear에서 해제를 했지만, **채팅 화면에서 앱을 종료시키는 경우 소켓이 종료되지 않는 문제**가 발생했습니다.
 
 #### Solution
+`ChattingViewController`에서는 **deinit** 시점에 한번 더 소켓의 해제 여부를 체크했습니다.
+또한 `SceneDelegate`에서 **백그라운드** 시점 또는 **Scene이 종료** 되었을 때 소켓 연결을 해제함으로써 리소스를 최적화하였습니다.
+
+```swift
+//ChattingViewController
+
+override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    
+    print(#function)
+    viewModel.disconnectSocket()
+}
+
+deinit {
+    viewModel.disconnectSocket()
+    print("===========채널 채팅뷰 DEINIT============")
+}
+```
+
+```swift
+//SceneDelegate
+
+func sceneDidDisconnect(_ scene: UIScene) {
+    if SocketIOManager.shared.isOpen {
+        SocketIOManager.shared.closeConnection()
+    }
+}
+
+func sceneDidBecomeActive(_ scene: UIScene) {
+    SocketIOManager.shared.reconnect()
+}
+
+func sceneDidEnterBackground(_ scene: UIScene) {
+    SocketIOManager.shared.pauseConnect()
+}
+```
+
 
 <br> </br>
 
@@ -90,6 +193,43 @@
 #### Issue
 
 #### Solution
+
+```swift
+//ChattingViewModel
+
+func checkDBChatLastIndex() {
+    let channelData = ChannelInfoModel(
+        workspaceID: channelInfo.workspace_id,
+        channel_id: channelInfo.channel_id,
+        channel_name: channelInfo.name
+    )
+    let tableList = chatRepository.fetchAllDBChatting(channelInfo: channelData)
+    
+    self.scrollIndex = tableList.count - 1
+}
+```
+
+
+```swift
+//ChattingViewController
+
+//안읽은 메세지 처음부터 보여주기
+func scrollToUnreadMessage() {
+    if viewModel.scrollIndex != -1 {
+        let row = viewModel.scrollIndex
+        
+        let indexPath = IndexPath(row: row, section: 0)
+        
+        self.mainView.messageTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+    }
+}
+
+//POST했을 때 tableView scroll
+func scrollToBottom() {
+    let indexPath = IndexPath(row: viewModel.numberOfRowsInSection() - 1, section: 0)
+    self.mainView.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+}
+```
 
 <br> </br>
 
