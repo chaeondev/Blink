@@ -21,7 +21,7 @@
 - 워크스페이스, 채널 CRUD 기능
 - 채널, DM에서 실시간 채팅 제공 (텍스트, 이미지 송수신 가능)
 - 채팅방 알림(Remote Push) 실시간 수신
-- 앱 내 인앱결제를 통한 코인 충전 가능
+- 앱 내 PG를 통한 코인 결제 기능
 
 ---
 
@@ -51,11 +51,11 @@
 - **First Responder**, Toast Message를 활용해 **RxSwift** 기반 **반응형** 회원가입 로직 구현
 - 홈 화면에서 **계층적 데이터 구조**를 기반으로 **Expandable Section** TableView UI를 구현
 - **Dispatch Group**을 활용하여 비동기 네트워크 호출의 순차적 실행을 보장
-- **SocketIO**를 활용하여 양방향 **실시간** 통신 기반 다인원 **채팅** 시스템 구현
+- **SocketIO**를 활용하여 양방향 **실시간** 통신 기반 **오픈채팅** 시스템 구현
 - 과거 채팅 내역을 **Realm DB**에 저장하여, **네트워크 요청 최소화**
 - **Compositional Layout**을 사용하여 이미지 개수에 기반한 **동적인 채팅 레이아웃** 조정
 - **Firebase Cloud Messaging**을 통해 실시간으로 채팅 **Remote Push Notification** 수신
-- **포트원**을 연동하여 WebView 기반 **인앱 결제** 구현, 결제 영수증 검증을 통한 서버 유효성 확인 및 코인 반영
+- **PG**(**Payment Gateway**)를 연동하여 **WebView** 기반 신용카드결제 구현, 결제 영수증 검증을 통한 서버 유효성 확인 및 코인 반영
 - **RxSwift**를 활용하여 **MVVM** 아키텍처 내에서 **Input/Output** 패턴을 구현
 - **Alamofire**의 **URLRequestConvertible**을 통해 **Router** 패턴으로 네트워크 요청 추상화 및 모듈화
 
